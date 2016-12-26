@@ -1,0 +1,167 @@
+// Example of code: 
+	var foo = "bar";
+
+	function bar(){
+		var foo = "baz";
+	}
+
+	function baz(foo){
+		foo  = "bam";
+		bam = "yay";
+	}
+
+/*
+
+Js is compile every single time that it run.
+That an compiled code.
+	Do one pass to the code.
+	Do a final pass to execute the code.
+
+Important stuff that compiler phase do:
+	First pass : Finding declarations of variables and function and put it into the appropriate scope.
+	Second pass: After it has been compile, find out where it will be executed.
+
+This is not a single statement 
+var foo = "bar";
+	1) Declaration operation : var foo
+		I see a variable declaration for an identifier foo, witch current scope i am ?
+			The answer is the global scope.
+				Ok i want register the foo identifier into my current scope (the global scope)
+	2) Initialisation operation : foo = "bar"
+
+The compile do the best guest 
+*/
+
+//In the execution phase, they is no var anymore.
+//	What is left is the assignement in the execution phase.
+		foo = "bar"
+// 	If they have
+	var foo = ...
+	var foo = ...
+// they ignore the var because it does not exist in the execution phase.
+
+function bar(){
+	var foo = "baz";
+}
+
+/*
+that recursively decend into the bar function.
+and compile inside the function.
+
+look for declaration : 
+	var foo put into the scope of function bar.
+*/
+
+
+foo = "bar";
+/*
+lhs : left hand side (target)
+rhs : right hand side (source)
+	of an assignement (=)
+
+foo is lhs reference
+rhs is "bar"
+
+when we pass variable to a function call they is an assignement without the = (target, source)
+*/
+
+
+// Execution of function Code
+
+function bar(){
+	var foo = "baz";
+}
+
+/*
+	Hey scope of bar do you have foo identifier in your table ?
+	yes so execute "baz"
+*/
+
+
+function baz(foo){
+	foo  = "bam";
+	bam = "yay";
+}
+
+/*
+	Hey scope of baz do you have foo declaration ?
+		yes so execute "bam"
+
+	Hey scope of baz do you have bam declaration ?
+		No : Hey global scope i have lhs reference for bam have you ever heard of them ?
+			Yes : i just created for you (because not in strict mode)
+				We have leakage of global variable.
+				If it was an rhs, it will be different.
+			no : in strict mode we get a state of undeclared variable
+				we are unable to find lhs in each scope.
+*/
+
+/* 
+
+	Undefined is not = of undeclared.
+		Undeclared : call when is no present declaration in any of the scope we have access to.
+		Undefined :  he was declared but it unitialize
+			Undefined is a proper value
+
+*/
+
+/*
+	when we call rhs that is not found in the scope.
+		No identifier in any scope
+		reference error for both strict and unstrict.
+
+	In non strict mode : 
+		Reference error result from unfufiled or undeclared rhs reference.
+	In strict mode : 
+		They both result of reference error.
+*/
+
+
+// Function declaration vs Function expression.
+var foo = function bar() {
+	var foo = "baz";
+
+	function baz(foo) {
+		foo = bar;
+		foo;  // function 
+	}
+	baz();
+};
+
+foo();
+bar(); // Error !
+
+// function expression (anonymous function expression)
+var foo = function bar() { 
+/*
+	That bar name does not declared in to the global scope.
+		the name of the function expression is enclosed in it is own scope.
+		the name bar is accessible inside itself.
+*/
+
+// Function declaration
+function baz(){ ...
+/* 
+	The first word in the statement
+*/
+
+// Why use function expression with name vs anonymous function
+
+/*
+	1) You can access inside the function and doing recursive.
+	2) Is useful for debugging because the statck trace error give the name of the function.
+	3) Give it the name like handeler => it handeling some event, is self documented code.
+		More 
+
+*/
+
+// eval key word
+
+/*
+	It screw up the optimisation of lexical.
+	It run slower.
+	but in strict mode, it create a new scope so 
+		It run faster.
+		More optimized code.
+	Don't use eval unless you have no choise.
+

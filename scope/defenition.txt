@@ -1,0 +1,9 @@
+Scope : 
+	Where to look for things
+		Variables
+		references of object that use identifier name.
+		lexical identifier
+
+
+Js look for functions.
+	smallest atomic version of scope is function.
