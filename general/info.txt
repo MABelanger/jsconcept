@@ -1,0 +1,2 @@
+in javascript everything is a reference to an object.
+Everything is a reference to a function.
