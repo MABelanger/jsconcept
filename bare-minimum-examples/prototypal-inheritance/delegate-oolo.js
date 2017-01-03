@@ -1,5 +1,9 @@
+/*
+	We use the prototype chain to do kind of heritance.
+*/
+
 /* 
-	The parent Vehicle 
+	The Vehicle 
 */
 var Vehicle = {
 	init: function(speed) {
@@ -11,14 +15,13 @@ var Vehicle = {
 };
 
 /* 
-	The child Car
 	we added name property
  */
 
  // link Car to Vehicule
 Car = Object.create(Vehicle);
 
-// We do not choose the same name to avoid overriding.
+// We do not choose the same name as init() to avoid overriding.
 Car.initCar = function(speed, name) {
 	// call init with proto chain
 	this.init(speed);
