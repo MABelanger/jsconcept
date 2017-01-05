@@ -1,0 +1,23 @@
+in javascript everything is a reference to an object.
+Everything is a reference to a function.
+
+The bad part is implicit global variable ex:
+
+var a = b = 0;
+
+is : 
+b = 0;
+var a = b;
+
+So the b is now global
+
+Do explicit variable :
+	var a = 0, b = 0;
+
+-------
+
+Do now write 
+x++;
+use 
+x +=1;
+instead.

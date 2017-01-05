@@ -1,4 +1,6 @@
-var modGetFile = (function() {
+"use strict";
+
+const modGetFile = (function() {
 
 	function _getFakeData(url) {
 		return "Data of: " + url;
@@ -11,17 +13,16 @@ var modGetFile = (function() {
 	function getPromise(url) {
 		return new Promise(function(resolve){
 			console.log("Requesting: " + url);
-			var data = _getFakeData(url);
+			let data = _getFakeData(url);
 
 			setTimeout(function() {
 				//console.log("Resolved: " + url);
 				resolve( data );
 			}, _getRandomDelay() );
-
 		});
 	}
 
-	var publicAPI = {
+	let publicAPI = {
 		getPromise: getPromise
 	};
 
@@ -29,11 +30,11 @@ var modGetFile = (function() {
 })();
 
 
-var urls = ["http://wwww.bibi.com/text1.txt", "http://wwww.bibi.com/text2.txt", "http://wwww.bibi.com/text3.txt"];
+const URLS = ["http://wwww.bibi.com/text1.txt", "http://wwww.bibi.com/text2.txt", "http://wwww.bibi.com/text3.txt"];
 
-var p1 = modGetFile.getPromise( urls[0] );
-var p2 = modGetFile.getPromise( urls[1] );
-var p3 = modGetFile.getPromise( urls[2] );
+var p1 = modGetFile.getPromise( URLS[0] );
+var p2 = modGetFile.getPromise( URLS[1] );
+var p3 = modGetFile.getPromise( URLS[2] );
 
 console.log("");
 p1
