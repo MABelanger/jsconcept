@@ -1,6 +1,8 @@
 # <b>JavaScript Notes</b>
 Notes from stuff that i learn in JavaScript and examples that i do my self to understand the concept.
 
+[TOC]
+
 ----------
 
 ## How to Write an Open Source JavaScript Library
@@ -76,7 +78,7 @@ $ node node_modules/.bin/git-cz
 It will ask us the question to generate the commit message.
 
 
-#### Add a script commit inside package.json:
+<b>Add a script commit inside package.json</b>:
 
 ```js
 "scripts": {
