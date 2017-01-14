@@ -82,11 +82,36 @@ var yourModuleName = require('your-module-name');
 > **Note:** You can check your package on :
 http://npm.im/your-module-name
 
+
+### Versions
+> **Note:** To bumpup version like A.B.C :
+- A mean Major release, A breking change, break the API if changed.
+- B mean Minor relase, new feature but do not break the API
+- C mean Patch release, fix a bug.
+
 <b>Add version tag to github with a tag point to a release</b>:
 ```
 $ git tag 1.0.0
 $ git push --tags
 ```
+
+#### Beta version
+a beta version can be your change that you are not sure that people will like it. append <b>-beta.x</b>
+
+like : 1.4.0-beta.0
+```
+$ git add -A
+$ git commit -am 'adding beta...'
+$ git tag 1.4.0-beta.0
+$ git push
+$ git push --tags
+$ npm publish --tag beta
+```
+<b>Install the latest npm beta</b>
+```
+$ npm install package-name@beta
+```
+When you finished with beta you simply remove the "-beta.0"
 
 #### commitizen & cz-conventional-changelog
 Standard commit guideline with conventional-changelog is nothing more than formatting your commits with a particular structure.
@@ -125,4 +150,27 @@ It will ask us the question to generate the commit message.
 You can now run npm run commit :
 ```
 $ npm run commit
+```
+
+### install unit testing (mocha & chai)
+```
+$ npm install mocha chai --save-dev
+```
+
+
+
+### git hooks
+
+ghooks will run the test right before commit. If the test failed, it will not commit the code.
+```
+$ npm install -D ghooks
+```
+
+inside the package.json add the pre-commit:
+```js
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run test:single"
+    }
+  }
 ```
