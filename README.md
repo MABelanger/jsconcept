@@ -240,7 +240,7 @@ inside the package.json add the pre-commit:
   }
 ```
 
-### Delete directory cross platform
+### Delete directory cross-platform
 inside the package.json add rimraf that does <b>'rm -rf dist'</b>
 ```js
 "scripts": {
