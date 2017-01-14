@@ -9,8 +9,6 @@ Publishing a JavaScript library for public use requires some extra steps. You ne
 
 From Github and npm, to releasing beta versions, semantic versioning, code coverage, continuous integration, and providing your library with a solid set of unit tests, there are a ton of things to learn.
 
-This series will guide you through a set of steps to publish a JavaScript open source library.
-
 #### Advantage & Disaventage of micro library
 <b>Advantage</b>:
 - It is so small so it easy to reason about.
@@ -19,6 +17,38 @@ This series will guide you through a set of steps to publish a JavaScript open s
 
 <b>Disavantage</b>:
 - Managing the dependency and versioning but is good for may cases.
+
+#### Initialize the npm
+
+
+```
+$ npm set init-author-name 'Michel-Alexandre Belanger'
+$ npm set init-author-email 'michel.alexandre.belanger@gmail.com'
+$ npm set init-author-url 'http://www.mtrema.com'
+$ npm set init-license 'MIT'
+# no ~ or ^ for the version of dependency inside package.json.
+$ npm set save-exact true
+# To add the auth token
+$ npm adduser
+```
+
+> **Note:** each set init* will be saved inside the ~/.npmrc
+All the config is here : [https://docs.npmjs.com/misc/config](https://docs.npmjs.com/misc/config)
+
+
+Inside the package
+```
+$ npm init
+    name: (starwars-names)
+    version: (1.0.0)
+    description: Get random Star wars names
+    entry point: (index.js) src/index.js
+    test command:
+    git repository: https://github.com/MABelanger/starwars-names.git
+    keywords: random star wars
+    license: (MIT)
+```
+
 
 #### commitizen & cz-conventional-changelog
 Standard commit guideline with conventional-changelog is nothing more than formatting your commits with a particular structure.
