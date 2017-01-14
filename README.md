@@ -36,12 +36,15 @@ $ node node_modules/.bin/git-cz
 It will ask us the question to generate the commit message.
 
 
-### Next, add a script commit inside package.json to run npm run commit:
+### Add a script commit inside package.json:
 
 ```js
-"commit": "git-cz",
+"scripts": {
+  "commit": "git-cz"
+}
 ```
 
+You can now run npm run commit :
 ```
 $ npm run commit
 ```
