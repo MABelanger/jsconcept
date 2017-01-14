@@ -98,7 +98,7 @@ $ git push --tags
 #### Beta version
 a beta version can be your change that you are not sure that people will like it. append <b>-beta.x</b>
 
-like : 1.4.0-beta.0
+like : <i>1.4.0-beta.0</i>
 ```
 $ git add -A
 $ git commit -am 'adding beta...'
@@ -152,11 +152,64 @@ You can now run npm run commit :
 $ npm run commit
 ```
 
-### install unit testing (mocha & chai)
+### Unit testing
+(mocha & chai)
 ```
 $ npm install mocha chai --save-dev
 ```
 
+### Sementic realease
+Sementic realease use a convention for with version to bump. Is the same convention that angular use.
+
+```
+$ npm install -g semantic-release-cli
+```
+
+There are so many repeated steps when releasing a new version of a library. The tool semantic-release automates this process by pushing off the responsibility of your releases to continuous integration.
+
+<b>Init semantic-release-cli, at the root of the project:</b>
+```
+$ semantic-release-cli setup
+	all default ...
+	use travis-ci
+```
+
+> **Note:** That will add "semantic-release" script inside the package.json
+
+> **Note:** To remove the warning message with `npm install` change the version to : <b>0.0.0-semantically-released</b>
+
+The  semantic-release will setup the version automaticly !
+
+
+<b>inside the .travis.yml</b>
+```
+before_script:
+  - npm prune
+after_success:
+  - npm run semantic-release
+```
+
+<b>standard commit guideline</b>:
+[https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit)
+
+
+### Code coverage
+
+istanbul check the code coverage.
+```
+$ npm install -D istanbul
+```
+<b>add script istanbul to package.json</b>:
+```js
+  "scripts": {
+    "test": "mocha src/index.test.js -w",
+    "test:single": "istanbul cover -x *.test.js _mocha -- -R spec src/index.test.js"
+    "check-coverage": "istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+```
+
+> **Note:** use _mocha to be compatible with istanbul and use this parameters:
+  -- : specify the file input
+  -R  : Change the reporter to spect
 
 
 ### git hooks
@@ -173,4 +226,12 @@ inside the package.json add the pre-commit:
       "pre-commit": "npm run test:single"
     }
   }
+```
+
+### Delete directory cross platform
+inside the package.json add rimraf that does <b>'rm -rf dist'</b>
+```js
+"scripts": {
+  "prebuild": "rimraf dist"
+}
 ```
