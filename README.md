@@ -29,9 +29,9 @@ From Github and npm, to releasing beta versions, semantic versioning, code cover
 #### Initialize the npm
 
 ```
-$ npm set init-author-name 'Michel-Alexandre Belanger'
-$ npm set init-author-email 'michel.alexandre.belanger@gmail.com'
-$ npm set init-author-url 'http://www.mtrema.com'
+$ npm set init-author-name '...'
+$ npm set init-author-email '...'
+$ npm set init-author-url '...'
 $ npm set init-license 'MIT'
 # no ~ or ^ for the version of dependency inside package.json.
 $ npm set save-exact true
@@ -43,17 +43,9 @@ $ npm adduser
 All the config is here : [https://docs.npmjs.com/misc/config](https://docs.npmjs.com/misc/config)
 
 
-Inside the package
+<b>To initialize the package</b>:
 ```
 $ npm init
-    name: (starwars-names)
-    version: (1.0.0)
-    description: Get random Star wars names
-    entry point: (index.js) src/index.js
-    test command:
-    git repository: https://github.com/MABelanger/starwars-names.git
-    keywords: random star wars
-    license: (MIT)
 ```
 
 
@@ -212,6 +204,26 @@ $ npm install -D istanbul
   -R  : Change the reporter to spect
 
 
+#### Report the coverage with codecov.io
+To be able to track the coverage, add a badge into github and send the coverage to third party like codecov.io
+```
+$ npm install -D codecov.io
+```
+
+We need to pipe ./coverage/lcov.info to codecov.io in package.json
+```js
+"scripts": {
+  "report-coverage": "cat ./coverage/lcov.info | codecov"
+}
+```
+inside add .travis.yml :
+```
+after_success:
+  - npm run report-coverage
+```
+
+> **Note:** You can install chrome Codecov Extension to see the coverage in green inside github.
+
 ### git hooks
 
 ghooks will run the test right before commit. If the test failed, it will not commit the code.
@@ -235,3 +247,10 @@ inside the package.json add rimraf that does <b>'rm -rf dist'</b>
   "prebuild": "rimraf dist"
 }
 ```
+
+### Add badge to github
+To put a badge to github go to [shields.io](http://shields.io/) and add it into README.md
+
+Ex:.[![Build Status](https://img.shields.io/travis/nodejs/nodejs.org/master.svg?style=flat-square)](http://travis-ci.org/nodejs/nodejs.org)
+
+`[![Build Status](https://img.shields.io/travis/nodejs/nodejs.org/master.svg?style=flat-square)](http://travis-ci.org/nodejs/nodejs.org)`
