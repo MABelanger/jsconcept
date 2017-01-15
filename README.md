@@ -149,13 +149,12 @@ $ npm install mocha chai --save-dev
 ```
 
 ### Sementic realease
-Sementic realease use a convention for with version to bump. Is the same convention that angular use.
 
 ```
 $ npm install -g semantic-release-cli
 ```
 
-There are so many repeated steps when releasing a new version of a library. The tool semantic-release automates this process by pushing off the responsibility of your releases to continuous integration.
+There are so many repeated steps when releasing a new version of a library. The tool semantic-release automates this process by pushing off the responsibility of your releases to continuous integration. It publish to npmjs and it use a convention for with version to bump. Is the same convention that angular use.
 
 <b>Init semantic-release-cli, at the root of the project:</b>
 ```
@@ -263,6 +262,55 @@ If we transpile, when we use require the package specify the transpiled version 
   "main": "dist/index.js",
 ```
 
+Because `istanbul` do not reconise es6 feature we need to use `nyc` that use istanbul under the hood but support the es6.  So cange all `istanbul`call script  to `nyc`
+
+```
+$ npm install -D nyc
+```
+We also need install `babel-register` and specify `mocha` to support the es6.
+
+```
+$ npm install -D babel-register
+```
+Point to the new transpiled version:
+```js
+"main": "dist/index.js",
+```
+Change the scripts and githook of package.json:
+```js
+"watch:test": "npm t -- -w",
+"test": "mocha src/index.test.js --compilers js:babel-register",
+"cover": "nyc npm t",
+"ghooks": {
+  "pre-commit": "npm run cover && npm run check-coverage"
+}
+
+```
+Update .travis.yml :
+```
+script:
+  - npm run cover
+```
+
+
+### Test what is distributed with the module npm
+To create an .tar of what will be included to the registery npm pack will create an archive that represent what will be distributed with the module.
+```
+$ npm pack
+```
+You can open it with:
+```
+$ open the-archive.tgz
+```
+Specify with file will be include into the package into package.json example :
+
+```js
+"files": [
+  "dist",
+  "README.md"
+]
+```
+
 ### Delete directory cross platform
 inside the package.json add rimraf that does <b>'rm -rf dist'</b>
 ```js
@@ -281,9 +329,51 @@ script:
   - npm run build
 ```
 
+### Specify travis-ci a specific branches
+You can specify travis-ci to build only the master branche by added branches to the `.travis.yml` file
+```
+branches:
+  only:
+    - master
+```
+
 ### Add badge to github
 To put a badge to github go to [shields.io](http://shields.io/) and add it into README.md
 
 Ex:.[![Build Status](https://img.shields.io/travis/nodejs/nodejs.org/master.svg?style=flat-square)](http://travis-ci.org/nodejs/nodejs.org)
 
 `[![Build Status](https://img.shields.io/travis/nodejs/nodejs.org/master.svg?style=flat-square)](http://travis-ci.org/nodejs/nodejs.org)`
+
+
+### Add support for browser
+require() is comonJS that browser do not support. We have to use UMD "Universal Module Definition". To do this we can use webpack.
+
+```
+$ npm install -D webpack
+$ touch webpack.config.babel.js
+$ npm i -D babel-loader json-loader
+```
+
+
+```
+"scripts": {
+  "build:main": "babel --copy-files --out-dir dist --ignore *.test.js src",
+  "build:umd": "webpack --output-filename index.umd.js",
+  "build:umd.min": "webpack --output-filename index.umd.min.js -p"
+}
+```
+
+To run all script use npm-run-all
+
+```
+$ npm i -D npm-run-all
+```
+Add all script to be build in parallel
+```
+"scripts": {
+  "build": "npm-run-all --parallel build:*",
+}
+```
+
+go to
+[https://unpkg.com/the_package](https://unpkg.com/_the_package_)
