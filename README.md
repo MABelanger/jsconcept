@@ -7,8 +7,6 @@ Notes from stuff that i learn in JavaScript and examples that i do my self to un
 
 Publishing a JavaScript library for public use requires some extra steps. You need to think about how people will use the library. From end users, to contributors your library now has a variety of people outside of yourself potentially making use of the code that you've released into the wild.
 
-From Github and npm, to releasing beta versions, semantic versioning, code coverage, continuous integration, and providing your library with a solid set of unit tests, there are a ton of things to learn.
-
 #### Advantage & Disaventage of micro library
 <b>Advantages</b>:
 - It is so small so it easy to reason about.
@@ -240,12 +238,47 @@ inside the package.json add the pre-commit:
   }
 ```
 
-### Delete directory cross-platform
+### Transpile es6 to es5
+```
+$ npm install -D babel-cli
+```
+Add script into package.json:
+```js
+"scripts": {
+	"build": "babel --copy-files --out-dir dist --ignore *.test.js src"
+```
+--copy-files will copy all not .js files like .json or .png. By default babel do not transpile so we need to install and add config preset to enable the transpile.
+
+```
+$ npm install -D babel-preset-es2015 babel-preset-stage-2
+```
+Add config into package.json:
+```js
+  "babel": {
+    "presets": ["es2015", "stage-2"]
+  }
+```
+If we transpile, when we use require the package specify the transpiled version inside package.json:
+```js
+  "main": "dist/index.js",
+```
+
+### Delete directory cross platform
 inside the package.json add rimraf that does <b>'rm -rf dist'</b>
 ```js
 "scripts": {
   "prebuild": "rimraf dist"
 }
+```
+
+> **Note:** When use script name `pre` before another script name, npm will run that script before the other. So `$ npm run build` will run `prebuild` before `build`.
+
+
+The `prepublish` script is run when user install the module so avoid use it. put script inside .travis.yml instead :
+
+```
+script:
+  - npm run build
 ```
 
 ### Add badge to github
