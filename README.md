@@ -376,4 +376,4 @@ Add all script to be build in parallel
 ```
 
 go to
-[https://unpkg.com/the_package](https://unpkg.com/_the_package_)
+https://unpkg.com/your-module-name
