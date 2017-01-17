@@ -6,3 +6,6 @@ Notes from stuff that i learn in JavaScript and examples that i do my self to un
 ## How to Write an Open Source JavaScript Library
 
 [micro library](https://github.com/MABelanger/jsconcept/blob/master/micro-library/micro-library.md)
+
+## Rapid ES6 Training
+[es6](https://github.com/MABelanger/jsconcept/blob/master/es6/README.md)
