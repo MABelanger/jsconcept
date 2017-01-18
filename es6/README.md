@@ -262,3 +262,37 @@ The spread operator will break out the string into individual it's individual ch
 var maxCode = Math.max(..."43210");
 console.log(maxCode);
 ```
+
+### Object Literal Extensions
+
+In ES5
+
+```js
+'use strict';
+var price = 5.99, quantity = 30;
+var productViewES5 = { // in ES5
+  price: price,
+  quantity: quantity
+};
+var productViewES6 = { // Short End in  ES6
+  price,
+  quantity
+};
+console.log(productViewES5, productViewES6);
+```
+
+Dynamic property name work with getter and setter inside object literal.
+```js
+'use strict';
+var ident = 'productId';
+var productView = {
+  get [ident] () {
+    console.log('get called');
+  },
+  set [ident] (value) {
+    console.log('set called');
+  }
+};
+productView.productId; // get called
+productView.productId = 1; // set called
+```
