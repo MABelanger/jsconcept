@@ -161,7 +161,7 @@ invoice.process()(); // 123
 ```
 
 When we use arrow function, we can't change the value of this.
-
+We cannot bind a new object to an arrow function. The JavaScript don't throw error it just ignore bind. So .bind(), .call() and .apply() is useless.
  ```js
 'use strict';
 var invoice = {
@@ -172,6 +172,7 @@ var invoice = {
 var newInvoice = {
   number: 456
 };
-invoice.process()(); // 123
-
+invoice.process().bind(newInvoice)(); // 123
+invoice.process().call(newInvoice)(); // 123
+invoice.process().apply(newInvoice)(); // 123
 ```
