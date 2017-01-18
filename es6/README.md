@@ -177,3 +177,40 @@ invoice.process().bind(newInvoice)(); // 123
 invoice.process().call(newInvoice); // 123
 invoice.process().apply(newInvoice); // 123
 ```
+
+With arrow function we can't put arrow symbol out of new line.
+```js
+'use strict';
+var getPrice = ()
+  => 5.99;
+console.log(getPrice()); //SyntaxError: unexpected token =>
+```
+
+We do not access to prototype field when we declare with fat arrow function.
+
+```js
+'use strict';
+var getPrice = () => 5.99;
+console.log(getPrice.hasOwnProperty("prototype")); // false
+```
+
+In es6 we can specify default value of function parameters. If we put undefined on the function call, it will use the default value.
+
+```js
+'use strict';
+var getProduct = function (productId = 1000) {
+  console.log(productId);
+};
+getProduct(); // 1000
+getProduct(undefined); // 1000
+```
+Creating a dynamic function, at the left argument are parameters, the body of the function is at the right.
+```js
+'use strict';
+var getTotal = new Function("price = 20.00", "return price;");
+console.log(getTotal()); // 20
+```
+
+### Rest and Spread es6
+Rest refer to gadering up parameters and pulling them all into a single array.
+Spred : refer to spreding out element of the array
