@@ -147,32 +147,33 @@ var invoice = {
 };
 invoice.process(); // Window { ... }
 ```
-
  If inside a function we will get the function context.
- ```js
+
+```js
 'use strict';
 var invoice = {
   number: 123,
-  process:() function () {
+  process: function () {
     return () => console.log(this);
-
+  }
 };
 invoice.process()(); // 123
 ```
-
 When we use arrow function, we can't change the value of this.
 We cannot bind a new object to an arrow function. The JavaScript don't throw error it just ignore bind. So .bind(), .call() and .apply() is useless.
- ```js
+
+```js
 'use strict';
 var invoice = {
   number: 123,
-  process:() function () {
+  process: function () {
     return () => console.log(this.number);
+  }
 };
 var newInvoice = {
   number: 456
 };
 invoice.process().bind(newInvoice)(); // 123
-invoice.process().call(newInvoice)(); // 123
-invoice.process().apply(newInvoice)(); // 123
+invoice.process().call(newInvoice); // 123
+invoice.process().apply(newInvoice); // 123
 ```
