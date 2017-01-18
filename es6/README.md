@@ -296,3 +296,50 @@ var productView = {
 productView.productId; // get called
 productView.productId = 1; // set called
 ```
+
+### For of statements
+```js
+'use strict';
+var codes = "ABCDEF";
+var count = 0;
+for (var code of codes) {
+  count += 1;
+}
+console.log(count); // 6
+```
+
+```js
+'use strict';
+var categories = ['hardware', 'software'];
+for (var item of categories) {
+  console.log(item);
+} // hardware, software
+```
+
+### Octal and Binary Literals
+
+```js
+'use strict';
+var octal1 = 0o10;
+var octal2 = 0O10; // same as lowercase
+
+var binary1 = 0b10;
+var binary2 = 0B10; // same as lowercase
+console.log(octal1); // 8
+console.log(octal2); // 8
+
+console.log(binary1); // 2
+console.log(binary2); // 2
+```
+
+### Template Literals
+By template we mean a string template with interpolated variables and expressions.
+The template literal is surrounding with `backquote or backtick`.
+
+Interpolation take place with `${}`
+
+```js
+'use strict';
+let invoiceNum = '1350';
+console.log(`Invoice Number: ${invoiceNum}`); // Invoice Number: 1350
+```
