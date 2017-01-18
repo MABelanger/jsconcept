@@ -336,10 +336,29 @@ console.log(binary2); // 2
 By template we mean a string template with interpolated variables and expressions.
 The template literal is surrounding with `backquote or backtick`.
 
-Interpolation take place with `${}`
+Interpolation take place whiting these symbols `${}` So invoiceNum get interpolated.
 
 ```js
 'use strict';
 let invoiceNum = '1350';
 console.log(`Invoice Number: ${invoiceNum}`); // Invoice Number: 1350
+```
+To escape the interpolation we use `\` before the `$`
+```js
+'use strict';
+let invoiceNum = '1350';
+console.log(`Invoice Number: \${invoiceNum}`); // Invoice Number: \${invoiceNum}
+```
+
+### Spreading the string into multiple lines
+The white spaces and tabs is maintained.
+```js
+'use strict';
+let message = `A
+	B
+C`;
+console.log(message);
+// A
+// 		B
+// C
 ```
