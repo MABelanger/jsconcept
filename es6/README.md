@@ -212,10 +212,10 @@ console.log(getTotal()); // 20
 ```
 
 ### Rest and Spread in es6
-<b>Rest</b> :  refer to gadering up parameters and pulling them all into a single array.
-<b>Spread</b> : refer to spreding out elements of the array
+<b>Rest</b> :  refer to gathering up parameters and pulling them all into a single array.
+<b>Spread</b> : refer to spreading out elements of the array
 
-The `...` is the rest symbol, (rest parameter) It will gader up all parameters to the function and put it into an array.
+The `...` is the rest symbol, (rest parameter) It will gathering up all parameters to the function and put it into an array.
 
 ```js
 'use strict';
@@ -234,7 +234,7 @@ console.log(showCategories.length); // 1 (it only see productId)
 ```
 
 ### Spread operator
-Spred is the opposite of rest.
+Spread is the opposite of rest.
 The spread operator took the array and devide it into separated values. So it take an array and convert it into a list of parameters.
 
 ```js
@@ -256,7 +256,7 @@ console.log(newPriceArray2); // [undefined, undefined]
 Ie:.  Nothing after the trading comas.
 
 
-The spread operator will break out the string into individual it's individual character.
+The `spread operator` will break out the string into individual it's individual character.
 ```js
 'use strict';
 var maxCode = Math.max(..."43210");
@@ -281,7 +281,7 @@ var productViewES6 = { // Short End in  ES6
 console.log(productViewES5, productViewES6);
 ```
 
-Dynamic property name work with getter and setter inside object literal.
+Dynamic property name work with `getter` and `setter` inside object literal.
 ```js
 'use strict';
 var ident = 'productId';
