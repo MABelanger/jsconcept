@@ -118,10 +118,60 @@ document.addEventListener('click', function () {
   console.log(this); // #document
 });
 ```
-With arrow function, the this is bind to the actual context of the code we running.
+With arrow function, the this is bind to the actual context of the code we are running.
 ```js
 'use strict';
 document.addEventListener('click', () => {
   console.log(this); // Window
 });
+```
+Example of this in es5. This is being set to the Object in witch the function is called.
+```js
+'use strict';
+var invoice = {
+  number: 123,
+  process: function () {
+    console.log(this);
+  }
+};
+invoice.process(); // Object { nuber : 123 }
+```
+We get the context of the code we are running.
+```js
+'use strict';
+var invoice = {
+  number: 123,
+  process:() => {
+    console.log(this);
+  }
+};
+invoice.process(); // Window { ... }
+```
+
+ If inside a function we will get the function context.
+ ```js
+'use strict';
+var invoice = {
+  number: 123,
+  process:() function () {
+    return () => console.log(this);
+
+};
+invoice.process()(); // 123
+```
+
+When we use arrow function, we can't change the value of this.
+
+ ```js
+'use strict';
+var invoice = {
+  number: 123,
+  process:() function () {
+    return () => console.log(this.number);
+};
+var newInvoice = {
+  number: 456
+};
+invoice.process()(); // 123
+
 ```
