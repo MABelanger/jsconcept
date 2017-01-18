@@ -211,6 +211,54 @@ var getTotal = new Function("price = 20.00", "return price;");
 console.log(getTotal()); // 20
 ```
 
-### Rest and Spread es6
-Rest refer to gadering up parameters and pulling them all into a single array.
-Spred : refer to spreding out element of the array
+### Rest and Spread in es6
+<b>Rest</b> :  refer to gadering up parameters and pulling them all into a single array.
+<b>Spread</b> : refer to spreding out elements of the array
+
+The `...` is the rest symbol, (rest parameter) It will gader up all parameters to the function and put it into an array.
+
+```js
+'use strict';
+var showCategories = function (productId, ...categories) {
+  console.log(categories);
+};
+showCategories(123, 'search', 'advertising'); // ['search', 'advertising']
+```
+```js
+'use strict';
+var showCategories = function (productId, ...categories) {
+  console.log(arguments.length);
+};
+showCategories(1,2,undefined); // 3
+console.log(showCategories.length); // 1 (it only see productId)
+```
+
+### Spread operator
+Spred is the opposite of rest.
+The spread operator took the array and devide it into separated values. So it take an array and convert it into a list of parameters.
+
+```js
+'use strict';
+var prices = [12, 20, 18];
+var maxPrice = Math.max(...prices); // ... spread operator
+console.log(maxPrice);
+```
+ A way to create empty array.
+
+```js
+'use strict';
+var newPriceArray = Array(...[,,]); // load data that missing values.
+// or
+var newPriceArray2 = [...[,,]];
+console.log(newPriceArray); // [undefined, undefined]
+console.log(newPriceArray2); // [undefined, undefined]
+```
+Ie:.  Nothing after the trading comas.
+
+
+The spread operator will break out the string into individual it's individual character.
+```js
+'use strict';
+var maxCode = Math.max(..."43210");
+console.log(maxCode);
+```
