@@ -336,18 +336,40 @@ console.log(binary2); // 2
 By template we mean a string template with interpolated variables and expressions.
 The template literal is surrounding with `backquote or backtick`.
 
-Interpolation take place whiting these symbols `${}` So invoiceNum get interpolated.
+Interpolation take place whiting these symbols `${}` So invoiceNum get interpolated. The interpolation take place first and then it assign into the variables.
 
 ```js
 'use strict';
 let invoiceNum = '1350';
 console.log(`Invoice Number: ${invoiceNum}`); // Invoice Number: 1350
+console.log(`Invoice Number: ${"INV-" + invoiceNum}`); // Invoice Number: INV-1350
 ```
 To escape the interpolation we use `\` before the `$`
 ```js
 'use strict';
 let invoiceNum = '1350';
 console.log(`Invoice Number: \${invoiceNum}`); // Invoice Number: \${invoiceNum}
+```
+
+### Tag template literal
+The `tag template literal` in this case is processInvoice, is call without the () It call the function processInvoice. The `segments` is the unique string of the template literal and the `values` is
+```js
+'use strict';
+function processInvoice(segments) {
+  console.log(segments);
+}
+processInvoice `Hello world!`; //['Hello world!']
+```
+
+```js
+'use strict';
+function showNames(segments, ...values) {
+  console.log(segments); // ["Hello world! my name is ", " ", "", raw: Array[3]]
+  console.log(values); // ["alex", "belanger"]
+}
+let firstName = 'alex';
+let lastName = 'belanger';
+showNames `My first name is ${firstName} lastName is ${lastName}`; // ["My first name is ", " lastName is ", "", raw: Array[3]]
 ```
 
 ### Spreading the string into multiple lines
@@ -361,4 +383,31 @@ console.log(message);
 // A
 // 		B
 // C
+```
+
+### Destructuring
+Destructuring mean take apart the structure of some thing like array, object (individual fields) or string (the characters)
+
+Example of destructure an array and assign it to new variables :
+```js
+'use strict';
+let numbers = ['1', '2', '3'];
+let [ left, middle, right ] = numbers;
+console.log(middle); // 2
+```
+
+We can skip elements
+```js
+'use strict';
+let numbers = ['1', '2', '3'];
+let [ left, , right ] = numbers;
+console.log(right); // 3
+```
+
+We can assign it to an array
+```js
+'use strict';
+let numbers = ['1', '2', '3'];
+let [ left, ...remaining] = numbers;
+console.log(remaining); // ['2', '3']
 ```
