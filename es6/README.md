@@ -388,7 +388,7 @@ console.log(message);
 ### Destructuring
 Destructuring mean take apart the structure of some thing like array, object (individual fields) or string (the characters)
 
-Example of destructure an array and assign it to new variables :
+Example of destructure an `array` and assign it to new variables with `[]`:
 ```js
 'use strict';
 let numbers = ['1', '2', '3'];
@@ -404,10 +404,39 @@ let [ left, , right ] = numbers;
 console.log(right); // 3
 ```
 
-We can assign it to an array
+We can assign it to an array, it can be use with declaration or assignment.
 ```js
 'use strict';
 let numbers = ['1', '2', '3'];
 let [ left, ...remaining] = numbers;
 console.log(remaining); // ['2', '3']
+```
+
+Using a `default value`
+```js
+'use strict';
+let numbers = ['1', '2'];
+let [ left, middle, right = '3' ] = numbers;
+console.log(right); // '3'
+```
+
+We can destructure array into `function call` or setting parameters of the function.
+```js
+'use strict';
+function showNumber([left, middle], right = '3') {
+  console.log(middle);
+}
+showNumber(['1', '2']); // 2
+```
+
+We can destructure `object` to with `{}` :
+```js
+'use strict';
+let numbers = {
+  left: '1',
+  middle: '2',
+  right: '3'
+};
+let { left, middle, right } = numbers;
+console.log(middle); // 2
 ```
