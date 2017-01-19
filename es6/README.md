@@ -440,3 +440,38 @@ let numbers = {
 let { left, middle, right } = numbers;
 console.log(middle); // 2
 ```
+
+> **Note:** The property of the object need to be the same of the name of the variables. In that case we can't use newMiddle in the destructuring object instead of middle.
+
+If we want to change the name we can specify it, so we can assign property to a new name:
+```js
+'use strict';
+let numbers = {
+  left: '1',
+  middle: '2',
+  right: '3'
+};
+let { left, middle:newMiddle, right } = numbers;
+console.log(newMiddle); // 2
+```
+
+If we want to work with assignement instead of declaration, we need to put inside `()` because js understand it as a block of code `{}` :
+
+```js
+'use strict';
+let numbers = {
+  left: '1',
+  middle: '2',
+  right: '3'
+};
+let left, newMiddle, right;
+({ left, middle:newMiddle, right } = numbers);
+console.log(newMiddle); // 2
+```
+
+We can destructure string :
+```js
+'use strict';
+let [maxCode, minCode] = 'AZ';
+console.log(`max: ${maxCode} min: ${minCode}`); // max: A min: Z
+```
