@@ -9,7 +9,8 @@ The `import` and `export` is the basic way to communicate between modules to sha
 // File base.js:
 import { projectId } from './module1.js';
 console.log(projectId);
-
+```
+```js
 // File module1.js:
 export let projectId = 99;
 ```
@@ -19,8 +20,9 @@ So the variable projectId get imported from module1. It possible to export many 
 // File base.js:
 import { projectId, projectName } from './module1.js';
 console.log(`${projectName} has id: ${projectId}`);
-
+```
+```js
 // File module1.js:
 export let projectId = 99;
-export let projectName = 'BuildIt;
+export let projectName = "BuildIt";
 ```
