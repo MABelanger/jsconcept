@@ -1,3 +1,4 @@
-export let projectId = 99;
-let projectName = 'BuildIt';
-export default projectName;
+export let project = { projectId: 99 };
+export function showProject() {
+  console.log(project.projectId); // 8000
+}

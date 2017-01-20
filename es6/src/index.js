@@ -1,4 +1,4 @@
-import someValue from './module1.js';
-import { default as someValue2 } from './module1.js';
-console.log(someValue); // BuildIt
-console.log(someValue2); // BuildIt
+import { project, showProject } from './module1.js';
+project.projectId = 8000;
+showProject();
+console.log(project.projectId); // 8000

@@ -80,7 +80,7 @@ export {
 };
 ```
 
-We can use `import *` the * refer to all the exports, so we get an object of the exported values.
+We can use `import *` the * refer to all the exports, so we get an object of the exported values. When we use the * the alias `as` is require.
 
 ```js
 // File base.js:
@@ -95,5 +95,23 @@ let projectName = 'BuildIt';
 export {
  projectId,
  projectName
+};
+```
+
+The imported name can not be reuse. It read only like a const but the property on it can be modify on the exported module.
+
+```js
+// File base.js:
+import { project, showProject } from './module1.js';
+project.projectId = 8000;
+showProject();
+console.log(project.projectId); // 8000
+
+```
+```js
+// File module1.js:
+export let project = { projectId: 99 };
+export function showProject() {
+  console.log(project.projectId); // 8000
 };
 ```
