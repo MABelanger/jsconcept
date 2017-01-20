@@ -1,0 +1,27 @@
+{
+  "name": "jsconcept",
+  "version": "1.0.0",
+  "description": "Notes from stuff that i learn in JavaScript and examples that i do my self to understand the concept.",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel --copy-files --out-dir es6/dist --ignore *.test.js es6/src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MABelanger/jsconcept.git"
+  },
+  "author": "Michel-Alexandre Belanger <michel.alexandre.belanger@gmail.com> (http://www.mtrema.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MABelanger/jsconcept/issues"
+  },
+  "homepage": "https://github.com/MABelanger/jsconcept#readme",
+  "devDependencies": {
+    "babel-cli": "6.22.0",
+    "babel-preset-es2015": "6.22.0",
+    "babel-preset-stage-2": "6.22.0"
+  },
+  "babel": {
+    "presets": ["es2015", "stage-2"]
+  }
+}
