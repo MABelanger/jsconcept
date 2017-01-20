@@ -475,3 +475,15 @@ We can destructure string :
 let [maxCode, minCode] = 'AZ';
 console.log(`max: ${maxCode} min: ${minCode}`); // max: A min: Z
 ```
+
+### Advanced Destructuring
+We need itterator to destructure. We can get the name of the error in try catch block:
+
+```js
+'use strict';
+try {
+  let [ high, low, ] = undefined;
+} catch (e) {
+  console.log(e.name);
+}
+```
