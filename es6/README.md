@@ -484,6 +484,6 @@ We need itterator to destructure. We can get the name of the error in try catch 
 try {
   let [ high, low, ] = undefined;
 } catch (e) {
-  console.log(e.name);
+  console.log(e.name); // TypeError
 }
 ```
