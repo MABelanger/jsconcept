@@ -142,3 +142,96 @@ class Task {
 let task = new Task();
 console.log(task instanceof Task); // true
 ```
+To add a function we can use short hand notation without keyword function
+
+```js
+class Task {
+  showId() {
+    console.log('99');
+  }
+}
+let task = new Task();
+task.showId(); // 99
+```
+
+The function exist as a prototype. So adding a method to a class is similar to adding the method to the prototype object. This is a good example that constructor function and adding method to the prototype in ES5 is still that in ES6. We just have a new Class syntax for it.
+```js
+class Task {
+  showId() {
+    console.log('99');
+  }
+}
+let task = new Task();
+console.log(task.showId === Task.prototype.showId); // true
+```
+
+We can use constructor in a class by adding `constructor()`. So just by creating a new instance of task, the constructor() will be call.
+```js
+class Task {
+  constructor() {
+    console.log('constructing Task');
+  }
+}
+let task = new Task(); // constructiong Task
+```
+
+We can't declare variable directly inside a class, we get a syntax error.
+```js
+class Task {
+  let taskId = 9000; // Syntax Error
+  constructor() {
+    console.log('constructing Task');
+  }
+}
+let task = new Task();
+```
+The class are not hoisted, we get an error if we try to call it before we declare it.
+
+```js
+let task = new Task(); // Error use before declaration
+class Task {
+  constructor() {
+    console.log('constructing Task');
+  }
+}
+```
+We can use class within an expression :
+```js
+let newClass = class Task {
+  constructor() {
+    console.log('constructing Task');
+  }
+};
+
+new newClass(); // constructing Task
+```
+In ES5 we can use call to pass this to the object.
+```js
+let Task = function() {
+  console.log('constructing Task');
+};
+let task = {};
+Task.call(task); // constructing Task
+```
+
+We can't call the call() in order to change the this object.
+```js
+class Task {
+  constructor() {
+    console.log('constructing Task');
+  }
+};
+let task = {};
+Task.call(task); // Error: class constructor cannot be called with the new keyword
+```
+
+By creating a class we are not poluting the global name space like function:. It does not placed in the window object.
+```js
+function Project() { };
+console.log(window.Project == Project) // true
+```
+
+```js
+class TaskClass { }
+console.log(window.TaskClass == TaskClass) // false
+```

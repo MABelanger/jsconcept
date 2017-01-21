@@ -1,7 +1,7 @@
-var task = {
-  myFct() {
-    console.log('hello');
+class Task {
+  constructor() {
+    console.log('constructing Task');
   }
-}
-
-task.myFct();
+};
+let task = {};
+Task.call(task);
