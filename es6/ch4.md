@@ -427,4 +427,34 @@ console.log(Project.id); // 99
 ```
 
 ### new.target
-The `new.target` will always point to the inital constructor that called.
+ES6 has a new property `new.target` that will always point to the initial constructor that called. The Project is a prototype for SoftwareProject so `new.target` point to the child.
+
+```js
+class Project {
+  constructor() {
+    console.log(new.target);
+  }
+}
+class SoftwareProject extends Project {
+  constructor() {
+    super();
+  }
+}
+var p = new Project(); // [Function: Project]
+```
+
+We can access to `static` method on the initial constructor call with `new.target` even is a part of the prototype chain. Note that we accessing a static method even when the object is instantiate.
+
+```js
+class Project {
+  constructor() {
+    console.log(new.target.getDefaultId()); // 99
+  }
+}
+class SoftwareProject extends Project {
+  static getDefaultId() {
+    return 99;
+  }
+}
+var p = new Project();
+```
