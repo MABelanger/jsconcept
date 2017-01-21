@@ -1,12 +1,10 @@
 class Project {
-  constructor(name) {
-    this.location = 'Maztlan';
+  constructor(){
+    let id = '0';
   }
 }
-class SoftwareProject extends Project {
-  constructor() {
-    super();
-  }
-}
-let p = new SoftwareProject();
-console.log(p.location);
+Project.id = 99;
+console.log(Project.id); // 99
+
+let p = new Project();
+console.log(p.id);

@@ -280,9 +280,151 @@ class SoftwareProject extends Project {
     console.log("constructing SoftwareProject");
   }
 }
-let p = new SoftwareProject("myName");
+let p = new SoftwareProject();
 // "constructing Project
 // "constructing SoftwareProject
 ```
 
-> **Note:**  We need `super()` if we use the constructor on the extend class.
+> **Note:**  We need `super()` if we use the constructor on the extend class. The rule of thumb is to use super each time we use a constructor
+
+The method `getTaskCount()` get call by prototype chain.
+```js
+class Project {
+  getTaskCount() {
+   return 50;
+  }
+}
+class SoftwareProject extends Project {
+}
+let p = new SoftwareProject();
+console.log(p.getTaskCount()); // 50
+```
+
+We can overriding function as in Java. Is not like ES5 that we need to use different name method.
+```js
+class Project {
+  getTaskCount() {
+   return 50;
+  }
+}
+class SoftwareProject extends Project {
+  getTaskCount() {
+   return 66;
+  }
+}
+let p = new SoftwareProject();
+console.log(p.getTaskCount()); // 66
+```
+
+We can access the parent function with `super.` By calling `super.getTaskCount()` the Js engine will lookup in the prototype chain to find `getTaskCount()` and if find it in Project
+
+```js
+class Project {
+  getTaskCount() {
+   return 50;
+  }
+}
+class SoftwareProject extends Project {
+  getTaskCount() {
+   return super.getTaskCount() + 16;
+  }
+}
+let p = new SoftwareProject();
+console.log(p.getTaskCount()); // 66
+```
+
+We can use super with object literal if we specify the prototypeOf by linking the two object together. So using super is valid with object literal by making shure that prototype set right.
+
+```js
+let project = {
+  getTaskCount() {
+   return 50;
+  }
+}
+let softwareProject = {
+  getTaskCount() {
+   return super.getTaskCount() + 16;
+  }
+}
+Object.setPrototypeOf(softwareProject, project);
+console.log(softwareProject.getTaskCount()); // 66
+```
+
+### Properties for Class Instances
+We can have properties at the class level
+
+They are no difference in the instance space than `ES5` and we always use the `this` keyword as ES5. By using let in the constructor, it goes out the scope and it won't be attached to an instance.
+```js
+class Project {
+  constructor(name) {
+    let privateVar = 'Hello';
+    this.location = 'Maztlan';
+  }
+}
+class SoftwareProject extends Project {
+  constructor() {
+    super();
+  }
+}
+let p = new SoftwareProject();
+console.log(p.location); // Maztlan
+console.log(p.privateVar); // undefined
+```
+
+with this, we can access the `this.location` across constructor.
+
+```js
+class Project {
+  constructor(name) {
+    this.location = 'Maztlan';
+  }
+}
+class SoftwareProject extends Project {
+  constructor() {
+    super(); // Always call super before access this.
+    this.location = this.location + ' Beach';
+  }
+}
+let p = new SoftwareProject();
+console.log(p.location); // Maztlan Beach
+```
+
+### Static Members
+We can access `static` method if we do not `instantiate` the Object.  By declaring a static method, the method get attached directly to Project as a constructor function.
+```js
+class Project {
+  static getDefaultId() {
+    return 0;
+  }
+}
+console.log(Project.getDefaultId()); // 0
+```
+We can't access a static method if we instantiate the object.
+```js
+class Project {
+  static getDefaultId() {
+    return 0;
+  }
+}
+var p = new Project();
+console.log(p.getDefaultId()); // TypeError: p.getDefaultId is not a function
+```
+We can't create static variable inside the class, static is only used with method.
+
+```js
+class Project {
+  static let id = 0;
+}
+console.log(Project.id); // Syntax Error: ( expected
+```
+We can still create static property like we do in ES5 by attaching directly to the class or constructor function.
+
+```js
+class Project {
+}
+Project.id = 99;
+console.log(Project.id); // 99
+```
+
+### new.target
+The `new.target` will always point to the inital constructor that called.
