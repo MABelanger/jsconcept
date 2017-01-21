@@ -1,6 +1,6 @@
 ## ES6 Modules and Classes
 The class still consider wrapper of constructor of ES5.
-
+good reference : [mozilla.org:class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
 > **Note:** When we load module in ES6 it always load it in `strict mode`. So, when we do not declare variable with `let` or `var` we get an error `runtime error : variable undefined in strict mode`.
 
 The `import` and `export` is the basic way to communicate between modules to share informations.
@@ -114,4 +114,31 @@ export let project = { projectId: 99 };
 export function showProject() {
   console.log(project.projectId); // 8000
 };
+```
+
+> **Note:** the export work with name export, when we export we only export the name, so it is possible to update the name so it can point to other function or value
+
+### Class Fundamentals
+It a new syntax to work with prototypes and constructor function that we where used in ES5.
+
+You can think of the class is a constructor function as used in ES5.
+```js
+class Task {
+
+}
+console.log(typeof Task); // function
+```
+Like new object in ES5
+```js
+class Task {
+}
+let task = new Task();
+console.log(typeof task); // object
+```
+We are able to determine the class of an instantiate object using `instanceof`
+```js
+class Task {
+}
+let task = new Task();
+console.log(task instanceof Task); // true
 ```
