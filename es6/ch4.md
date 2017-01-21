@@ -205,7 +205,7 @@ let newClass = class Task {
 
 new newClass(); // constructing Task
 ```
-In ES5 we can use call to pass this to the object.
+In ES5 we can use `call()` to pass this to the object.
 ```js
 let Task = function() {
   console.log('constructing Task');
@@ -214,7 +214,7 @@ let task = {};
 Task.call(task); // constructing Task
 ```
 
-We can't call the call() in order to change the this object.
+We can't call the `call()` in order to change the this object.
 ```js
 class Task {
   constructor() {
@@ -225,7 +225,7 @@ let task = {};
 Task.call(task); // Error: class constructor cannot be called with the new keyword
 ```
 
-By creating a class we are not poluting the global name space like function:. It does not placed in the window object.
+By creating a class we are not polluting the global name space like function:. It does not placed in the `window` object.
 ```js
 function Project() { };
 console.log(window.Project == Project) // true
@@ -235,3 +235,52 @@ console.log(window.Project == Project) // true
 class TaskClass { }
 console.log(window.TaskClass == TaskClass) // false
 ```
+
+## extends and super
+The hesitance with classes in ES6 still the same as ES5 with prototype
+// rapid javascript treaning that explain prototype
+We can use extend keyword to extend to prototype in ES6. Within a constructor or a method of a class, we can call `super` to explicitly access a function on the prototype.
+
+In ES6 the constructor is called when we extend that object.
+```js
+class Project {
+  constructor() {
+    console.log('constructing Project');
+  }
+}
+class SoftwareProject extends Project {
+}
+let p = new SoftwareProject(); // 'constructing Project'
+```
+If we don't have a constructor method inside the extended class, it automaticly call `super()` with all the arguments.
+```js
+class Project {
+  constructor(name) {
+    console.log("constructing Project:" + name);
+  }
+}
+class SoftwareProject extends Project {
+}
+let p = new SoftwareProject("myName"); // "constructing Project: myName"
+```
+
+If we use `super()` the javascript engine know that it need to instantiate `Project` fist and then `SoftwareProject`.
+
+```js
+class Project {
+  constructor(name) {
+    console.log("constructing Project");
+  }
+}
+class SoftwareProject extends Project {
+  constructor() {
+    super();
+    console.log("constructing SoftwareProject");
+  }
+}
+let p = new SoftwareProject("myName");
+// "constructing Project
+// "constructing SoftwareProject
+```
+
+> **Note:**  We can't comment out `super()` if we use the constructor on the extend class.
