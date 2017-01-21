@@ -285,4 +285,4 @@ let p = new SoftwareProject("myName");
 // "constructing SoftwareProject
 ```
 
-> **Note:**  We can't comment out `super()` if we use the constructor on the extend class.
+> **Note:**  We need `super()` if we use the constructor on the extend class.
