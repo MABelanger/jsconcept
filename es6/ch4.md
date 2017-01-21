@@ -274,7 +274,7 @@ class Project {
 }
 class SoftwareProject extends Project {
   constructor() {
-    super();
+    super(); // we need the super() if not we get Reference Error: this is not defined
     console.log("constructing SoftwareProject");
   }
 }
