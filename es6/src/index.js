@@ -1,11 +1,3 @@
-class Project {
-  constructor() {
-    console.log(new.target.getDefaultId());
-  }
-}
-class SoftwareProject extends Project {
-  static getDefaultId() {
-    return 99;
-  }
-}
-var p = new SoftwareProject(); // [Function: Project]
+let title = 'Surfer';
+let output = String.raw`$(title} \u{1f3c4}\n`;
+console.log(output);

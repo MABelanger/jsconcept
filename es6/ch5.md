@@ -171,3 +171,11 @@ We can set a string from Hex value with `fromCodePoint()`
 ```js
 console.log( String.fromCodePoint(0x1f3c4) ); // :surfer:
 ```
+
+To print the raw output we can use the new `String.raw` In most cases, String.raw() is used with template strings. The `${title}` still interpolated.
+
+```js
+let title = 'Surfer';
+let output = String.raw`${title} \u{1f3c4}\n`;
+console.log(output); // Surfer \u{1f3c4}\n
+```
