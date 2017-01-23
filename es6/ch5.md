@@ -216,14 +216,18 @@ console.log( Number.isInteger(undefined) ); // false
 console.log( Number.isInteger(3) ); // true
 ```
 
-The highest integer number that we can show is  `2^53 - 1` We also added the 3 constants
+The highest integer number that we can show is  `2^53 - 1`
+
 ```js
 let a = Math.pow(2, 53) - 1;
 console.log( Number.isSafeInteger(a) ); // true
 a = Math.pow(2, 53) - 1;
 console.log( Number.isSafeInteger(a) ); // false
+```
 
-// the 3 constants
+We also added the 3 constants
+
+```js
 console.log(Number.EPSILON);
 console.log(Number.MAX_SAFE_INTEGER);
 console.log(Number.MIN_SAFE_INTEGER);
@@ -262,11 +266,29 @@ let pattern2 = /\u{1f3c4}/u;
 console.log(pattern.test('🏄')); // false
 console.log(pattern2.test('🏄')); // true
 ```
-Same thing with dot that represent any character. In ES5 the `astral planes` get chop up in two seperate character.
+Same thing with dot that represent any character. In ES5 the `astral planes` get chop up in two seperate character. To see it as a single character add the `/u` at the end of the regex expression.
 
 ```js
 let pattern = /^.Surfer/;
 let pattern2 = /^.Surfer/u;
 console.log(pattern.test('🏄Surfer')); // false
 console.log(pattern2.test('🏄Surfer')); // true
+```
+
+With the /y flag we only looking at the last index.
+```js
+let pattern = /900/y;
+console.log(pattern.lastIndex); // 0
+console.log(pattern.test('800900')); // false
+```
+Because `900` start at the last index of 3 we get true
+```js
+let pattern = /900/gy;
+pattern.lastIndex = 3;
+console.log(pattern.test('800900')); // true
+```
+We can get the list of flag used in the alphabetic order.
+```js
+let pattern = /900/yg;
+console.log(pattern.flags); // gy
 ```
