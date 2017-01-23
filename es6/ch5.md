@@ -321,6 +321,6 @@ class Calculator {
   }
 }
 let c = new Calculator();
-console.log(Calculator.name);
-console.log(c.add.name);
+console.log(Calculator.name); // Calculator
+console.log(c.add.name); // add
 ```
