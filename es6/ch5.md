@@ -158,9 +158,16 @@ console.log(surfer.length); // 2
 console.log(Array.from(surfer).length); // 1
 ```
 
-In es5, we get the same problem with accent. like á "a\u0301n" because it is interpreted as `a` +   ``` ` ```  The fix is to use  
+In es5, we get the same problem with accent. like á "a\u0301n" because it is interpreted as `a` +   ``` ` ```  The fix is to use  `normalize()` The `codePointAt()` specify at witch character to look in the string and `toString(16)` convert it into hexa decimal base 16 value.
 
 ```js
-var aAcute = 'a\u0301';
+var aAcute = 'a\u0301'; // á
 console.log(aAcute.length); // 2
+console.log(aAcute.normalize().length); // 1
+console.log(aAcute.normalize().toString(16)); // 6e = 0X6E ASCII = á
+```
+We can set a string from Hex value with `fromCodePoint()`
+
+```js
+console.log( String.fromCodePoint(0x1f3c4) ); // :surfer:
 ```
