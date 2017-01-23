@@ -151,3 +151,16 @@ In ES6, we have a new `unicode syntax`. We can escape the u character and put th
 let title = 'Santa Barbara \u{1f3c4} Riders';
 console.log(title);
 ```
+The `length` of a string is wrong when we are working with unicode symbols, because it encoded in two bytes. But if we transform it into an array and we check the length, we get the right value.
+```js
+var surfer = '\u{1f3c4}';
+console.log(surfer.length); // 2
+console.log(Array.from(surfer).length); // 1
+```
+
+In es5, we get the same problem with accent. like á "a\u0301n" because it is interpreted as `a` + `` `  The fix is to use
+
+```js
+var aAcute = 'a\u0301';
+console.log(aAcute.length); // 2
+```
