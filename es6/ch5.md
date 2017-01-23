@@ -179,3 +179,9 @@ let title = 'Surfer';
 let output = String.raw`${title} \u{1f3c4}\n`;
 console.log(output); // Surfer \u{1f3c4}\n
 ```
+
+We can also repeat a character. the output will be :wave:
+```js
+let wave = '\u{1f30a}';
+console.log(wave.repeat(3));
+```
