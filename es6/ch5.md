@@ -253,3 +253,20 @@ console.log(Math.cbrt(27));    // 3
 console.log(Math.trunc(27.1)); // 27
 console.log(Math.trunc(-27.9));//-27
 ```
+
+### RegExp Extensions
+If we work with the `astral planes` unicode character and regex we need to use a flag of unicode character`/u` at the end of the pattern.
+```js
+let pattern = /\u{1f3c4}/;
+let pattern2 = /\u{1f3c4}/u;
+console.log(pattern.test('🏄')); // false
+console.log(pattern2.test('🏄')); // true
+```
+Same thing with dot that represent any character. In ES5 the `astral planes` get chop up in two seperate character.
+
+```js
+let pattern = /^.Surfer/;
+let pattern2 = /^.Surfer/u;
+console.log(pattern.test('🏄Surfer')); // false
+console.log(pattern2.test('🏄Surfer')); // true
+```
