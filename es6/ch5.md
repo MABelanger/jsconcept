@@ -309,5 +309,18 @@ If is an anonymous function the JS engine do his best to returning the name of t
 let fn = function() {
   return 0;
 };
-console.log(fn.name); // calc
+let newFn = fn;
+console.log(newFn.name); // fn
+```
+
+This is also work with the name of the class and the methods. `Function.name` is not writable but it's configurable with `Object.defineProperty()`
+
+```js
+class Calculator {
+  add(){
+  }
+}
+let c = new Calculator();
+console.log(Calculator.name);
+console.log(c.add.name);
 ```
