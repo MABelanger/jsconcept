@@ -145,7 +145,7 @@ console.log( title.startsWith('Santa') ); // true
 console.log( title.startsWith('Riders') ); // true
 console.log( title.includes('ba') ); // true
 ```
-In ES6, we have a new unicode syntax. We can escape the u character and put the ex value within the {} in this example this is a astral planes value that have more than 4 bytes. We get the emoj symbol :surfer:
+In ES6, we have a new `unicode syntax`. We can escape the u character and put the ex value within the `{}` in this example this is a `astral planes` value that have more than 4 bytes. We get the `emoj symbol` :surfer:
 
 ```js
 let title = 'Santa Barbara \u{1f3c4} Riders';
