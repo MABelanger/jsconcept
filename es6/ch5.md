@@ -97,14 +97,14 @@ console.log(a.y); // 2
 ```
 `Object.assign` will populate the target with all the parameters. So all property of a and b, if we have the same value in the source object, it get overwrite by b.
 ```js
-let a = { x: 1 }, b = { x:2, y: 2 };
+let a = { x: 1 }, b = { x: 2, y: 2 };
 let target = {};
 Object.assign(target, a, b )
 console.log(target); // {x: 2, y: 2}
 ```
 Property is enumerable by default, if you want to work them by Object.assign, enumerable need to be true.
 ```js
-let a = { x: 1 }, b = { x:2, y: 2 };
+let a = { x: 1 }, b = { x: 2, y: 2 };
 Object.defineProperty(b, 'z', {
   value: 10,
   enumerable: false
@@ -115,14 +115,14 @@ console.log(target); // {x: 2, y: 2}
 ```
 Object.assign don't look the prototype chain to build the new target.
 ```js
-let a = { x: 1 }, b = { x:2, y: 2 }, c = { z: 20 };
+let a = { x: 1 }, b = { x: 2, y: 2 }, c = { z: 20 };
 Object.setPrototypeOf(b, c);
 
 let target = {};
 Object.assign(target, a, b);
 console.log(target); // {x: 2, y: 2}
 ```
-In ES5 NaN =! NaN and 0 == -0
+In ES5 `NaN =! NaN` and `0 == -0`
 ```js
 let amount = NaN;
 let zero = 0, nZero = -0;
