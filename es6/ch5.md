@@ -180,8 +180,76 @@ let output = String.raw`${title} \u{1f3c4}\n`;
 console.log(output); // Surfer \u{1f3c4}\n
 ```
 
-We can also repeat a character. the output will be : :ocean::ocean::ocean:
+We can also repeat a character. `.repeat(3)` the output will be 3x the wave : :ocean::ocean::ocean:
 ```js
 let wave = '\u{1f30a}';
 console.log(wave.repeat(3));
+```
+
+### Number Extensions
+Use `Number.parseInt` and `Number.parseFloat` instead of the global function
+```js
+console.log(Number.parseInt === parseInt); // true
+console.log(Number.parseFloat === parseFloat); // true
+```
+
+The global `isNaN()` return true if eval a string. so use `Number.isNaN()` instead
+```js
+let s = 'NaN';
+console.log( isNaN(s) ); // true
+console.log( Number.isNaN(s) ); // false
+```
+
+Again `isFinite()` convert a string into integer so use `Number.isFinite()`
+```js
+let s = '8000';
+console.log( isFinite(s) ); // true
+console.log( Number.isFinite(s) ); // false
+```
+
+We have a new `Number.isInteger()`
+
+```js
+console.log( Number.isInteger(NaN) ); // false
+console.log( Number.isInteger(Infinity) ); // false
+console.log( Number.isInteger(undefined) ); // false
+console.log( Number.isInteger(3) ); // true
+```
+
+The highest integer number that we can show is  `2^53 - 1` We also added the 3 constants
+```js
+let a = Math.pow(2, 53) - 1;
+console.log( Number.isSafeInteger(a) ); // true
+a = Math.pow(2, 53) - 1;
+console.log( Number.isSafeInteger(a) ); // false
+
+// the 3 constants
+console.log(Number.EPSILON);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(Number.MIN_SAFE_INTEGER);
+```
+### Math extensions
+#### Arithmetic Functions
+
+`cbrt()`  : cube root
+`clz32()`: count leading zeros (32 bit integers) expm1() equal to exp(x) - 1
+`log2()`  : log base 2
+`log10()`: log base 10
+`log1p()`: equal to log(x + 1)
+`imul()`  : 32 bit integer multiplication
+
+#### Miscellaneous Functions
+`sign()`    : the number's sign: 1, -1, 0, -0, NaN
+`trunc()`  : the integer part of a number
+`fround()`: round to nearest 32 bit floating-point value
+
+```js
+console.log(Math.sign(0));     // 0
+console.log(Math.sign(-0));    //-0
+console.log(Math.sign(-20));   //-1
+console.log(Math.sign(20));    // 1
+console.log(Math.sign(NaN));   // NaN
+console.log(Math.cbrt(27));    // 3
+console.log(Math.trunc(27.1)); // 27
+console.log(Math.trunc(-27.9));//-27
 ```
