@@ -61,3 +61,19 @@ let article = {
 console.log( Object.getOwnPropertyNames(article) ); // ['title']
 console.log( Object.getOwnPropertySymbols(article) ); // Symbol(article)
 ```
+### Well-know Symbols
+The symbols is used with metaprogramming.
+
+`toStringTag` is the well-know symbol, it is place directly on the Symbol function or class, when we set the property on the prototype, we set it to the class. In this case, We altering the way the JavaScript engine call toString() and produce it output. This is an example of metaprogramming.
+```js
+let Blog = {
+};
+Blog.prototype[Symbol.toStringTag] = 'Blog Class';
+let blog = new Blog();
+console.log( blog.toString() ); // [object Blog Class]
+```
+isConcatSpreadable well-know symbol
+```js
+let values = [8, 12, 16];
+
+```
