@@ -292,3 +292,22 @@ We can get the list of flag used in the alphabetic order.
 let pattern = /900/yg;
 console.log(pattern.flags); // gy
 ```
+
+### Function Extensions
+
+We can log function name for debugging `calc`.
+```js
+let fn = function calc() {
+  return 0;
+};
+console.log(fn.name); // calc
+```
+
+If is an anonymous function the JS engine do his best to returning the name of the first assigned variable in that case `fn`.
+
+```js
+let fn = function() {
+  return 0;
+};
+console.log(fn.name); // calc
+```
