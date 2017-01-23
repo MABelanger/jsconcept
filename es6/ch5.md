@@ -137,3 +137,17 @@ console.log( Object.is(amount, amount) ); // true
 console.log( Object.is(zero, nZero) ); // false
 ```
 ### String Extension
+
+`startsWith`, let us know if a string start with on a given string. Same logic with `endsWith`. To know if a string is included we can use `includes`
+```js
+let title = 'Santa Barbara Stuf Riders';
+console.log( title.startsWith('Santa') ); // true
+console.log( title.startsWith('Riders') ); // true
+console.log( title.includes('ba') ); // true
+```
+In ES6, we have a new unicode syntax. We can escape the u character and put the ex value within the {} in this example this is a astral planes value that have more than 4 bytes. We get the emoj symbol \u{1f3c4}
+
+```js
+let title = 'Santa Barbara \u{1f3c4} Riders';
+console.log(title);
+```
