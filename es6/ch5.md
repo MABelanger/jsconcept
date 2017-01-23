@@ -158,7 +158,7 @@ console.log(surfer.length); // 2
 console.log(Array.from(surfer).length); // 1
 ```
 
-In es5, we get the same problem with accent. like á "a\u0301n" because it is interpreted as `a` +   ` \` `  The fix is to use  
+In es5, we get the same problem with accent. like á "a\u0301n" because it is interpreted as `a` +   `` `  The fix is to use  
 
 ```js
 var aAcute = 'a\u0301';
