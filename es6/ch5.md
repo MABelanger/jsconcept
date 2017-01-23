@@ -72,8 +72,68 @@ Blog.prototype[Symbol.toStringTag] = 'Blog Class';
 let blog = new Blog();
 console.log( blog.toString() ); // [object Blog Class]
 ```
-isConcatSpreadable well-know symbol
+`isConcatSpreadable` well-know symbol. By default if we create a new array and we concat the values, we get the same result.
 ```js
 let values = [8, 12, 16];
-
+console.log([].concat(values)); // [8, 12, 16]
 ```
+But if we set `isConcatSpreadable` to false, it prevent to speading out an array with concat.
+```js
+let values = [8, 12, 16];
+values[Symbol.isConcatSpreadable] = false;
+console.log([].concat(values)); // [ [8, 12, 16] ]
+```
+They are new static method that we can glue together two object literal with `Object.setPrototypeOf()` Even if a don't contain y value, because we set up the prototype we can access a.y thought the prototype chain.
+
+```js
+let a = {
+  x: 1
+};
+let b = {
+  y: 2
+};
+Object.setPrototypeOf(a, b);
+console.log(a.y); // 2
+```
+`Object.assign` will populate the target with all the parameters. So all property of a and b, if we have the same value in the source object, it get overwrite by b.
+```js
+let a = { x: 1 }, b = { x:2, y: 2 };
+let target = {};
+Object.assign(target, a, b )
+console.log(target); // {x: 2, y: 2}
+```
+Property is enumerable by default, if you want to work them by Object.assign, enumerable need to be true.
+```js
+let a = { x: 1 }, b = { x:2, y: 2 };
+Object.defineProperty(b, 'z', {
+  value: 10,
+  enumerable: false
+});
+let target = {};
+Object.assign(target, a, b )
+console.log(target); // {x: 2, y: 2}
+```
+Object.assign don't look the prototype chain to build the new target.
+```js
+let a = { x: 1 }, b = { x:2, y: 2 }, c = { z: 20 };
+Object.setPrototypeOf(b, c);
+
+let target = {};
+Object.assign(target, a, b);
+console.log(target); // {x: 2, y: 2}
+```
+In ES5 NaN =! NaN and 0 == -0
+```js
+let amount = NaN;
+let zero = 0, nZero = -0;
+console.log(amount === amount); // false
+console.log(zero === nZero); // true
+```
+To fix that in ES6 we get an new function Object called `is` and this is verry similar that `===` so a bether way to compare now is with `Object.is()`
+```js
+let amount = NaN;
+let zero = 0, nZero = -0;
+console.log( Object.is(amount, amount) ); // true
+console.log( Object.is(zero, nZero) ); // false
+```
+### String Extension
