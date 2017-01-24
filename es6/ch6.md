@@ -49,9 +49,9 @@ It a special function that don't run all the way through necessary it is able to
 ```js
 function *process() {
   console.log('a');
-  yield 1; // First pose here
+  yield 1; // First pose before yield
   console.log('b');
-  yield 2; // Second pose here
+  yield 2; // Second pose before the second yield
   console.log('c');
 }
 let it = process();
@@ -89,4 +89,19 @@ function *process() {
 let it = process();
 it.next();
 it.next(200);
+```
+
+We can assign an array with the yield
+
+```js
+function *process() {
+  let newArray =[yield, yield, yield];
+  console.log(newArray[2]);
+}
+let it = process();
+it.next();
+it.next(2);
+it.next(4);
+it.next(42);
+// 42
 ```
