@@ -194,7 +194,7 @@ function doAsync() {
 }
 let promise = doAsync();
 // in promise code
-// 2 sec later : resolving...
+// (2 sec later) : resolving...
 ```
 Example with `.then`, we can pass parameter to the function to know the value of the `resolve` or the reason of the `reject`.
 
@@ -209,13 +209,13 @@ let p = new Promise(function(resolve, reject){
 });
 
 p.then(function (value) {
-  console.log('Fulfilled! : ' + value ); // Fulfilled! : 200
+  console.log('Fulfilled! : ' + value );
 },
 function (reason) {
   console.log('Rejected! with reason:' + reason);
 });
 // in promise code
-// (2 seg later) resolving...
+// (2 seg later): resolving...
 // Fulfilled! : 200
 ```
 
