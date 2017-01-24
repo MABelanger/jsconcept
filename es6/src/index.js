@@ -1,12 +1,17 @@
-var p1 = new Promise( function(resolve, reject) {
-  setTimeout( function() {
-  // We fulfill the promise !
-  reject('error');
+let p = new Promise(function(resolve, reject){
+  setTimeout(function () {
+    resolve('ok');
   }, 2000);
 });
 
-p1.then( function(val) {
-      console.log('ok');
-}).catch(function(reason) {
-  console.log('Handle rejected promise ('+reason+') here.');
+p.then(function (value) {
+  console.log('Fulfilled! with value:' + value );
+  return 'For Sure';
+}).then(function(value) {
+  console.log(value);
+},
+function (reason) {
+  console.log('Rejected! with reason:' + reason);
 });
+// Fulfilled! with value:ok
+// For Sure
