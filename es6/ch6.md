@@ -25,14 +25,17 @@ We can make our own iterator we need to implement `[Symbol.iterator]` with `next
 ```js
 let idMaker = {
   [Symbol.iterator]() {
-    let nextId = 0;
+    let nextId = 1;
     return {
       next() {
-        let value = nextId > 3 ? undefined:nextId++;
+        let value = nextId > 3 ? undefined: nextId++;
         let done = !value;
         return { value, done };
       } // ./next()
     }; // ./return
   } // ./Symbol.iterator
 }; // ./idMaker
+for (let v of idMaker) {
+  console.log(v);
+}
 ```

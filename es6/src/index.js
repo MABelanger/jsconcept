@@ -1,3 +1,15 @@
-let title = 'Surfer';
-let output = String.raw`$(title} \u{1f3c4}\n`;
-console.log(output);
+let idMaker = {
+  [Symbol.iterator]() {
+    let nextId = 1;
+    return {
+      next() {
+        let value = nextId > 3 ? undefined: nextId++;
+        let done = !value;
+        return { value, done };
+      } // ./next()
+    }; // ./return
+  } // ./Symbol.iterator
+}; // ./idMaker
+for (let v of idMaker) {
+  console.log(v);
+}
