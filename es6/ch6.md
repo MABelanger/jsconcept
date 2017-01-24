@@ -20,4 +20,19 @@ console.log( it.next() ); // {done: false, value: 2}
 console.log( it.next() ); // {done: false, value: 3}
 console.log( it.next() ); // {done: true, value: undefined}
 ```
-We can make our own iterator
+We can make our own iterator we need to implement `[Symbol.iterator]` with `next()` that return {value: , done: }
+
+```js
+let idMaker = {
+  [Symbol.iterator]() {
+    let nextId = 0;
+    return {
+      next() {
+        let value = nextId > 3 ? undefined:nextId++;
+        let done = !value;
+        return { value, done };
+      } // ./next()
+    }; // ./return
+  } // ./Symbol.iterator
+}; // ./idMaker
+```
