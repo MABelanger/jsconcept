@@ -244,7 +244,7 @@ We can also specify the `.catch()` function when promise is rejected.
 ```js
 var p1 = new Promise( function(resolve, reject) {
   setTimeout( function() {
-  reject('error');
+    reject('error');
   }, 2000);
 });
 
@@ -253,4 +253,58 @@ p1.then( function(val) {
 }).catch( function(reason) {
   console.log('Handle rejected promise ('+reason+') here.');
 });
+```
+
+### More promise features
+We can pass another promise to the `resolve()` function. If the promise in argument fail, the original promise get also rejected even we called the `resolve()` function. We can use directly the promise without using async call by using : `Promise.resolve()` or `Promise.reject()`
+
+```js
+var p1 = new Promise( function(resolve, reject) {
+  setTimeout( function() {
+    resolve( Promise.reject('error') );
+  }, 2000);
+});
+
+p1.then( function(val) {
+
+}).catch( function(reason) {
+  console.log('Handle rejected promise ('+reason+') here.');
+});
+```
+### Promise.all and Promise.race
+
+All promise can be checked with the `.all()` that wait for all promises to complete and when they all fulfil it will call the first function to `then()`. It will wait until we get an error. If no error, it will wait until all promises is complete. If we get error, the second function is called. The first instant we get a rejection, the call for `Promise.all()` is finished and `then()` get called.
+
+```js
+var p1 = new Promise( function(resolve, reject) {
+  setTimeout( function() {
+    resolve( 'ok' );
+  }, 2000);
+});
+var p2 = Promise.resolve('ok');
+
+Promise.all([p1, p2]).then(
+  function (value) { console.log('Ok'); },
+  function (reason) { console.log('No'); }
+);
+// (2 seconds delay)
+// ok
+```
+
+With `Promise.race()` it's a race to complete first, witch ever promises complete first, that the promise get handle by `.then()`
+
+```js
+var p1 = new Promise( function(resolve, reject) {
+  setTimeout( function() {
+    resolve( 'ok' );
+  }, 2000);
+});
+var p2 = Promise.resolve('ok');
+
+Promise.race([p1, p2]).then(
+  function (value) { console.log('Ok'); },
+  function (reason) { console.log('No'); }
+);
+// (No delay)
+// ok
 ```

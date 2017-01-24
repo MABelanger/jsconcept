@@ -1,9 +1,11 @@
 var p1 = new Promise( function(resolve, reject) {
   setTimeout( function() {
-  reject('error');
+    resolve( 'ok' );
   }, 2000);
 });
-p1.then( function(val) {
-}).catch( function(reason) {
-  console.log('Handle rejected promise ('+reason+') here.');
-});
+var p2 = Promise.resolve('ok');
+
+Promise.all([p1, p2]).then(
+  function (value) { console.log('Ok'); },
+  function (reason) { console.log('No'); }
+);
