@@ -221,7 +221,7 @@ function (reason) {
 });
 ```
 
-We can chain on the `.then()` by returning a value of the `.then()`
+We can chaining  `.then()` function by returning a value. So wen we return a string, it get wrap up in promise and that promise fulfill because the original promise fulfill.
 
 ```js
 function doAsync() {
@@ -244,4 +244,20 @@ function (reason) {
 });
 // Fulfilled! with value:ok
 // For Sure
+```
+
+We can also specify the `.catch()` function when promise is rejected.
+
+```js
+var p1 = new Promise( function(resolve, reject) {
+  setTimeout( function() {
+  // We fulfill the promise !
+  reject('error');
+  }, 2000);
+});
+p1.then( function(val) {
+  console.log('ok');
+}).catch(function(reason) {
+  console.log('Handle rejected promise ('+reason+') here.');
+});
 ```
