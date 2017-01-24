@@ -40,10 +40,35 @@ amounts.fill(900);
 console.log(amounts); // [900, 900, 900]
 ```
 
-We can specify start filling at index of. This is the second argument of the `fill()`
+We can specify start filling at index of. This is the second argument of the `fill()` but remember array is zero base for index. The third parameter represent the index to stop at and it is not inclusive.
 
 ```js
 let amounts = [800, 810, 820];
-amounts.fill(900, 1);
-console.log(amounts); // [900, 810, 820]
+amounts.fill(900, 1, 2);
+console.log(amounts); // [800, 900, 820]
+```
+
+If we specify negative number it mean at the end of the array.
+
+```js
+let amounts = [800, 810, 820];
+amounts.fill(900, -1);
+console.log(amounts); // [800, 810, 900]
+```
+
+We have a find() function. As soon the element is found, it return immediately the value. It does not scan the whole array and return an array, it just return the first value it's find.
+
+```js
+let amounts = [800, 810, 820];
+result = amounts.find(value => value >= 811);
+console.log(result); // 820
+```
+
+We can return only the index with `findIndex()` the `this` can be and object or an integer.
+```js
+let amounts = [800, 810, 820];
+result = amounts.findIndex(function (value, index, array) {
+  return value == this;
+}, 810);
+console.log(result); // 1
 ```
