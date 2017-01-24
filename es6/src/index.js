@@ -13,3 +13,4 @@ let idMaker = {
 for (let v of idMaker) {
   console.log(v);
 }
+console.log(...idMaker);

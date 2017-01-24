@@ -22,8 +22,11 @@ console.log( it.next() ); // {done: true, value: undefined}
 ```
 We can make our own iterator we need to implement `[Symbol.iterator]` with `next()` that return {value: , done: }
 
+The for-of statement accepts any iterable object, thus providing an uniform iteration syntax to completely distinct data structures by making use of the Iterable interface they implement.
+
+The spread operator `...` use iterator to destructure elements.
 ```js
-let idMaker = {
+idMaker = {
   [Symbol.iterator]() {
     let nextId = 1;
     return {
@@ -31,11 +34,47 @@ let idMaker = {
         let value = nextId > 3 ? undefined: nextId++;
         let done = !value;
         return { value, done };
-      } // ./next()
-    }; // ./return
-  } // ./Symbol.iterator
-}; // ./idMaker
+      }
+    };
+  }
+};
 for (let v of idMaker) {
   console.log(v);
+} // 1 2 3
+console.log(...idMaker)
+```
+### Generators
+It a special function that don't run all the way through necessary it is able to yeald and be call multiple times through all of your code. It does not exist on the stack like must function do. We actualy use iterator to call generator multiple times. We denote generator by the `*` at the begining of the function. Wen we run the function, it return a iterator. It start off with the pause state.
+
+```js
+function *process() {
+  console.log('a');
+  yield 1; // First pose here
+  console.log('b');
+  yield 2; // Second pose here
+  console.log('c');
 }
+let it = process();
+console.log(it.next()); // a Object {value: 1, done: false}
+console.log(it.next()); // b Object {value: 2, done: false}
+console.log(it.next()); // c Object {value: undefind, done: true}
+console.log(it.next()); // Object {value: undefind, done: true} <- no more to iterate
+```
+
+ You can use generator that always return a next value with a `while(true)`
+
+```js
+function *process() {
+  let nextId = 0;
+  while(true) {
+    yield nextId;
+    nextId += 1;
+  }
+}
+for (let id of process()) {
+  if (id > 3){
+    break;
+  }
+  console.log(id);
+} // 0 1 2 3
 ```
