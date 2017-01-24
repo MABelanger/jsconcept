@@ -203,19 +203,20 @@ let p = new Promise(function(resolve, reject){
   console.log('in promise code');
   setTimeout(function () {
     console.log('resolving...');
-    resolve('ok'); //
+    resolve('200');
     reject('error'); // the reject never been call.
   }, 2000);
 });
 
-// in promise code
 p.then(function (value) {
-  // resolving...
-  console.log('Fulfilled! with value:' + value ); // Fulfilled! with value:ok
+  console.log('Fulfilled! : ' + value ); // Fulfilled! : 200
 },
 function (reason) {
   console.log('Rejected! with reason:' + reason);
 });
+// in promise code
+// (2 seg later) resolving...
+// Fulfilled! : 200
 ```
 
 We can chaining  `.then()` function by returning a value. So wen we return a string, it get wrap up in promise and that promise fulfill because the original promise fulfill.
