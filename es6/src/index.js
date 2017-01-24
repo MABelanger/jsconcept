@@ -135,6 +135,8 @@ console.log( it.next().value ); // undefind
 ```
 
 ### throw and return
+
+#### throw
 You can throw exception by using `.throw()` when we use it, it stop the generator and it call the `catch()` block and return `{value: undefined, done: true}` and skip all other lines of code as the generator as reached the end of it's function. In this example `b` never get printed.
 ```js
 function *process() {
@@ -152,7 +154,24 @@ function *process() {
   }
 }
 let it = process();
-console.log( it.next().value );  // a & 1
-console.log( it.throw('error') );// 'error' & {value: undefined, done: true}
-console.log( it.next() );        // {value: undefined, done: true}
+                                   // a
+//console.log( it.next().value );  // 1
+//console.log( it.throw('error') );// 'error' & {value: undefined, done: true}
+//console.log( it.next() );        // {value: undefined, done: true}
+```
+
+If we don't have try catch logic in the generator, our execution terminate the other `.next()` never get executed. So if you do call throw on iterator you have to make sure that try catch block is implemented.
+
+#### return
+They is a way to neatly cleanup an iterator, we can call the `return()` function. It a clean way to complete to wrap up the iterator and complete it. We get an object with done to true and the value we are returned. That skip lines of code like the throw.
+```js
+function *process() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+let it = process();
+console.log( it.next().value );       // 1
+console.log( it.return('I am done') );// {value: "I am done", done: true}
+console.log( it.next() );             // {value: undefined, done: true}
 ```
