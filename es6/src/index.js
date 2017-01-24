@@ -133,3 +133,26 @@ console.log( it.next().value ); // 2
 console.log( it.next().value ); // 3
 console.log( it.next().value ); // undefind
 ```
+
+### throw and return
+You can throw exception by using `.throw()` when we use it, it stop the generator and it call the `catch()` block and return `{value: undefined, done: true}` and skip all other lines of code as the generator as reached the end of it's function. In this example `b` never get printed.
+```js
+function *process() {
+  try {
+    console.log('a');
+    yield 1;
+    console.log('b');
+    yield 2;
+    console.log('c');
+    yield 3;
+    console.log('d');
+  }
+  catch(e) {
+    console.log(e);
+  }
+}
+let it = process();
+console.log( it.next().value );  // a & 1
+console.log( it.throw('error') );// 'error' & {value: undefined, done: true}
+console.log( it.next() );        // {value: undefined, done: true}
+```
