@@ -199,20 +199,17 @@ let promise = doAsync();
 Example with `.then`, we can pass parameter to the function to know the value of the `resolve` or the reason of the `reject`.
 
 ```js
-function doAsync() {
-  let p = new Promise(function(resolve, reject){
-    console.log('in promise code');
-    setTimeout(function () {
-      console.log('resolving...');
-      resolve('ok'); //
-      reject('error'); // the reject never been call.
-    }, 2000);
-  });
-  return p;
-}
-let promise = doAsync();
+let p = new Promise(function(resolve, reject){
+  console.log('in promise code');
+  setTimeout(function () {
+    console.log('resolving...');
+    resolve('ok'); //
+    reject('error'); // the reject never been call.
+  }, 2000);
+});
+
 // in promise code
-doAsync().then(function (value) {
+p.then(function (value) {
   // resolving...
   console.log('Fulfilled! with value:' + value ); // Fulfilled! with value:ok
 },
@@ -224,16 +221,13 @@ function (reason) {
 We can chaining  `.then()` function by returning a value. So wen we return a string, it get wrap up in promise and that promise fulfill because the original promise fulfill.
 
 ```js
-function doAsync() {
-  let p = new Promise(function(resolve, reject){
-    setTimeout(function () {
-      resolve('ok');
-    }, 2000);
-  });
-  return p;
-}
-let promise = doAsync();
-doAsync().then(function (value) {
+let p = new Promise(function(resolve, reject){
+  setTimeout(function () {
+    resolve('ok');
+  }, 2000);
+});
+
+p.then(function (value) {
   console.log('Fulfilled! with value:' + value );
   return 'For Sure';
 }).then(function(value) {
@@ -245,9 +239,7 @@ function (reason) {
 // Fulfilled! with value:ok
 // For Sure
 ```
-
 We can also specify the `.catch()` function when promise is rejected.
-
 ```js
 var p1 = new Promise( function(resolve, reject) {
   setTimeout( function() {
@@ -257,7 +249,7 @@ var p1 = new Promise( function(resolve, reject) {
 });
 p1.then( function(val) {
   console.log('ok');
-}).catch(function(reason) {
+}).catch( function(reason) {
   console.log('Handle rejected promise ('+reason+') here.');
 });
 ```
