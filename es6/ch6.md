@@ -78,3 +78,15 @@ for (let id of process()) {
   console.log(id);
 } // 0 1 2 3
 ```
+
+You can pass a value to `yield` it stop a the first yield and then the unpose of the next yield pass the value.
+
+```js
+function *process() {
+  let result = yield;
+  console.log(`result is ${result}`);
+}
+let it = process();
+it.next();
+it.next(200);
+```
