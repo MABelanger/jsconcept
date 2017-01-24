@@ -105,3 +105,143 @@ it.next(4);
 it.next(42);
 // 42
 ```
+
+If you use the multiply put it between ()
+
+```js
+function *process() {
+  let value = 4 * (yield 42);
+  console.log(value);
+}
+let it = process();
+console.log( it.next() ); // 42
+it.next(10); // 40
+```
+
+### Iterator delegation
+`yield*` take some thing that it's iterable so we can delegate another iterator to the generator. Once that iterator is fully consumed, that previous iterator will take over again.
+
+```js
+function *process() {
+  yield 42;
+  yield* [1,2,3];
+}
+let it = process();
+console.log( it.next().value ); // 42
+console.log( it.next().value ); // 1
+console.log( it.next().value ); // 2
+console.log( it.next().value ); // 3
+console.log( it.next().value ); // undefind
+```
+
+### throw and return
+
+#### throw
+You can throw exception by using `.throw()` when we use it, it stop the generator and it call the `catch()` block and return `{value: undefined, done: true}` and skip all other lines of code as the generator as reached the end of it's function. In this example `b` never get printed.
+```js
+function *process() {
+  try {
+    console.log('a');
+    yield 1;
+    console.log('b');
+    yield 2;
+    console.log('c');
+    yield 3;
+    console.log('d');
+  }
+  catch(e) {
+    console.log(e);
+  }
+}
+let it = process();
+                                   // a
+//console.log( it.next().value );  // 1
+//console.log( it.throw('error') );// 'error' & {value: undefined, done: true}
+//console.log( it.next() );        // {value: undefined, done: true}
+```
+
+If we don't have try catch logic in the generator, our execution terminate the other `.next()` never get executed. So if you do call throw on iterator you have to make sure that try catch block is implemented.
+
+#### return
+They is a way to neatly cleanup an iterator, we can call the `return()` function. It a clean way to complete to wrap up the iterator and complete it. We get an object with done to true and the value we are returned. That skip lines of code like the throw.
+```js
+function *process() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+let it = process();
+console.log( it.next().value );       // 1
+console.log( it.return('I am done') );// {value: "I am done", done: true}
+console.log( it.next() );             // {value: undefined, done: true}
+```
+
+### Promises
+Used with Jquery and Q library. A promises is basically an object that waiting for an asynchronous operation to completes, when the operation does complete the promises is either fulfill or rejected.
+
+The promises take a function as argument that have `resolve()` and `reject()` that is called in the right scenario of the promises. To notify the promise we have to cal `resolve()` or `reject()`
+
+```js
+function doAsync() {
+  let p = new Promise(function(resolve, reject){
+    console.log('in promise code');
+    setTimeout(function () {
+      console.log('resolving...');
+      resolve(); //
+    }, 2000);
+  });
+  return p;
+}
+let promise = doAsync();
+// in promise code
+// 2 sec later : resolving...
+```
+Example with `.then`, we can pass parameter to the function to know the value of the `resolve` or the reason of the `reject`.
+
+```js
+function doAsync() {
+  let p = new Promise(function(resolve, reject){
+    console.log('in promise code');
+    setTimeout(function () {
+      console.log('resolving...');
+      resolve('ok'); //
+      reject('error'); // the reject never been call.
+    }, 2000);
+  });
+  return p;
+}
+let promise = doAsync();
+// in promise code
+doAsync().then(function (value) {
+  // resolving...
+  console.log('Fulfilled! with value:' + value ); // Fulfilled! with value:ok
+},
+function (reason) {
+  console.log('Rejected! with reason:' + reason);
+});
+```
+
+We can chain on the `.then()` by returning a value of the `.then()`
+
+```js
+function doAsync() {
+  let p = new Promise(function(resolve, reject){
+    setTimeout(function () {
+      resolve('ok');
+    }, 2000);
+  });
+  return p;
+}
+let promise = doAsync();
+doAsync().then(function (value) {
+  console.log('Fulfilled! with value:' + value );
+  return 'For Sure';
+}).then(function(value) {
+  console.log(value);
+},
+function (reason) {
+  console.log('Rejected! with reason:' + reason);
+});
+// Fulfilled! with value:ok
+// For Sure
+```
