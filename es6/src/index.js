@@ -1,17 +1,9 @@
-let p = new Promise(function(resolve, reject){
-  console.log('in promise code');
-  setTimeout(function () {
-    console.log('resolving...');
-    resolve('ok'); //
-    reject('error'); // the reject never been call.
+var p1 = new Promise( function(resolve, reject) {
+  setTimeout( function() {
+  reject('error');
   }, 2000);
 });
-
-// in promise code
-p.then(function (value) {
-  // resolving...
-  console.log('Fulfilled! with value:' + value ); // Fulfilled! with value:ok
-},
-function (reason) {
-  console.log('Rejected! with reason:' + reason);
+p1.then( function(val) {
+}).catch( function(reason) {
+  console.log('Handle rejected promise ('+reason+') here.');
 });
