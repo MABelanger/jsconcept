@@ -193,3 +193,84 @@ console.log(alt._id); // 50
 We can look if the object has a property with  `.has()`
 
 <b>Reflect.has(targetObject, propertyKey)</b>
+
+
+```js
+class Location {
+  constructor() {
+    this.city = 'Goleta';
+  }
+}
+class Restaurant extends Location {
+  constructor() {
+    super();
+    this.id = 9000;
+  }
+}
+let r = new Restaurant();
+console.log(Reflect.has(r, 'id'));   // true
+console.log(Reflect.has(r, 'city')); // true
+```
+
+That return an array of all keys
+<b>Reflect.ownKeys(targetObject)
+
+```js
+class Location {
+  constructor() {
+    this.city = 'Goleta';
+  }
+}
+class Restaurant extends Location {
+  constructor() {
+    super();
+    this.id = 9000;
+  }
+}
+let r = new Restaurant();
+console.log(Reflect.ownKeys(r, 'id')); // ["city", "id"]
+```
+
+We can define property with the attribute to an object.
+<b>Reflect.defineProperty(targetObject, propertyKey, attributes)</b>
+
+In that case Restaurant was empty but we add a property. is similar with Object.define()
+```js
+class Restaurant {
+}
+
+let r = new Restaurant();
+
+Reflect.defineProperty(r, 'id', {
+  value: 2000,
+  configurable: true,
+  enumerable: true
+});
+console.log(r['id']); // 2000
+```
+
+We can also delete property
+
+<b>Reflect.deleteProperty(targetObject, propertyKey)</b>
+
+```js
+let rest = {
+  id: 2000
+  };
+console.log(rest.id); // 2000
+Reflect.deleteProperty(rest, 'id');
+console.log(rest.id); // undefined
+```
+
+We can get a descriptor of the property
+
+<b>Reflect.getOwnPropertyDescriptor(targetObject, propertyKey)</b>
+Is similar to `Object.getOwnPropertyDescripter()`
+
+```js
+let rest = {
+  id: 2000
+};
+let d = Reflect.getOwnPropertyDescriptor(rest, 'id');
+console.log(d); // {"configurable": true, "enumerable": true, "value": 2000, "writable": true}
+```
