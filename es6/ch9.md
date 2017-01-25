@@ -76,7 +76,7 @@ console.log(p.salary); // Denied
 console.log(p.name); // Milton Waddams
 ```
 
-We can log out custom message if the properties does not exist.
+We can log out custom message if the properties does not exist. We set the prototype with the Proxy. Now we can execute any code we want just by accessing the property. We can apply security to it. We can shutdown the application ect...
 
 ```js
 var t = {
@@ -91,4 +91,23 @@ var p = new Proxy({}, {
 Object.setPrototypeOf(t, p);
 console.log(t.tableId); // 99
 console.log(t.size);    // "Property size doesn't exist..."
+```
+
+A way to shutdown the Proxies
+
+<b>Proxy.revocable(...)</b>
+
+We don't need to use the new keyword. We trap the get function. The Proxy return { proxy, revoke }. So we can call proxy and the revoke that proxy.
+```js
+var t = {
+  tableId: 99
+}
+let { proxy, revoke } = Proxy.revocable(t,{
+  get: function (target, prop, receiver) {
+    return Reflect.get(target, prop, receiver) + 100;
+  }
+});
+console.log(proxy.tableId); // 99
+revoke();
+console.log(proxy.tableId); // "Cannot perform 'get' on a proxy that has been revoked"
 ```
