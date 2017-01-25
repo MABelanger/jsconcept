@@ -97,7 +97,7 @@ A way to shutdown the Proxies
 
 <b>Proxy.revocable(...)</b>
 
-We don't need to use the new keyword. We trap the get function. The Proxy return { proxy, revoke }. So we can call proxy and the revoke that proxy.
+We don't need to use the new keyword is a static method. We trap the get function. The Proxy return { proxy, revoke }. So we can call proxy and the revoke that proxy.
 ```js
 var t = {
   tableId: 99
