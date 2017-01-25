@@ -290,6 +290,7 @@ let items = new Set([
 ]);
 console.log(items.has('Car')); // true
 ```
+`keys()` and `values()` do work on a Set. The `keys = values`
 
 ```js
 let items = new Set([
@@ -300,3 +301,32 @@ console.log(...items.keys());   // Car Apple
 console.log(...items.values()); // Car Apple
 console.log(...items.entries());//["Car", "Car"] ["Apple", "Apple"]
 ```
+
+Even the object is identical, they still separated objects specify by two unique object literal so they both put in the set.
+
+```js
+let items = new Set([
+  { id: 800 },
+  { id: 800 }
+]);
+console.log(items.size); // 2
+```
+
+#### WeakSet
+As the WeakMap WeakSet need an object as a key, we can't use primitive types.
+```js
+let items = new WeakSet([1, 2]);
+console.log(items.size); // Runtime Error: 'key' is not an object
+```
+In a similar way to WeakMap, we don't have access to what it hold. The JS has in charge with the Garbage Collector. But we can check if the object exist within the WeakSet with `.has()`
+```js
+let p1 = {number:1};
+let p2 = {number:2};
+let items = new WeakSet([p1, p2]);
+console.log(items.size);   // undefined
+console.log(items.has(p1)); // true
+p1 = null;
+console.log(items.has(p1)); // false
+```
+
+### Subclassing
