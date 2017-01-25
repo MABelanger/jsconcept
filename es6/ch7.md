@@ -78,19 +78,48 @@ We can copy value within with `copyWithin()` function. The first argument is the
 let sourceIndex = 0;
 let destinationIndex = 3;
 let numbers = [1,2,3,4,5,6,7,8,9];
-let numbers2 = [1,2,3,4,5,6,7,8,9];
 
 numbers.copyWithin(destinationIndex, sourceIndex);
 console.log(numbers); // [1, 2, 3,    1, 2, 3, 4, 5, 6]
-
-
-numbers2.copyWithin(destinationIndex, sourceIndex, 3);
-console.log(numbers2); // [1, 2, 3,    1, 2, 3,    7, 8, 9]
 ```
 The third argument is the number of element that we want to copy, by default is the length of the array.
 
 ```js
 let numbers = [1,2,3,4,5,6,7,8,9];
+
 numbers.copyWithin(3, 0, 3);
 console.log(numbers); // [1, 2, 3,    1, 2, 3,    7, 8, 9]
 ```
+We can get all entry of an array. The first element is the index and the second element is the value. Notice we are using the spread operator.
+```js
+let ids = ['A', 'B', 'C'];
+console.log(...ids.entries()); // [0, "A"] [1, "B"] [2, "C"]
+```
+To get only the index value use `.keys()`
+```js
+let ids = ['A', 'B', 'C'];
+console.log(...ids.keys()); // 0 1 2
+```
+### ArrayBuffer and Typed Arrays
+
+ArrayBuffer is simply an array of 8 bits bytes and for Typed Array is only numeric type that exist on top of array buffer so we can get array of integer and float ect...
+
+```js
+let buffer = new ArrayBuffer(32); // 32 bytes of allocation
+console.log(buffer.byteLength);   // 32
+```
+So the buffer has 256 possibility of value [0, 255]
+```js
+let buffer = new ArrayBuffer(32);
+buffer[0] = 0xFF;
+console.log(buffer[0]); // 255
+```
+We can use the buffer array with Typed Array, here is the list of the typed Array. `Int` for integer, `Float` for float, `U` for unsigned, `8 16 or 32` for the size. `Clamped` mean if is a negative number it set to 0 and if the number exceed the size it set to the maximum size.  So with `Uint8ClampedArray` -1 is set to  0 and 257 is set to 255.
+
+8 bits : Int8Array() Uint8Array() Uint8ClampedArray()
+
+16 bits : Int16Array() Uint16Array()
+
+32 bits : Int32Array() Uint32Array()
+
+Float : Float32Array() Float64Array()
