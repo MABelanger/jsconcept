@@ -7,14 +7,7 @@ We can use it for `security`, for `profiling` how long function run and log ever
 
 
 ```
-
-
-
-
-
-
                  +-----------------------------+
-                 |                             |
                  |        Handler Object       |
 +---------+      |         ( the proxy )       |
 |         |      |                             |
@@ -26,9 +19,7 @@ We can use it for `security`, for `profiling` how long function run and log ever
 |         |      |             +------------+  |
 |         |      |                             |
 +---------+      |                             |
-                 |                             |
                  +-----------------------------+
-
 ```
 
 
