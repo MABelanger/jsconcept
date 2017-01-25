@@ -7,16 +7,28 @@ We can use it for `security`, for `profiling` how long function run and log ever
 
 
 ```
-                     Handler Object
-+--------------+      ( the proxy )
-|              |                    +------------+
-|              |     Traps          | Target     |
-|  Source Code +---> get()+-------> | Object or  |
-|              |     set()          | Function   |
-|              |     apply()        |            |
-|              |                    +------------+
-|              |
-+--------------+
+
+
+
+
+
+
+                 +-----------------------------+
+                 |                             |
+                 |        Handler Object       |
++---------+      |         ( the proxy )       |
+|         |      |                             |
+| Source  |      |  Traps      +------------+  |
+|  Code   +-------> get()+---> | Target     |  |
+|         |      |  set()      | Object or  |  |
+|         |      |  apply()    | Function   |  |
+|         |      |             |            |  |
+|         |      |             +------------+  |
+|         |      |                             |
++---------+      |                             |
+                 |                             |
+                 +-----------------------------+
+
 ```
 
 
