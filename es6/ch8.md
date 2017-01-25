@@ -90,7 +90,106 @@ Reflect.apply(Restaurant.prototype.show, { id: 99 }, ['Hello:']); // Hello:99
 ### Prototypes
 We can getting and setting them with ReflectApi
 
+<b>Reflect.getPrototypeOf(targetObject)</b>
 
+When we working with classes the constructor() is actually an prototype.
+```js
+class Location {
+  constructor() {
+    console.log('constructing Location');
+  }
+}
+class Restaurant extends Location {
+}
+console.log(Reflect.getPrototypeOf(Restaurant));
+/*
+  constructor() {
+    console.log('constructing Location');
+  }
+*/
+```
+
+We can also set the prototype
+
+<b>Reflect.setPrototypeOf(targetObject, prototype)</b>
+
+Restaurant is empty class but now it contain getId() function with the setPrototypeOf()
+```js
+class Restaurant {
+}
+let setup = {
+  getId() { return 80; }
+}
+
+let r = new Restaurant();
+Reflect.setPrototypeOf(r, setup);
+console.log(r.getId()); // 80
+```
 
 ### Properties
-Adding Delete properties or preventing them a change.
+Adding Delete properties or preventing them a change. We do different operation on properties : set, get and delete them.
+
+<b>Reflect.get(targetObject, propertyKey[, receiver])</b>
+
+The get return the `this.id`
+
+```js
+class Restaurant {
+  constructor() {
+    this.id = 8000;
+  }
+}
+
+let r = new Restaurant();
+console.log(Reflect.get(r, 'id')); // 8000
+```
+The second argument is the getter and the third argument apply to `this` in this case { _id : 88 }
+```js
+class Restaurant {
+  constructor() {
+    this._id = 8000;
+  }
+  get id() {
+    return this._id;
+  }
+}
+
+let r = new Restaurant();
+console.log(Reflect.get(r, 'id', { _id: 88})); // 88
+```
+
+We can set value
+<b>Reflect.set(targetObject, propertyKey, value[, receiverObject])</b>
+
+```js
+class Restaurant {
+  constructor() {
+    this.id = 8000;
+  }
+}
+
+let r = new Restaurant();
+Reflect.set(r, 'id', 88);
+console.log(r.id); // 88
+```
+We can set an object property with the usage of the class function setter `set id()`
+```js
+class Restaurant {
+  constructor() {
+    this._id = 9000;
+  }
+  set id(value) {
+    this._id = value;
+  }
+}
+let r = new Restaurant();
+let alt = { id: 88 };
+
+Reflect.set(r, '_id', 50, alt);
+console.log(r._id);   // 9000
+console.log(alt._id); // 50
+```
+
+We can look if the object has a property with  `.has()`
+
+<b>Reflect.has(targetObject, propertyKey)</b>
