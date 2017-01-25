@@ -330,3 +330,32 @@ console.log(items.has(p1)); // false
 ```
 
 ### Subclassing
+
+Subclassing mean extending an existing object like Array and adding method to them. We can now extend an Array and we can also subclass other object. You can see the advancement at : [http://kangax.github.io/compat-table/es6/](http://kangax.github.io/compat-table/es6/)
+
+We can get access to the property and the method of the Array like length. Even we call a function specific to an array `.reverse()` the instance still `MyList` but also and `Array`
+
+```js
+class MyList extends Array {
+}
+let a = MyList.from([5, 10, 15]);
+console.log(a instanceof MyList);        // true
+console.log(a.length);                   // 3
+let newArray = a.reverse();
+console.log(newArray instanceof MyList); // true
+console.log(newArray instanceof Array);  // true
+```
+
+This is an example why `subclassing` is useful, we can add properties and in this case we can add a method to `MyList`. Remember you need to use `this.` to access properties and method of `MyList`
+
+```js
+class MyList extends Array {
+  sum() {
+    let total = 0;
+    this.map(v => total += v);
+    return total;
+  }
+}
+let a = MyList.from([5, 10, 15]);
+console.log(a.sum()); // 30
+```
