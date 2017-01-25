@@ -300,7 +300,7 @@ rest.location = 'Goleta';
 console.log(rest.location);      // undefined
 ```
 
-We can check if the object is extensible.
+We can check if the object is extensible. By default the object is extensible.
 
 <b>Reflect.isExtensible(targetObject)</b>
 
