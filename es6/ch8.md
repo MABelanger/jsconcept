@@ -274,3 +274,41 @@ let rest = {
 let d = Reflect.getOwnPropertyDescriptor(rest, 'id');
 console.log(d); // {"configurable": true, "enumerable": true, "value": 2000, "writable": true}
 ```
+
+### Reflect and Property Extensions
+Some time we want to lock an object to disable the possibility of adding an property of that object. We use
+
+<b>Reflect.preventExtensions(targetObject)</b>
+
+That prevent property to be added to the object.
+
+```js
+let rest = {
+  id: 2000
+};
+rest.location = 'Goleta';
+console.log(rest.location); // "Goleta"
+```
+But we can look the possibility to adding new property
+
+```js
+let rest = {
+  id: 2000
+};
+Reflect.preventExtensions(rest); // Lock the object
+rest.location = 'Goleta';
+console.log(rest.location);      // undefined
+```
+
+We can check if the object is extensible.
+
+<b>Reflect.isExtensible(targetObject)</b>
+
+```js
+let rest = {
+  id: 2000
+};
+console.log(Reflect.isExtensible(rest)); // true
+Reflect.preventExtensions(rest);         // Lock the object
+console.log(Reflect.isExtensible(rest)); // false
+```
