@@ -107,7 +107,7 @@ let { proxy, revoke } = Proxy.revocable(t,{
     return Reflect.get(target, prop, receiver) + 100;
   }
 });
-console.log(proxy.tableId); // 99
+console.log(proxy.tableId); // 199
 revoke();
 console.log(proxy.tableId); // "Cannot perform 'get' on a proxy that has been revoked"
 ```
