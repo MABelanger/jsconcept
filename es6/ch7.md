@@ -72,3 +72,25 @@ result = amounts.findIndex(function (value, index, array) {
 }, 810);
 console.log(result); // 1
 ```
+
+We can copy value within with `copyWithin()` function. The first argument is the `destination index` and the second is the `source index`. The third argument is the number of element that we want to copy, by default is the length of the array.
+
+```js
+let sourceIndex = 0;
+let destinationIndex = 3;
+let numbers = [1,2,3,4,5,6,7,8,9];
+let numbers2 = [1,2,3,4,5,6,7,8,9];
+
+numbers.copyWithin(destinationIndex, sourceIndex);
+console.log(numbers); // [1, 2, 3,    1, 2, 3, 4, 5, 6]
+
+
+numbers2.copyWithin(destinationIndex, sourceIndex, 3);
+console.log(numbers2); // [1, 2, 3,    1, 2, 3,    7, 8, 9]
+```
+
+```js
+let numbers = [1,2,3,4,5,6,7,8,9];
+numbers.copyWithin(3, 0, 3);
+console.log(numbers); // [1, 2, 3,    1, 2, 3,    7, 8, 9]
+```
