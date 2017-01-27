@@ -8,4 +8,4 @@ Notes from stuff that i learn in JavaScript and examples that i do my self to un
 [micro library](https://github.com/MABelanger/my-notes/blob/master/micro-library/micro-library.md)
 
 ## Rapid ES6 Training
-[es6](https://github.com/MABelanger/my-notes/blob/tree/master/es6)
+[es6](https://github.com/MABelanger/my-notes/tree/master/es6)
