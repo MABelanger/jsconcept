@@ -9,4 +9,11 @@ $ git config --global user.email ""
 
 Global gitignore file that can be used to your specific computer
 
-[github.com/github/gitignore](github.com/github/gitignore)
+[https://github.com/github/gitignore](https://github.com/github/gitignore)
+
+> **Note** You can search file throught all the project by pressing `t` shortcut.
+
+put it into ~/.gitignore_global and then notify github to use that file as global gitignore.
+```
+$ git config --global core.excludesfile ~/.gitignore_global
+```
