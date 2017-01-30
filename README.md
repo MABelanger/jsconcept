@@ -1,12 +1,7 @@
 # <b>Notes</b>
 Note-taking from multiples sources and examples
 
-
-### [Useful URL](url.md)
-
-### Open Source
-
-[How to Write an Open Source JavaScript Library](micro-library)
+###[JavaScript Library](micro-library)
 * Publishing to npm
 * Releasing a version
 * Beta version
@@ -25,3 +20,5 @@ Note-taking from multiples sources and examples
 * Arrays and Collections
 * The Reflect API
 * The Proxy API
+
+### [Useful URL](url.md)
