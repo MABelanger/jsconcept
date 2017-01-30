@@ -5,7 +5,7 @@ Note-taking from multiples sources and examples
 
 ## How to Write an Open Source JavaScript Library
 
-[micro library](https://github.com/MABelanger/notes/blob/master/micro-library/micro-library.md)
+[micro library](https://github.com/MABelanger/notes/blob/master/micro-library)
 
 ## Rapid ES6 Training
 [es6](https://github.com/MABelanger/notes/tree/master/es6)
