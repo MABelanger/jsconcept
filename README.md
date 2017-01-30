@@ -1,11 +1,11 @@
 # <b>Notes</b>
 Note-taking from multiples sources and examples
 
-### Js Notes
+## Js Notes
 
-## How to Write an Open Source JavaScript Library
+### How to Write an Open Source JavaScript Library
 
 [micro library](https://github.com/MABelanger/notes/blob/master/micro-library)
 
-## Rapid ES6 Training
+### Rapid ES6 Training
 [es6](https://github.com/MABelanger/notes/tree/master/es6)
