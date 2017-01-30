@@ -1,6 +1,16 @@
-## Iterators, Generators and Promises
+# Iterators, Generators and Promises
 
-### Iterators
+- [Iterators](#iterators)
+- [Generators](#generators)
+- [Yielding in Generators](#yielding-in-generators)
+- [throw and return](#throw-and-return)
+  * [throw](#throw)
+  * [return](#return)
+- [Promises](#promises)
+- [More promise features](#more-promise-features)
+  * [Promise.all and Promise.race](#promiseall-and-promiserace)
+
+## Iterators
 Iterators is a major new feature in ES6 and is found all over the place.
 
 To get access to the iterator use `Symbol.iterator` as the property name.
@@ -43,7 +53,7 @@ for (let v of idMaker) {
 } // 1 2 3
 console.log(...idMaker)
 ```
-### Generators
+## Generators
 It a special function that don't run all the way through necessary it is able to yeald and be call multiple times through all of your code. It does not exist on the stack like must function do. We actualy use iterator to call generator multiple times. We denote generator by the `*` at the begining of the function. Wen we run the function, it return a iterator. It start off with the pause state.
 
 ```js
@@ -118,7 +128,7 @@ console.log( it.next() ); // 42
 it.next(10); // 40
 ```
 
-### Iterator delegation
+## Yielding in Generators
 `yield*` take some thing that it's iterable so we can delegate another iterator to the generator. Once that iterator is fully consumed, that previous iterator will take over again.
 
 ```js
@@ -134,9 +144,9 @@ console.log( it.next().value ); // 3
 console.log( it.next().value ); // undefind
 ```
 
-### throw and return
+## throw and return
 
-#### throw
+### throw
 You can throw exception by using `.throw()` when we use it, it stop the generator and it call the `catch()` block and return `{value: undefined, done: true}` and skip all other lines of code as the generator as reached the end of it's function. In this example `b` never get printed.
 ```js
 function *process() {
@@ -162,7 +172,7 @@ let it = process();
 
 If we don't have try catch logic in the generator, our execution terminate the other `.next()` never get executed. So if you do call throw on iterator you have to make sure that try catch block is implemented.
 
-#### return
+### return
 They is a way to neatly cleanup an iterator, we can call the `return()` function. It a clean way to complete to wrap up the iterator and complete it. We get an object with done to true and the value we are returned. That skip lines of code like the throw.
 ```js
 function *process() {
@@ -176,7 +186,7 @@ console.log( it.return('I am done') );// {value: "I am done", done: true}
 console.log( it.next() );             // {value: undefined, done: true}
 ```
 
-### Promises
+## Promises
 Used with Jquery and Q library. A promises is basically an object that waiting for an asynchronous operation to completes, when the operation does complete the promises is either fulfill or rejected.
 
 The promises take a function as argument that have `resolve()` and `reject()` that is called in the right scenario of the promises. To notify the promise we have to cal `resolve()` or `reject()`
@@ -255,7 +265,7 @@ p1.then( function(val) {
 });
 ```
 
-### More promise features
+## More promise features
 We can pass another promise to the `resolve()` function. If the promise in argument fail, the original promise get also rejected even we called the `resolve()` function. We can use directly the promise without using async call by using : `Promise.resolve()` or `Promise.reject()`
 
 ```js

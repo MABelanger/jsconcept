@@ -9,9 +9,9 @@
 - [RegExp Extensions](#regexp-extensions)
 - [Function Extensions](#function-extensions)
 
+##Symbols
 <b>Mozilla def</b>:
 <i>A symbol is a unique and immutable data type and may be used as an identifier for object properties.</i>
-##Symbols
 It is a new concept that does not exist in ES5. The prupose of a symbol is to generate an Unique Identifier. But we never get access to that Id as a developper. They are well know symbols like itterators, Object Extensions, String Extensions, Number Extensions,  Math Expressions, RegExp Expressions, Function Extensions.
 
 You can use it as unique string as an ID.
