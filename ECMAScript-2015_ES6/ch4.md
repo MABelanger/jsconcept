@@ -1,5 +1,6 @@
 # ES6 Modules and Classes
 - [ES6 Modules and Classes](#es6-modules-and-classes)
+- [Named Exports in Modules](#named-exports-in-modules)
 - [Class Fundamentals](#class-fundamentals)
 - [extends and super](#extends-and-super)
 - [Properties for Class Instances](#properties-for-class-instances)
@@ -22,6 +23,8 @@ console.log(projectId);
 // File module1.js:
 export let projectId = 99;
 ```
+
+## Named Exports in Modules
 
 So the variable projectId get imported from module1. It possible to export many variables. We assign alias to the imported variable with the keyword `as`
 ```js
