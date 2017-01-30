@@ -1,3 +1,28 @@
+* Setting up GitHub
+* Configuring npm and creating a package.json
+* Creating the library and adding dependencies
+* Pushing to GitHub
+* Publishing to npm
+* Releasing a version to GitHub
+* Releasing a new version to npm
+* Publishing a beta version
+* Setting up Unit Testing with Mocha and Chai
+* Unit Testing with Mocha and Chai
+* Automating Releases with semantic-release
+* Writing conventional commits with commitizen
+* Committing a new feature with commitizen
+* Automatically Releasing with TravisCI
+* Automatically running tests before commits with ghooks
+* Adding code coverage recording with Istanbul
+* Adding code coverage checking
+* Add code coverage reporting
+* Adding badges to your README
+* Adding ES6 Support
+* Adding ES6 Support to Tests using Mocha and Babel
+* Limit Built Branches on Travis
+* Add a browser build to an npm module
+
+
 ## <b>How to Write an Open Source JavaScript Library</b>
 
 Publishing a JavaScript library for public use requires some extra steps. You need to think about how people will use the library. From end users, to contributors your library now has a variety of people outside of yourself potentially making use of the code that you've released into the wild.
