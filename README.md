@@ -10,7 +10,7 @@ Note-taking from multiples sources and examples
 ### ES6
 [es6](https://github.com/MABelanger/notes/tree/master/es6)
 - An ES6 Compatibility Chart
-1 2 3 New ES6 Syntax
+3. New ES6 Syntax
   * let, const and Block Scoping
   * Arrow Functions
   * Default Function Parameters
@@ -21,7 +21,7 @@ Note-taking from multiples sources and examples
   * Template Literals
   * Destructuring
   * Advanced Destructuring
-4 ES6 Modules and Classes
+4. ES6 Modules and Classes
   * Module Basics
   * Named Exports in Modules
   * Class Fundamentals
@@ -29,7 +29,7 @@ Note-taking from multiples sources and examples
   * Properties for Class Instances
   * Static Members
   * new.target
-5 New Types and Object Extensions
+5. New Types and Object Extensions
   * Symbols
   * Well-known Symbols
   * Object Extensions
@@ -38,26 +38,26 @@ Note-taking from multiples sources and examples
   * Math Extensions
   * RegExp Extensions
   * Function Extensions
-6 Iterators, Generators, and Promises
+6. Iterators, Generators, and Promises
   * Iterators
   * Generators
   * Yielding in Generators
   * throw and return
   * Promises
   * Promise Features
-7 Arrays and Collections
+7. Arrays and Collections
   * Array Extensions
   * ArrayBuffers and Typed Arrays
   * DataView and Endianness
   * Map and WeakMap
   * Set and WeakSet
   * Subclassing
-8 The Reflect API
+8. The Reflect API
   * Construction and Method Calls
   * Reflect and Prototypes
   * Reflect and Properties
   * Reflect and Property Extensions
-9 The Proxy API
+9. The Proxy API
   * Proxies Defined
   * Available Traps
   * Get by Proxy
