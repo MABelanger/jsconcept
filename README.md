@@ -9,12 +9,10 @@ Note-taking from multiples sources and examples
 
 
 ### [ECMAScript 2015 (ES6)](https://github.com/MABelanger/notes/tree/master/es6)
-1. 
-2. 
-3. New ES6 Syntax
-4. ES6 Modules and Classes
-5. New Types and Object Extensions
-6. Iterators, Generators, and Promises
-7. Arrays and Collections
-8. The Reflect API
-9. The Proxy API
+* New ES6 Syntax
+* ES6 Modules and Classes
+* New Types and Object Extensions
+* Iterators, Generators, and Promises
+* Arrays and Collections
+* The Reflect API
+* The Proxy API
