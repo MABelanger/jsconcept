@@ -1,7 +1,17 @@
 ## New Types and Object Extentions
+- [New Types and Object Extentions](#new-types-and-object-extentions)
+- [Well-know Symbols](#well-know-symbols)
+- [String Extension](#string-extension)
+- [Number Extensions](#number-extensions)
+- [Math extensions](#math-extensions)
+  * [Arithmetic Functions](#arithmetic-functions)
+  * [Miscellaneous Functions](#miscellaneous-functions)
+- [RegExp Extensions](#regexp-extensions)
+- [Function Extensions](#function-extensions)
+
 <b>Mozilla def</b>:
 <i>A symbol is a unique and immutable data type and may be used as an identifier for object properties.</i>
-###Symbols
+##Symbols
 It is a new concept that does not exist in ES5. The prupose of a symbol is to generate an Unique Identifier. But we never get access to that Id as a developper. They are well know symbols like itterators, Object Extensions, String Extensions, Number Extensions,  Math Expressions, RegExp Expressions, Function Extensions.
 
 You can use it as unique string as an ID.
@@ -61,7 +71,7 @@ let article = {
 console.log( Object.getOwnPropertyNames(article) ); // ['title']
 console.log( Object.getOwnPropertySymbols(article) ); // Symbol(article)
 ```
-### Well-know Symbols
+## Well-know Symbols
 The symbols is used with metaprogramming.
 
 `toStringTag` is the well-know symbol, it is place directly on the Symbol function or class, when we set the property on the prototype, we set it to the class. In this case, We altering the way the JavaScript engine call toString() and produce it output. This is an example of metaprogramming.
@@ -136,7 +146,7 @@ let zero = 0, nZero = -0;
 console.log( Object.is(amount, amount) ); // true
 console.log( Object.is(zero, nZero) ); // false
 ```
-### String Extension
+## String Extension
 
 `startsWith`, let us know if a string start with on a given string. Same logic with `endsWith`. To know if a string is included we can use `includes`
 ```js
@@ -186,7 +196,7 @@ let wave = '\u{1f30a}';
 console.log(wave.repeat(3));
 ```
 
-### Number Extensions
+## Number Extensions
 Use `Number.parseInt` and `Number.parseFloat` instead of the global function
 ```js
 console.log(Number.parseInt === parseInt); // true
@@ -232,8 +242,8 @@ console.log(Number.EPSILON);
 console.log(Number.MAX_SAFE_INTEGER);
 console.log(Number.MIN_SAFE_INTEGER);
 ```
-### Math extensions
-#### Arithmetic Functions
+## Math extensions
+### Arithmetic Functions
 
 `cbrt()`  : cube root
 `clz32()`: count leading zeros (32 bit integers) expm1() equal to exp(x) - 1
@@ -242,7 +252,7 @@ console.log(Number.MIN_SAFE_INTEGER);
 `log1p()`: equal to log(x + 1)
 `imul()`  : 32 bit integer multiplication
 
-#### Miscellaneous Functions
+### Miscellaneous Functions
 `sign()`    : the number's sign: 1, -1, 0, -0, NaN
 `trunc()`  : the integer part of a number
 `fround()`: round to nearest 32 bit floating-point value
@@ -258,7 +268,7 @@ console.log(Math.trunc(27.1)); // 27
 console.log(Math.trunc(-27.9));//-27
 ```
 
-### RegExp Extensions
+## RegExp Extensions
 If we work with the `astral planes` unicode character and regex we need to use a flag of unicode character`/u` at the end of the pattern.
 ```js
 let pattern = /\u{1f3c4}/;
@@ -293,7 +303,7 @@ let pattern = /900/yg;
 console.log(pattern.flags); // gy
 ```
 
-### Function Extensions
+## Function Extensions
 
 We can log function name for debugging `calc`.
 ```js
