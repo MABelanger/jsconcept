@@ -1,3 +1,4 @@
+## ECMAScript 2015 (ES6)
 * [New ES6 Syntax](https://github.com/MABelanger/notes/tree/master/es6/ch1_2_3.md)
   * let, const and Block Scoping
   * Arrow Functions
