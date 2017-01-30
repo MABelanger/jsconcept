@@ -1,4 +1,11 @@
-## ES6 Modules and Classes
+# ES6 Modules and Classes
+- [ES6 Modules and Classes](#es6-modules-and-classes)
+- [Class Fundamentals](#class-fundamentals)
+- [extends and super](#extends-and-super)
+- [Properties for Class Instances](#properties-for-class-instances)
+- [Static Members](#static-members)
+- [new.target](#newtarget)
+
 The class still consider wrapper of constructor of ES5.
 good reference : [mozilla.org:class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
 > **Note:** When we load module in ES6 it always load it in `strict mode`. So, when we do not declare variable with `let` or `var` we get an error `runtime error : variable undefined in strict mode`.
@@ -118,7 +125,7 @@ export function showProject() {
 
 > **Note:** the export work with name export, when we export we only export the name, so it is possible to update the name so it can point to other function or value
 
-### Class Fundamentals
+## Class Fundamentals
 It a new syntax to work with prototypes and constructor function that we where used in ES5.
 
 You can think of the class is a constructor function as used in ES5.
@@ -350,7 +357,7 @@ Object.setPrototypeOf(softwareProject, project);
 console.log(softwareProject.getTaskCount()); // 66
 ```
 
-### Properties for Class Instances
+## Properties for Class Instances
 We can have properties at the class level
 
 They are no difference in the instance space than `ES5` and we always use the `this` keyword as ES5. By using let in the constructor, it goes out the scope and it won't be attached to an instance.
@@ -389,7 +396,7 @@ let p = new SoftwareProject();
 console.log(p.location); // Maztlan Beach
 ```
 
-### Static Members
+## Static Members
 We can access `static` method if we do not `instantiate` the Object.  By declaring a static method, the method get attached directly to Project as a constructor function.
 ```js
 class Project {
@@ -426,7 +433,7 @@ Project.id = 99;
 console.log(Project.id); // 99
 ```
 
-### new.target
+## new.target
 ES6 has a new property `new.target` that will always point to the initial constructor that called. The Project is a prototype for SoftwareProject so `new.target` point to the child.
 
 ```js
