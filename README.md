@@ -8,7 +8,7 @@ Note-taking from multiples sources and examples
 [How to Write an Open Source JavaScript Library](https://github.com/MABelanger/notes/blob/master/micro-library)
 
 
-### [es6](https://github.com/MABelanger/notes/tree/master/es6)
+### [ECMAScript 2015 (ES6)](https://github.com/MABelanger/notes/tree/master/es6)
 3. New ES6 Syntax
 4. ES6 Modules and Classes
 5. New Types and Object Extensions
