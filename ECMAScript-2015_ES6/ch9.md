@@ -1,4 +1,13 @@
-### The Proxy API
+# The Proxy API
+
+- [Proxies Defined](#proxies-defined)
+- [Available Traps](#available-traps)
+- [Get by Proxy](#get-by-proxy)
+- [Calling Functions by Proxy](#calling-functions-by-proxy)
+- [A Proxy as a Prototype](#a-proxy-as-a-prototype)
+- [Revocable Proxies](#revocable-proxies)
+
+## Proxies Defined
 A proxy is an object that wrap another object or wrap another function and with the proxy we can monitor access to that function or object that being wrap.
 
 We can use it for `security`, for `profiling` how long function run and log everything out or create security login system.
@@ -38,6 +47,11 @@ var p = new Proxy(e, {
 console.log(p.salary); // "Attempted access: salary"
 ```
 
+## Available Traps
+TODO
+
+## Get by Proxy
+
 Now we use Reflect API with get() to get the parameter
 
 ```js
@@ -55,6 +69,8 @@ var p = new Proxy(e, {
 });
 console.log(p.salary); // 0
 ```
+
+## Calling Functions by Proxy
 
 If we deny the access of salary but allow other fields.
 
@@ -76,6 +92,8 @@ console.log(p.salary); // Denied
 console.log(p.name); // Milton Waddams
 ```
 
+## A Proxy as a Prototype
+
 We can log out custom message if the properties does not exist. We set the prototype with the Proxy. Now we can execute any code we want just by accessing the property. We can apply security to it. We can shutdown the application ect...
 
 ```js
@@ -93,6 +111,7 @@ console.log(t.tableId); // 99
 console.log(t.size);    // "Property size doesn't exist..."
 ```
 
+## Revocable Proxies
 A way to shutdown the Proxies
 
 <b>Proxy.revocable(...)</b>
