@@ -1,8 +1,16 @@
-## Arrays and Collections
+# Arrays and Collections
+
+- [Array Extensions](#array-extensions)
+- [ArrayBuffer and Typed Arrays](#arraybuffer-and-typed-arrays)
+- [DataView and Endianness](#dataview-and-endianness)
+- [Map and WeekMap](#map-and-weekmap)
+- [Set and WeekSet](#set-and-weekset)
+  * [WeakSet](#weakset)
+- [Subclassing](#subclassing)
 
 Array has been extended in ES6 and they are a new Collections class.
 
-### Array Extensions
+## Array Extensions
 In ES5 the problem if we pass a numeric value to the constructor of `Array()` it determine the length of the array.
 ```js
 let salaries = Array(900);
@@ -100,7 +108,7 @@ To get only the index value use `.keys()`
 let ids = ['A', 'B', 'C'];
 console.log(...ids.keys()); // 0 1 2
 ```
-### ArrayBuffer and Typed Arrays
+## ArrayBuffer and Typed Arrays
 
 ArrayBuffer is simply an array of 8 bits bytes and for Typed Array is only numeric type that exist on top of array buffer so we can get array of integer and float ect...
 
@@ -152,7 +160,7 @@ a[1] = 1; // 00000001 00000000
 console.log(b[0]); // 256 litle indian mode
 ```
 
-### DataView and Endianness
+## DataView and Endianness
 When we are working with bytes and array of integers, Endianness is important.
 <b>Big indian</b> : The most significant byte stored first.
 <b>Little indian</b> : The lest significant byte stored first.
@@ -181,7 +189,7 @@ console.log(dv.getUint16(0)); // get value at index 0 of Uint16 (256)
 console.log(dv.getUint16(0, true)); // 1
 ```
 
-### Map and WeekMap
+## Map and WeekMap
 <b>MDN def</b> : <i>"The Map object is a simple key/value map. Any value (both objects and primitive values) may be used as either a key or a value."</i>
 
 We use a lot `map()`, every object can be considered to map that made of`property and values` as key: value. But in a object we can only use `string` or `number` as key, we can't use object. To use object as key, we need to use `map()`
@@ -253,7 +261,7 @@ emp1 = null;                  // Garbage collected...
 console.log(emps.get(emp1));  // undefined
 ```
 
-### Set and WeekSet
+## Set and WeekSet
 
 This collection is similar to Map and WeekMap except that they deal with single value with single objects. They are no mapping from a key to a value as an a Map. The purpose of set is to guaranty uniqueness of it's items. And WeekSet just like WeekMap hold week connection to his objects. So when the object is garbage collected, it is automatically removed from the WeekSet.
 
@@ -312,7 +320,7 @@ let items = new Set([
 console.log(items.size); // 2
 ```
 
-#### WeakSet
+### WeakSet
 As the WeakMap WeakSet need an object as a key, we can't use primitive types.
 ```js
 let items = new WeakSet([1, 2]);
@@ -329,7 +337,7 @@ p1 = null;
 console.log(items.has(p1)); // false
 ```
 
-### Subclassing
+## Subclassing
 
 Subclassing mean extending an existing object like Array and adding method to them. We can now extend an Array and we can also subclass other object. You can see the advancement at : [http://kangax.github.io/compat-table/es6/](http://kangax.github.io/compat-table/es6/)
 

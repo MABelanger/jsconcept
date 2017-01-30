@@ -1,10 +1,19 @@
-## The Reflect API
+# The Reflect API
+
+- [Construction and Method Calls](#construction-and-method-calls)
+  * [Object Construction](#object-construction)
+  * [Method Call](#method-call)
+- [Reflect and Prototypes](#reflect-and-prototypes)
+- [Reflect and Properties](#reflect-and-properties)
+- [Reflect and Property Extensions](#reflect-and-property-extensions)
 
 This is new to ES6. In Js we are different way to work with object and function. Reflect is a single object that use function call to perform many operations. Is useful with Proxy and DSL Domain Specific Language. It is already an object we can use it like `Math.`
 
 ```js
 console.log(typeof Reflect); // object
 ```
+
+## Construction and Method Calls
 
 ### Object Construction
 We can construct an object with the `new` keyword, or creating an `object literal`, or by calling `Object.create()` and now it another way by using ReflectApi to construct an object.
@@ -87,7 +96,7 @@ class Restaurant {
 Reflect.apply(Restaurant.prototype.show, { id: 99 }, ['Hello:']); // Hello:99
 ```
 
-### Prototypes
+## Reflect and Prototypes
 We can getting and setting them with ReflectApi
 
 <b>Reflect.getPrototypeOf(targetObject)</b>
@@ -126,7 +135,7 @@ Reflect.setPrototypeOf(r, setup);
 console.log(r.getId()); // 80
 ```
 
-### Properties
+## Reflect and Properties
 Adding Delete properties or preventing them a change. We do different operation on properties : set, get and delete them.
 
 <b>Reflect.get(targetObject, propertyKey[, receiver])</b>
@@ -275,7 +284,7 @@ let d = Reflect.getOwnPropertyDescriptor(rest, 'id');
 console.log(d); // {"configurable": true, "enumerable": true, "value": 2000, "writable": true}
 ```
 
-### Reflect and Property Extensions
+## Reflect and Property Extensions
 Some time we want to lock an object to disable the possibility of adding an property of that object. We use
 
 <b>Reflect.preventExtensions(targetObject)</b>
