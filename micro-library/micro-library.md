@@ -1,9 +1,4 @@
-# <b>JavaScript Notes</b>
-Notes from stuff that i learn in JavaScript and examples that i do my self to understand the concept.
-
-----------
-
-## How to Write an Open Source JavaScript Library
+## <b>How to Write an Open Source JavaScript Library</b>
 
 Publishing a JavaScript library for public use requires some extra steps. You need to think about how people will use the library. From end users, to contributors your library now has a variety of people outside of yourself potentially making use of the code that you've released into the wild.
 

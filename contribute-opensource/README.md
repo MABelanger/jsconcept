@@ -48,4 +48,4 @@ To verify that the key is configured on github. Type yes to RSA key. If it succe
 ```
 $ ssh -T git@github.com
 ```
-The github documentation at (github debug)[https://help.github.com/articles/error-permission-denied-publickey/]
+The github documentation at [github debug](https://help.github.com/articles/error-permission-denied-publickey/)

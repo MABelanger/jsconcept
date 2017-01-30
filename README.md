@@ -1,7 +1,7 @@
-# <b>JavaScript Notes</b>
-Notes from stuff that i learn in JavaScript and examples that i do my self to understand the concept.
+# <b>Notes</b>
+Note-taking from multiples sources and examples
 
-----------
+### Js Notes
 
 ## How to Write an Open Source JavaScript Library
 
