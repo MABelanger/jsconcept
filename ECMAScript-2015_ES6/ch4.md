@@ -6,6 +6,7 @@
 - [Static Members](#static-members)
 - [new.target](#newtarget)
 
+## ES6 Modules and Classes
 The class still consider wrapper of constructor of ES5.
 good reference : [mozilla.org:class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
 > **Note:** When we load module in ES6 it always load it in `strict mode`. So, when we do not declare variable with `let` or `var` we get an error `runtime error : variable undefined in strict mode`.
