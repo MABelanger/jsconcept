@@ -1,3 +1,3 @@
-Online real time markdown [https://stackedit.io/editor](https://stackedit.io/editor)
-Online JS console : [https://jsconsole.com/](https://jsconsole.com/)
-Auto generate TOC of markdown github : [https://ecotrust-canada.github.io/markdown-toc/](https://ecotrust-canada.github.io/markdown-toc/)
+* Online real time markdown [https://stackedit.io/editor](https://stackedit.io/editor)
+* Online JS console : [https://jsconsole.com/](https://jsconsole.com/)
+* Auto generate TOC of markdown github : [https://ecotrust-canada.github.io/markdown-toc/](https://ecotrust-canada.github.io/markdown-toc/)
