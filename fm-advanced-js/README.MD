@@ -138,7 +138,7 @@ function name() {
 }
 ```
 
-<b>Function expression</b> : The function keyword can be used to define a function inside an expression. The `[name]` is optional.
+<b>Function expression</b> : The function keyword can be used to define a function inside an expression. The `[name]` is optional. Function expressions are not hoisted, unlike function declarations. You can't use function expressions before you declare them
 
 ```js
 var myFunction = function [name]() {
@@ -158,3 +158,52 @@ Why use `function expression` with name vs `anonymous function`
 3. but in strict mode, it create a new scope so it can run faster.
   * More optimized code.
 4. Don't use eval unless you have no choise.
+
+
+### Hoisting
+
+Hoisting is moving var to the top during the compiled phase.
+
+```js
+a; // ?
+b; // ?
+var a = b;
+var b = 2;
+a; // ?
+b; // 2
+```
+Will become :
+
+```js
+var a;
+var b;
+a; // ?
+b; // ?
+a = b;
+b = 2;
+a; // ?
+b; // 2
+```
+> ** Note : 
+> * lhs stuff is happening during the compile time
+> * rhs stuff is happening during the execution time
+
+// In the compilation phase, find the declaration first
+// So the code will become
+// The var move to the top, they are treated first during the
+// compiled phase
+
+
+
+
+/*
+
+*/
+
+/*
+	Mutual recursion will be inpossible without hoisting.
+	like in C, the header files is manual hoisting have the top.
+*/
+
+
+```
