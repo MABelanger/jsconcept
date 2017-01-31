@@ -5,6 +5,8 @@
 
 ## Learning :
 * You-Dont-Know-JS by Kyle Simpson : [https://github.com/getify/You-Dont-Know-JS/](https://github.com/getify/You-Dont-Know-JS/)
+* Mozilla Developer Network (MDN) :
+[https://developer.mozilla.org/en-US/docs/Web/JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 ## Convention :
 * Principles of Writing Consistent, Idiomatic JavaScript :
