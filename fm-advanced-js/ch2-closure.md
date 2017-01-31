@@ -165,6 +165,7 @@ foo.bar(); // "bar"
 ## Prototype
 In JavaScript, every object is built by a constructor function. This does not mean classes are being instantiated. When an constructor function is called, a new object is created with a link to the object's prototype.
 
+```
 // Circle = function
 // Square = Object
 
@@ -206,7 +207,7 @@ In JavaScript, every object is built by a constructor function. This does not me
                                     |              |         |              |
                                     +--------------+         +--------------+
 
-
+```
 ## Prototypes Explained, Part 2
 Kyle explains the relationship between __proto__ (dunder-proto) and the prototype keyword and how both reference the underlining prototype. ES5 added a standardized way to do this using the getPrototypeOf method.
 
