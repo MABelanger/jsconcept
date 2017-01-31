@@ -288,8 +288,8 @@ Rather than relating prototypes to inheritance, Kyle demonstrates that prototype
 
 4. How do we find out where an object's [[Prototype]] points to (3 ways) ?
   1. __proto__ (dunder proto)
-	2. object.prototype
-	3. object.constructor.prototype
+  2. object.prototype
+  3. object.constructor.prototype
 
 
 ## Quiz
