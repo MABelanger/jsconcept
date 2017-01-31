@@ -4,21 +4,23 @@
 Closures are functions that refer to independent (free) variables (variables that are used locally, but defined in an enclosing scope). In other words, these functions 'remember' the environment in which they were created. Closures are when a function remembers its lexical scope even when the function is executed outside that lexical scope.
 
 ```js
-function bam(baz) { // The function is passed as argument
-	baz(); // <- bar is accessible
+
+// The function print is passed as argument
+function callPrint(print) {
+	print(); // <- myText is accessible inside of his function
 }
 
-function foo() {
-	var bar = "bar";
+function text() {
+	var myText = "Hello";
 
-	function baz() {
-		console.log(bar);
+	function print() {
+		console.log(myText);
 	}
 
-	bam(baz);
+	callPrint(print);
 }
 
-foo();
+text();
 ```
 
 
