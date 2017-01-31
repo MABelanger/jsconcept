@@ -24,6 +24,7 @@ Note-taking from multiples sources and examples
 ### [Advance ES5](advanced_ES5)
 * Scopes
 * Closures
+* Object Orienting
 * Asynchronous Patterns
 
 ### [Useful URL](url.md)

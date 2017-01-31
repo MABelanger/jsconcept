@@ -1,4 +1,5 @@
 [Advance ES5](advanced_ES5)
 * [Scopes](ch1-scope.md)
 * [Closures](ch2-closure.md)
-* [Asynchronous Patterns](async_pattern.md)
+* [Object Orienting](ch3-object_orienting.md)
+* [Asynchronous Patterns](ch4-async_pattern.md)
