@@ -1,7 +1,7 @@
 ## Scope
 
 ### Scope and the JavaScript Compiler
-Scope is where you go to look for things. The current version of JavaScript only has function scope.
+Scope is where you go to look for things. The ES5 version only has function scope.
 
 Example of code :
 ```js
@@ -71,44 +71,46 @@ In that case, `foo` is LHS reference and `"bar"` is the RHS of an assignement (=
 
 
 
-// Execution of function Code
+### Execution of function Code
 
+Hey scope of bar function, do you have foo identifier in your table ?
+yes, so it execute "baz"
+
+```js
 function bar(){
 	var foo = "baz";
 }
-
-/*
-	Hey scope of bar do you have foo identifier in your table ?
-	yes so execute "baz"
-*/
+```
 
 
+### Strict mode vs non Strict mode
+
+Hey scope of baz do you have foo declaration ?
+* yes so execute "bam"
+
+Hey scope of baz do you have bam declaration ?
+* No : Hey global scope i have lhs reference for bam have you ever heard of them ?
+  * Yes : i just created for you (because not in strict mode)
+    - We have leakage of global variable.
+    - If it was an rhs, it will be different.
+  * No : in strict mode we get a state of undeclared variable
+   - we are unable to find lhs in each scope.
+
+```js
 function baz(foo){
-	foo  = "bam";
+	var foo  = "bam";
 	bam = "yay";
 }
+```
 
-/*
-	Hey scope of baz do you have foo declaration ?
-		yes so execute "bam"
 
-	Hey scope of baz do you have bam declaration ?
-		No : Hey global scope i have lhs reference for bam have you ever heard of them ?
-			Yes : i just created for you (because not in strict mode)
-				We have leakage of global variable.
-				If it was an rhs, it will be different.
-			no : in strict mode we get a state of undeclared variable
-				we are unable to find lhs in each scope.
-*/
-
-/*
 
 	Undefined is not = of undeclared.
 		Undeclared : call when is no present declaration in any of the scope we have access to.
 		Undefined :  he was declared but it unitialize
 			Undefined is a proper value
 
-*/
+
 
 /*
 	when we call rhs that is not found in the scope.
