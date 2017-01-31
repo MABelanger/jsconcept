@@ -1,4 +1,5 @@
 # Scope
+
 ## Scope and the JavaScript Compiler
 Scope is where you go to look for things. The ES5 version only has function scope so the smallest atomic version of scope is function.
 
