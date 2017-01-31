@@ -147,9 +147,9 @@ var myFunction = function [name]() {
 ```
 
 Why use `function expression` with name vs `anonymous function`
-1. You can access inside the function and doing recursive.
-2. Is useful for debugging because the statck trace error give the name of the function.
-3. Give it the name like handeler => it handeling some event, is self documented code.
+  1. You can access inside the function and doing recursive.
+  2. Is useful for debugging because the statck trace error give the name of the function.
+  3. Give it the name like handeler => it handeling some event, is self documented code.
 
 
 ### eval key word
