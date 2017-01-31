@@ -69,8 +69,6 @@ In that case, `foo` is LHS reference and `"bar"` is the RHS of an assignement (=
 
 > ** NOTE : when we pass variable to a function call they is an assignement without the = (target, source)
 
-
-
 ### Execution of function Code
 
 Hey scope of bar function, do you have foo identifier in your table ?
