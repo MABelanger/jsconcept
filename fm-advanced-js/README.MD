@@ -156,5 +156,5 @@ Why use `function expression` with name vs `anonymous function`
 1. It screw up the optimisation of lexical.
 2. It run slower.
 3. but in strict mode, it create a new scope so it can run faster.
-* More optimized code.
+  * More optimized code.
 4. Don't use eval unless you have no choise.
