@@ -167,9 +167,35 @@ Before discussing the let keyword, Kyle fields a few questions about syntax styl
 ## Block Scope in ES6
 In ECMAScript 6, the "let" keyword will implicitly create a block-level scope and add declarations to that scope rather than the enclosing function. The most common use-case for the let keyword is for loops.
 
+So let exist only insde a block like for loop or if statement... basiquely any pair of {} let is the new var and encourage to do find and replace each var per let
+
+Explicit block that can be used :
+
+```js
+function foo(bar) {
+		let (baz = bar) {
+			console.log(baz); // "bar"
+		}
+	console.log(baz); // Error
+}
+```
+
 ## Problems with let keyword
 Kyle describes a few issues he has with the let keyword. Some of his issues are stylistic, but others are related to common variable functionality like hoisting. Kyle discusses his solutions for these issues and a tool he created to help.
 - http://github.com/getify/let-er
+
+```js
+function foo(bar) {
+	if (bar) {
+		let baz = bar;
+		if (baz) {
+			let bam = baz;
+		}
+		console.log(bam); // Error
+	}
+	console.log(baz); // Error
+}
+```
 
 ## Dynamic Scope
 Kyle briefly describes dynamic scope as it relates to Lexical scope. This is a theoretical example since it doesn't actually exist in JavaScript.
@@ -181,7 +207,6 @@ Kyle presents a quiz about what was covered in the Scope section of this course 
 Hoisting is the moving of declarations to the top of the scope block during the compiling phase. Hoisting applies to both variable declarations and functions. Kyle spends some time explaining why hoisting exists in JavaScript and the gotchas surrounding it.
 
 ### Hoisting
-
 Hoisting is moving var to the top during the compiled phase. So before compiled phase :
 
 ```js
@@ -209,6 +234,40 @@ b; // 2
 > * `RHS stuff` : is happening during the execution time ( = 2 ...)
 
 > ** Note : Mutual recursion will be impossible without hoisting. like in C, the header files is manual hoisting to the top.
+
+### The var statement
+The var statement get split into two parts :
+  1. <b>The declaration part</b>:  gets hoisted to the top of the function and initializing with undefined.
+	2. <b>The initialization part</b>: turns into an ordinary assignment.
+
+```js
+function foo() {
+	...
+	var myVar = 0,
+	    myOtherVar;
+}
+```
+
+Expand into:
+
+```js
+function foo() {
+	var myVar      = undefined,
+	    myOtherVar = undefined;
+	...
+	myVar = 0;
+}
+```
+
+So declare all your variables on the top of the function and declare all your function before call them. Always use let statement if possible to do block scope.
+
+### The let statement
+
+`let` don't hoist :
+```js
+console.log(txt); // ReferenceError: txt is not defined
+let txt = "hello";
+```
 
 ## this Keyword
 Every function, while it's executing, has a reference to its current execution context called "this". This reference is JavaScript's version of dynamic scope. Kyle dives into an explanation of the this keyword and it's relationship to the call site of the function.

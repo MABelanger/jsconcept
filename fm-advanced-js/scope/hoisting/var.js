@@ -6,12 +6,13 @@ it get split into two parts:
 
 		function foo() {
 			...
-			var myVar = 0, myOtherVar;
+			var myVar = 0,
+			    myOtherVar;
 		}
 
 		Expand into
 		function foo() {
-			var myVar = undefined,
+			var myVar      = undefined,
 			    myOtherVar = undefined;
 			...
 			myVar = 0;
@@ -23,4 +24,3 @@ And, declare all your function before call them.
 
 
 Always use let statement if possible to do block scope.
-
