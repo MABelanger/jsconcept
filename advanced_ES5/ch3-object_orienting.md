@@ -1,9 +1,6 @@
 # Object-Oriented
 
 * [Prototype](#prototype)
-* [Prototype Linkages](#prototype-linkages)
-* [prototype: Objects Linked](#prototype--objects-linked)
-* [Linked Prototype Diagram](#linked-prototype-diagram)
 * [Prototypal Inheritance](#prototypal-inheritance)
 	+ [Shadowing](#shadowing)
 
