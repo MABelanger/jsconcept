@@ -1,5 +1,12 @@
 # Async Patterns
 
+- [Callbacks](#callbacks)
+  * [Callback hell](#callback-hell)
+- [Solving Callback Problems](#solving-callback-problems)
+- [Generators](#generators)
+- [Promises](#promises)
+- [Quiz](#quiz)
+
 ## Callbacks
 Callbacks are integral to JavaScript, but can lead to many problems. They allow for asynchronicity to occur, but in the process, create an inversion of control where developers are handing off control of their application to another area or mechanism.
 
