@@ -100,13 +100,13 @@ the chat of the compiler will be like :
   * yes so execute "bam"
 
 2. Hey scope of baz do you have bam declaration ?
-  * No Strict Mode :
+  * <b>No Strict Mode</b> :
     * No : Hey global scope i have `lhs` reference for bam have you ever heard of them ?
       * Yes : i just created for you (because not in strict mode)
         * We have leakage of global variable.
         * If it was an rhs, it will be different.
 
-  * Strict mode :
+  * <b>Strict mode</b> :
     * No : in strict mode we get a state of undeclared variable
       * we are unable to find `lhs` in each scope.
 
