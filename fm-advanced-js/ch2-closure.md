@@ -1,5 +1,24 @@
 # Closures
 
+* [Closures](#closures)
+* [Closure Examples](#closure-examples)
+* [Module Patterns](#module-patterns)
+	+ [Classic module pattern](#classic-module-pattern)
+	+ [Modified module pattern](#modified-module-pattern)
+	+ [Modern module patterns in ES6](#modern-module-patterns-in-es6)
+* [Quiz](#quiz)
+- [Object-Oriented](#object-oriented)
+* [Prototype](#prototype)
+* [Prototypes Explained, Part 2](#prototypes-explained--part-2)
+* [Prototype Linkages](#prototype-linkages)
+* [prototype: Objects Linked](#prototype--objects-linked)
+* [Linked Prototype Diagram](#linked-prototype-diagram)
+* [Prototypal Inheritance](#prototypal-inheritance)
+	+ [Shadowing](#shadowing)
+* [OLOO](#oloo)
+* [Quiz](#quiz-1)
+* [Quiz](#quiz-2)
+
 ## Closures
 Closures are functions that refer to independent (free) variables (variables that are used locally, but defined in an enclosing scope). In other words, these functions 'remember' the environment in which they were created. Closures are when a function remembers its lexical scope even when the function is executed outside that lexical scope.
 
