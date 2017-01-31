@@ -21,4 +21,9 @@ Note-taking from multiples sources and examples
 * The Reflect API
 * The Proxy API
 
+### [Advance ES5](advanced_ES5)
+* Scopes
+* Closures
+* Asynchronous Patterns
+
 ### [Useful URL](url.md)
