@@ -162,8 +162,7 @@ Why use `function expression` with name vs `anonymous function`
 
 ### Hoisting
 
-Hoisting is moving var to the top during the compiled phase.
-So before compiled phase :
+Hoisting is moving var to the top during the compiled phase. So before compiled phase :
 
 ```js
 a; // ?
@@ -189,22 +188,4 @@ b; // 2
 > * `LHS stuff` : is happening during the compile time (var ...)
 > * `RHS stuff` : is happening during the execution time ( = 2 ...)
 
-// In the compilation phase, find the declaration first
-// So the code will become
-// The var move to the top, they are treated first during the
-// compiled phase
-
-
-
-
-/*
-
-*/
-
-/*
-	Mutual recursion will be inpossible without hoisting.
-	like in C, the header files is manual hoisting have the top.
-*/
-
-
-```
+> ** Note : Mutual recursion will be impossible without hoisting. like in C, the header files is manual hoisting to the top.
