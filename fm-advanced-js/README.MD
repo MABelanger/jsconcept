@@ -105,10 +105,10 @@ the chat of the compiler will be like :
       * Yes : i just created for you (because not in strict mode)
 
   * <b>Strict mode</b> :
-    * No : in strict mode we get a state of undeclared variable
-      * we are unable to find `LHS` in both function scope and global scope.
+    * No : We get a state of undeclared variable
+      * we are unable to find `LHS` in both `function scope` and `global scope`.
 
-So in non strict mode, we have leakage of global variable.
+In this case, in non strict mode, we have leakage of global variable.
 
 
 
