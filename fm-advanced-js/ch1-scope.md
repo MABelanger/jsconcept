@@ -1,6 +1,6 @@
 # Scope
 ## Scope and the JavaScript Compiler
-Scope is where you go to look for things. The ES5 version only has function scope.
+Scope is where you go to look for things. The ES5 version only has function scope so the smallest atomic version of scope is function.
 
 Js is compile every single time that it run. It do :
 * Do one pass to the code.
@@ -145,7 +145,11 @@ Why use `function expression` with name vs `anonymous function`
 
 
 ## Lexical Scope
-There are two models of scope programming languages typically use: Lexical Scope and Dynamic Scope. Lexical scope means "compile-time scope". Kyle uses a building metaphor to help explain Lexical Scope.
+There are two models of scope programming languages typically use: Lexical Scope and Dynamic Scope. Lexical scope means "compile-time scope".
+
+Lexical scope is an other time decision.
+
+Execution context is how the function is call when is call
 
 ## Cheating Lexical Scope: eval
 As with most things in JavaScript, there are ways to cheat. eval keyword can be used to cheat Lexical Scope rules.
@@ -158,8 +162,18 @@ As with most things in JavaScript, there are ways to cheat. eval keyword can be 
 4. Don't use eval unless you have no choise.
 
 ## IIFE Pattern
-The Immediately Invoked Function Expressions (IIFE) Pattern is a technique used to hide scope. It involves wrapping code inside a function that is immediately called. This allows developers to create object in their own scope without polluting the outer scope.
+The `Immediately Invoked Function Expressions (IIFE)` Pattern is a technique used to hide scope. It involves wrapping code inside a function that is immediately called. This allows developers to create object in their own scope without polluting the outer scope.
 - http://benalman.com/news/2010/11/immediately-invoked-function-expression/
+
+// immediately invoked function expression (IIFE)
+```js
+var foo = "foo";
+
+(function(){
+	var foo = "foo2";
+	console.log(foo);
+})();
+```
 
 ## IIFE Pattern Questions
 Before discussing the let keyword, Kyle fields a few questions about syntax style with the IIFE pattern.
