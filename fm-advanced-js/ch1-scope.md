@@ -2,7 +2,6 @@
 
 - [Scope and the JavaScript Compiler](#scope-and-the-javascript-compiler)
   * [Execution phase](#execution-phase)
-  * [Left Hand Side (LHS) and Right Hand Side (HRS)](#left-hand-side--lhs--and-right-hand-side--hrs-)
 - [Compiling Function Scope](#compiling-function-scope)
 - [Execution of Function Code](#execution-of-function-code)
   * [Leakage of global variable](#leakage-of-global-variable)
@@ -13,24 +12,13 @@
 - [Cheating Lexical Scope: eval](#cheating-lexical-scope--eval)
   * [eval key word](#eval-key-word)
 - [IIFE Pattern](#iife-pattern)
-- [IIFE Pattern Questions](#iife-pattern-questions)
 - [Block Scope in ES6](#block-scope-in-es6)
 - [Problems with let keyword](#problems-with-let-keyword)
 - [Dynamic Scope TODO](#dynamic-scope-todo)
 - [Hoisting](#hoisting)
-  * [Hoisting](#hoisting-1)
-  * [The var statement](#the-var-statement)
-  * [The let statement](#the-let-statement)
-  * [function hoisting](#function-hoisting)
 - [this Keyword](#this-keyword)
   * [4 binding rules](#4-binding-rules)
-    + [Default binding rule](#default-binding-rule)
-    + [Implicit binding rule](#implicit-binding-rule)
-    + [Explicit Binding](#explicit-binding)
-    + [Hard binding rule](#hard-binding-rule)
-  * [Order (this determination)](#order--this-determination-)
 - [The new keyword](#the-new-keyword)
-- [quiz](#quiz)
 
 ## Scope and the JavaScript Compiler
 Scope is where you go to look for things. The ES5 version only has function scope so the smallest atomic version of scope is function.
