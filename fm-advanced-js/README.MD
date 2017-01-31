@@ -18,14 +18,14 @@ Example of code :
 ```
 
 Js is compile every single time that it run. It do :
-	* Do one pass to the code.
-	* Do a final pass to execute the code.
+* Do one pass to the code.
+* Do a final pass to execute the code.
 
 Important stuff that compiler phase do:
-	* <b>First pass</b>: Finding declarations of variables and function and put it into the appropriate scope.
-	* <b>Second pass</b>: After it has been compile, find out where it will be executed.
+* <b>First pass</b>: Finding declarations of variables and function and put it into the appropriate scope.
+* <b>Second pass</b>: After it has been compile, find out where it will be executed.
 
-To the compiler, this is not a single statement
+To the compiler, this is not a single statement:
 ```js
 var foo = "bar";
 ```
