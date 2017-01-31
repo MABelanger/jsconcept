@@ -271,9 +271,9 @@ let txt = "hello";
 function declaration get hoisted:
 
 ```js
-console.log( printHello() ); // hello
+console.log( getHello() ); // hello
 
-function printHello() {
+function getHello() {
 	return "hello";
 }
 ```
@@ -281,21 +281,75 @@ function printHello() {
 function expression did not get hoisted:
 
 ```js
-console.log( printHello() ); // TypeError: printHello is not a function
+console.log( getHello() ); // TypeError: getHello is not a function
 
-var printHello = function() {
+var getHello = function() {
 	return "hello";
 }
 ```
 
 ## this Keyword
-Every function, while it's executing, has a reference to its current execution context called "this". This reference is JavaScript's version of dynamic scope. Kyle dives into an explanation of the this keyword and it's relationship to the call site of the function.
+Every function, while it's executing, has a reference to its current execution context called "this". This reference is JavaScript's version of dynamic scope. The this keyword and it's relationship to the call site of the function.
 
-## Binding Confusion
-Attempting to force the this keyword into a different lexical scope can lead to some binding confusion. Kyle pulls an example he found on Stack Overflow around this confusion to further demystify usage of the this keyword.
+```js
+func1(); // <- the call site
+```
 
-## Explicit Binding
-The explicit binding rule allows developers to use the call method and pass an explicit reference for the this binding. Explicit bindings can also be set using the apply method. Kyle explains explicit bindings and also detours into a discussion about a technique he calls hard binding. Hard binding was actually added as of ES5 in the form of the bind method.
+The this keyword can be metaphoricly compare to the address of the building.
+Before check on each floor if the variable is declared (scope), you have to know the address of the building.
+
+
+### 4 binding rules
+
+#### Default binding rule
+  * If you are in strict mode, default to this keword to undefind value.
+  * If you are not in strict mode, default to this keword to the global object.
+  * if is a normal call like :
+  * func1(); // <- the default binding rule apply
+
+
+#### Implicit binding rule
+  * All stuff inside the object (variables) is apply to this.
+
+```js
+function foo() {
+	console.log(this.bar);
+}
+
+var bar = "bar1";
+var o2 = { bar: "bar2", foo:foo }
+
+foo(); // (bar1) <- default binding
+o2.foo(); // (bar2) <- implicit binding rule
+```
+
+#### Explicit Binding
+The explicit binding rule allows developers to use the call method and pass an explicit reference for the this binding. Explicit bindings can also be set using the apply method.
+
+The explicit binding rule :
+
+```js
+function foo() {
+	console.log(this.bar);
+}
+
+var obj = { bar: "bar2" };
+
+foo.call(obj); // (bar2) <- assign obj to this.
+foo.apply(obj) // same thing...
+```
+
+
+#### Hard binding rule
+Hard binding was actually added as of ES5 in the form of the bind method.
+use .bind()
+
+
+### Order (this determination)
+1. Was the function called with new ?
+2. Was the function called with call or apply specifying an explicit this
+3. Was the function called via containing/owning objet (context) ?
+4. DeFAULT: global object (expect strict mode)
 
 ## The new keyword
 Regardless of what you've been told, JavaScript does not have classes and the new keyword does not do any instantiation. Kyle explains the functionality of the new keyword and the affects it has when placed in front of a function call.
