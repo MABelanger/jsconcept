@@ -5,8 +5,14 @@
 
 ## Learning :
 * You-Dont-Know-JS by Kyle Simpson : [https://github.com/getify/You-Dont-Know-JS/](https://github.com/getify/You-Dont-Know-JS/)
+
+## Reference :
 * Mozilla Developer Network (MDN) :
 [https://developer.mozilla.org/en-US/docs/Web/JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* Standard ECMA-262 6th Edition / June 2015
+[http://www.ecma-international.org/ecma-262/6.0/](http://www.ecma-international.org/ecma-262/6.0/)
+* Standard ECMA-262 5.1 Edition / June 2011
+[http://www.ecma-international.org/ecma-262/5.1/](http://www.ecma-international.org/ecma-262/5.1/)
 
 ## Convention :
 * Principles of Writing Consistent, Idiomatic JavaScript :
