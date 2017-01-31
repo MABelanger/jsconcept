@@ -163,6 +163,7 @@ Why use `function expression` with name vs `anonymous function`
 ### Hoisting
 
 Hoisting is moving var to the top during the compiled phase.
+So before compiled phase :
 
 ```js
 a; // ?
@@ -172,7 +173,8 @@ var b = 2;
 a; // ?
 b; // 2
 ```
-Will become :
+
+After compiled phase :
 
 ```js
 var a;
