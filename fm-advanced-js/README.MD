@@ -108,7 +108,7 @@ the chat of the compiler will be like :
     * No : We get a state of undeclared variable
       * we are unable to find `LHS` in both `function scope` and `global scope`.
 
-In this case, in non strict mode, we have leakage of global variable.
+In this case, in `non strict mode`, we have leakage of global variable.
 
 ### Undefined vs Undeclared
 `undefined` is not equal of `undeclared`.
@@ -116,63 +116,45 @@ In this case, in non strict mode, we have leakage of global variable.
 * <b>Undefined</b> :  when the variable was declared but not initialize, by default is set to Undefined. Undefined is a value like null or NaN.
 
 
+when we call rhs that is not found in the scope. No identifier in any scope, reference error for both strict and unstrict mode.
 
-/*
-	when we call rhs that is not found in the scope.
-		No identifier in any scope
-		reference error for both strict and unstrict.
+```js
+var declared;
+declared = notDeclared; // Uncaught ReferenceError: notDeclared is not defined
+```
 
-	In non strict mode :
-		Reference error result from unfufiled or undeclared rhs reference.
-	In strict mode :
-		They both result of reference error.
-*/
+```js
+"use strict";
+var declared;
+declared = notDeclared; // Uncaught ReferenceError: notDeclared is not defined
+```
 
+### Function declaration vs Function expression.
 
-// Function declaration vs Function expression.
-var foo = function bar() {
-	var foo = "baz";
+<b>Function declaration</b> : defines a function with the specified parameters.
+```js
+function name() {
 
-	function baz(foo) {
-		foo = bar;
-		foo;  // function
-	}
-	baz();
+}
+```
+
+<b>Function expression</b> : The function keyword can be used to define a function inside an expression. The `[name]` is optional.
+
+```js
+var myFunction = function [name]() {
+
 };
+```
 
-foo();
-bar(); // Error !
+Why use `function expression` with name vs `anonymous function`
+1. You can access inside the function and doing recursive.
+2. Is useful for debugging because the statck trace error give the name of the function.
+3. Give it the name like handeler => it handeling some event, is self documented code.
 
-// function expression (anonymous function expression)
-var foo = function bar() {
-/*
-	That bar name does not declared in to the global scope.
-		the name of the function expression is enclosed in it is own scope.
-		the name bar is accessible inside itself.
-*/
 
-// Function declaration
-function baz(){ ...
-/*
-	The first word in the statement
-*/
-
-// Why use function expression with name vs anonymous function
-
-/*
-	1) You can access inside the function and doing recursive.
-	2) Is useful for debugging because the statck trace error give the name of the function.
-	3) Give it the name like handeler => it handeling some event, is self documented code.
-		More
-
-*/
-
-// eval key word
-
-/*
-	It screw up the optimisation of lexical.
-	It run slower.
-	but in strict mode, it create a new scope so
-		It run faster.
-		More optimized code.
-	Don't use eval unless you have no choise.
+### eval key word
+1. It screw up the optimisation of lexical.
+2. It run slower.
+3. but in strict mode, it create a new scope so it can run faster.
+* More optimized code.
+4. Don't use eval unless you have no choise.
