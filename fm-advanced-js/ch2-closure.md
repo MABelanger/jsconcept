@@ -29,7 +29,7 @@ text();
 whidout IIFE, each i is in the same scope it will print `i: 4` tree times:
 
 ```js
-for( var i=1; i<=3; i++) {
+for( var i = 1; i <= 3; i++ ) {
 	setTimeout(function(){
 		console.log("i: " + i);
 	}, i*1000);
@@ -42,7 +42,7 @@ for( var i=1; i<=3; i++) {
 With IIFE, we get a new i into different scopes :
 
 ```js
-for( var i=1; i<=3; i++) {
+for( var i=1; i<=3; i++ ) {
 	(function(i){
 		setTimeout(function(){
 			console.log("i: " + i);
