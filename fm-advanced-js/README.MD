@@ -30,11 +30,13 @@ To the compiler, this is not a single statement:
 var foo = "bar";
 ```
 
-1. Declaration operation : var foo
+This is done in two steps :
+
+1. Declaration operation : `var foo`
   1. I see a variable declaration for an identifier foo, witch current scope i am ?
   2. The answer is the global scope.
   3. Ok i want register the foo identifier into my current scope (the global scope)
-2. Initialisation operation : foo = "bar"
+2. Initialisation operation : `foo = "bar"`
 
 The compile do the best guest
 */
