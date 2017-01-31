@@ -184,9 +184,8 @@ b = 2;
 a; // ?
 b; // 2
 ```
-> ** Note : 
-> * lhs stuff is happening during the compile time
-> * rhs stuff is happening during the execution time
+> * `LHS stuff` : is happening during the compile time (var ...)
+> * `RHS stuff` : is happening during the execution time ( = 2 ...)
 
 // In the compilation phase, find the declaration first
 // So the code will become
