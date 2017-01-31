@@ -5,16 +5,16 @@ Scope is where you go to look for things. The current version of JavaScript only
 
 Example of code :
 ```js
-	var foo = "bar";
+var foo = "bar";
 
-	function bar(){
-		var foo = "baz";
-	}
+function bar(){
+  var foo = "baz";
+}
 
-	function baz(foo){
-		foo  = "bam";
-		bam = "yay";
-	}
+function baz(foo){
+  foo  = "bam";
+  bam = "yay";
+}
 ```
 
 Js is compile every single time that it run. It do :
