@@ -323,6 +323,20 @@ foo(); // (bar1) <- default binding
 o2.foo(); // (bar2) <- implicit binding rule
 ```
 
+In strict mode, we get an error :
+```js
+'use strict';
+function foo() {
+	console.log(this.bar);
+}
+
+var bar = "bar1";
+var o2 = { bar: "bar2", foo:foo }
+
+o2.foo(); // (bar2) <- implicit binding rule
+foo(); // Error ! Cannot read property 'bar' of undefined
+```
+
 #### Explicit Binding
 The explicit binding rule allows developers to use the call method and pass an explicit reference for the this binding. Explicit bindings can also be set using the apply method.
 
@@ -352,4 +366,28 @@ use .bind()
 4. DeFAULT: global object (expect strict mode)
 
 ## The new keyword
-Regardless of what you've been told, JavaScript does not have classes and the new keyword does not do any instantiation. Kyle explains the functionality of the new keyword and the affects it has when placed in front of a function call.
+Regardless of what you've been told, JavaScript does not have classes and the new keyword does not do any instantiation.
+
+```js
+function foo() {
+	this.baz = "baz";
+	console.log(this.bar + " "  + baz);
+}
+
+var bar = "bar";
+var baz = new foo();
+```
+
+4 things that new keword do infront of the function call:
+  1. Create a brand new object is created.
+  2. The object is linked to a different object.
+  3. That new object get bound to the this keyword for the purpose of the function call.
+  4. If that function do not return any thing, it will implicitly put a return `this`
+
+```js
+function foo() {
+	this.baz = "baz";
+	console.log(this.bar + " "  + baz);
+	return this; // <- with the new keyword.
+}
+```
