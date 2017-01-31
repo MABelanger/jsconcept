@@ -38,41 +38,37 @@ This is done in two steps :
   3. Ok i want register the foo identifier into my current scope (the global scope)
 2. Initialisation operation : `foo = "bar"`
 
-The compile do the best guest
-*/
+### Execution phase
+In the execution phase, they is no `var` anymore. What is left is the assignement in the execution phase.
 
-//In the execution phase, they is no var anymore.
-//	What is left is the assignement in the execution phase.
-		foo = "bar"
-// 	If they have
-	var foo = ...
-	var foo = ...
-// they ignore the var because it does not exist in the execution phase.
+```js
+foo = "bar"
+```
+If the code have two declaration with var, they ignore the var because it does not exist in the execution phase.
 
+```js
+var foo = ...
+var foo = ...
+```
+
+To a function, that recursively decend into the function and compile inside the function, it look for declaration `var foo` and put into the scope of function bar.
+```js
 function bar(){
 	var foo = "baz";
 }
-
-/*
-that recursively decend into the bar function.
-and compile inside the function.
-
-look for declaration :
-	var foo put into the scope of function bar.
-*/
-
-
+```
+### Left Hand Side (LHS) and Right Hand Side (HRS)
+```js
 foo = "bar";
-/*
-lhs : left hand side (target)
-rhs : right hand side (source)
-	of an assignement (=)
+```
 
-foo is lhs reference
-rhs is "bar"
+* <b>LHS</b> : left hand side (target)
+* <b>RHS</b> : right hand side (source)
 
-when we pass variable to a function call they is an assignement without the = (target, source)
-*/
+In that case, `foo` is LHS reference and `"bar"` is the RHS of an assignement (=)
+
+> ** NOTE : when we pass variable to a function call they is an assignement without the = (target, source)
+
 
 
 // Execution of function Code
