@@ -111,9 +111,9 @@ the chat of the compiler will be like :
 In this case, in non strict mode, we have leakage of global variable.
 
 ### Undefined vs Undeclared
-Undefined is not = of undeclared.
-<b>Undeclared</b> : when is no present declaration in any of the scope we have access to.
-<b>Undefined</b> :  when the variable was declared but not initialize, by default is set to Undefined. Undefined is a value like null or NaN.
+`undefined` is not equal of `undeclared`.
+* <b>Undeclared</b> : when is no present declaration in any of the scope we have access to.
+* <b>Undefined</b> :  when the variable was declared but not initialize, by default is set to Undefined. Undefined is a value like null or NaN.
 
 
 
