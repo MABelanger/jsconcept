@@ -197,14 +197,11 @@ function foo(bar) {
 }
 ```
 
-## Dynamic Scope
-Kyle briefly describes dynamic scope as it relates to Lexical scope. This is a theoretical example since it doesn't actually exist in JavaScript.
-
-## zz: Scope
-Kyle presents a quiz about what was covered in the Scope section of this course and reviews the answers with the audience.
+## Dynamic Scope TODO
+Dynamic scope as it relates to Lexical scope. This is a theoretical example since it doesn't actually exist in JavaScript.
 
 ## Hoisting
-Hoisting is the moving of declarations to the top of the scope block during the compiling phase. Hoisting applies to both variable declarations and functions. Kyle spends some time explaining why hoisting exists in JavaScript and the gotchas surrounding it.
+Hoisting is the moving of declarations to the top of the scope block during the compiling phase. Hoisting applies to both variable declarations and functions.
 
 ### Hoisting
 Hoisting is moving var to the top during the compiled phase. So before compiled phase :
@@ -267,6 +264,28 @@ So declare all your variables on the top of the function and declare all your fu
 ```js
 console.log(txt); // ReferenceError: txt is not defined
 let txt = "hello";
+```
+
+### function hoisting
+
+function declaration get hoisted:
+
+```js
+console.log( printHello() ); // hello
+
+function printHello() {
+	return "hello";
+}
+```
+
+function expression did not get hoisted:
+
+```js
+console.log( printHello() ); // TypeError: printHello is not a function
+
+var printHello = function() {
+	return "hello";
+}
 ```
 
 ## this Keyword
