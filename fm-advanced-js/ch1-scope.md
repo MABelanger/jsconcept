@@ -391,3 +391,17 @@ function foo() {
 	return this; // <- with the new keyword.
 }
 ```
+
+## quiz
+1. What type of scoping rule(s) does JavaScript have ? Exceptions ?
+  * Lexical scope.
+  * Exception : eval and with keyword
+
+2. What are the different ways you can create a new scope ?
+  * function
+  * catch block
+  * {} with let keword
+
+3. What's the difference between undeclared and undefined ?
+  * <b>undefined</b> : is a value but does not currently have value, empty place holder. But if you have undefined value that mean that you definitely was a declared variable.
+  * <b>undeclared</b> : is never been declared in the scope
