@@ -22,3 +22,4 @@
 ## Test knowledge :
 * freecodecamp : [http://beta.freecodecamp.com/en/map](http://beta.freecodecamp.com/en/map)
 * codewars : [https://www.codewars.com](https://www.codewars.com)
+* All : [http://codecondo.com/coding-challenges/](http://codecondo.com/coding-challenges/)
