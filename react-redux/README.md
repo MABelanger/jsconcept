@@ -195,6 +195,11 @@ The `.babelrc` file tell how to configure the babel preset. In this case it tell
 }
 ```
 
+## dev server
+Use express as a dev server and put the config file into `tools/srcServer.js`
+put all the build tool inside the tools
+
+
 
 
 ## Reference
