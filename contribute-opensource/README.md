@@ -11,7 +11,7 @@ Global gitignore file that can be used to your specific computer
 
 [https://github.com/github/gitignore](https://github.com/github/gitignore)
 
-> **Note** You can search file throught all the project by pressing `t` keyboard shortcut.
+> **Note** You can search file through all the project by pressing `t` keyboard shortcut.
 
 put it into ~/.gitignore_global and then notify github to use that file as global gitignore.
 ```
@@ -55,11 +55,7 @@ Check the CONTRIBUTING.md files that explain how to contribute and setup the pro
 
 Go to the issues
 
-Talk to the maintainer what is your solution to be shure that you don't waste times.
-
-
-
-
+Talk to the maintainer what is your solution to be sure that you don't waste times.
 
 
 1. Fork the repo

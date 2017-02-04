@@ -397,3 +397,7 @@ Add all script to be build in parallel
 
 go to
 https://unpkg.com/your-module-name
+
+
+### Reference
+[How to Write an Open Source JavaScript Library with Kent C. Dodds](https://egghead.io/courses/how-to-write-an-open-source-javascript-library)

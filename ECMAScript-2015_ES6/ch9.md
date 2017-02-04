@@ -130,3 +130,6 @@ console.log(proxy.tableId); // 199
 revoke();
 console.log(proxy.tableId); // "Cannot perform 'get' on a proxy that has been revoked"
 ```
+
+## Reference
+[Rapid ES6 Training with Mark Zamoyta](https://www.pluralsight.com/courses/rapid-es6-training)

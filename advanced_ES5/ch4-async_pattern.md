@@ -130,3 +130,6 @@ promise.then(function(result) {
 
 5. How do we combine generators and promises for flow control ?
   * You yeield out a promise and the promise when it complete automatic restart the generator with .next()
+
+## Reference
+[advanced Javascript with Kyle Simpson](https://frontendmasters.com/courses/advanced-javascript/)
