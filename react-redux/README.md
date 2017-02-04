@@ -113,13 +113,88 @@ If to noise on the console turn it on.
 
 ### entry
 The configuration source is here, you can inject middleware.
+We have to specify the index.json last.
 ```js
 entry: [
-  'eventsource-polyfill', // necessary for hot reloading with IE
   'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
-  path.resolve(__dirname, 'src/index')
+  path.resolve(__dirname, 'src/index') // we don't specify index.js
 ],
 ```
+
+### target
+We can use `web` or `node` if we want to use at server side. As a web, it bundle as a way that browser can understand.
+
+```js
+target: 'web'
+```
+
+### output
+Were webpack should create the dev bundle. Webpack won't generate any actual phisical files for our development. It will serve files from memory. But we do need to specify the path and the name so that we can simulate physical files existances. we use node `__dirname` that use the current directory.
+
+```js
+output: {
+  path: __dirname + '/dist', // Note: Physical files are only output by the production build task `npm run build`.
+  publicPath: '/',
+  filename: 'bundle.js'
+},
+```
+
+### devServer
+Tell webpack devServer where ours code is.
+
+```js
+devServer: {
+  contentBase: path.resolve(__dirname, 'src')
+}
+```
+
+### plugins
+Use two plugins that enhance webpack power.
+First `HotModuleReplacementPlugin()` do not use a full browser refresh
+First `NoErrorsPlugin()` do not break the hot reload when error.
+
+```js
+plugins: [
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NoErrorsPlugin()
+],
+```
+
+### module
+This section tells webpack what file types it should handle.
+```js
+module: {
+  loaders: [
+    {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel']},
+    {test: /(\.css)$/, loaders: ['style', 'css']},
+
+    // For bootstrap fonts
+    {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
+    {test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000'},
+    {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
+    {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'}
+  ]
+}
+```
+
+## editorconfig
+The `.editorconfig` tell how to configure the editor with indentation ect...
+By using `.editorconfig` we guaranty consistency across different editors.
+
+## babel config
+The `.babelrc` file tell how to configure the babel preset. In this case it tell that we want to transpile all `react` .jsx and all `es2015` standard. But only in the developement mode we want to run  `react-hmre` babel preset. That bundle up number of different hot reloading related code and put it into that package `babel-preset-react-hmre`
+
+```js
+{
+  "presets": ["react", "es2015"],
+  "env": {
+    "development": {
+      "presets": ["react-hmre"]
+    }
+  }
+}
+```
+
 
 
 ## Reference
