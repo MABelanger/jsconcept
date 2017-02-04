@@ -197,10 +197,13 @@ The `.babelrc` file tell how to configure the babel preset. In this case it tell
 
 ## dev server
 Use express as a dev server and put the config file into `tools/srcServer.js`
-put all the build tool inside the tools
+put all the build tool inside the tools. Express is easy to configure. We want to redirect all path to the single file. We use `babel-node` because not all feature of ES6 is supported by node.
 
-
-
+```js
+app.get('*', function(req, res) {
+  res.sendFile(path.join( __dirname, '../src/index.html'));
+});
+```
 
 ## Reference
 [Building Applications with React and Redux in ES6 with Cory House](https://www.pluralsight.com/courses/react-redux-react-router-es6)
