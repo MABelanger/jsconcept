@@ -18,6 +18,8 @@
 ## Convention :
 * Principles of Writing Consistent, Idiomatic JavaScript :
 [https://github.com/rwaldron/idiomatic.js](https://github.com/rwaldron/idiomatic.js)
+* JavaScript Standard Style :
+[https://github.com/feross/standard](https://github.com/feross/standard)
 
 ## Test knowledge :
 * freecodecamp : [http://beta.freecodecamp.com/en/map](http://beta.freecodecamp.com/en/map)
