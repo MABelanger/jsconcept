@@ -205,5 +205,187 @@ app.get('*', function(req, res) {
 });
 ```
 
+## scripts
+
+### pre script
+you can tell npm to run the srcript first by prefixing `pre` before the name of the script ex:. `prestart` will run before `start` You can also do the same with `post` like `poststart`
+
+
+## ESLint
+You configure eslint inside `.eslintrc`. The basic setting. We are augmenting with the recommended with errors and warnings.
+```js
+"extends": [
+  "eslint:recommended",
+  "plugin:import/errors",
+  "plugin:import/warnings"
+],
+```
+We also use plugin of react.
+```js
+"plugins": [
+  "react"
+],
+```
+
+The support of ES6 and jsx
+```js
+"parserOptions": {
+  "ecmaVersion": 6,
+  "sourceType": "module",
+  "ecmaFeatures": {
+    "jsx": true
+  }
+},
+```
+
+To tell esling to expect global variables
+```js
+"env": {
+  "es6": true,
+  "browser": true,
+  "node": true,
+  "jquery": true,
+  "mocha": true
+},
+```
+
+### eslint script
+You ca use eslint by default lack of watch functionnality so we use `eslint-watch` (esw) instead. It also enhance command line output. So it tell watch every `webpack.config.*` any files in `src/` and `tools/` directory. the `--` at the second script run the script lint with the appended parameter `--watch`.
+```js
+"scripts" : {
+  "lint": "node_modules/.bin/esw webpack.config.* src tools",
+  "lint:watch": "npm run lint -- --watch"
+},
+```
+
+## run all
+You can run all command and redirect the output to one command with `npm-run-all`
+
+```js
+"scripts" : {
+  "prestart": "./node_modules/babel-cli/bin/babel-node.js tools/startMessage.js",
+  "open:src": "./node_modules/babel-cli/bin/babel-node.js tools/srcServer.js",
+  "start": "npm-run-all --parallel open:src lint:watch test:watch" ,
+  "lint": "node_modules/.bin/esw webpack.config.* src tools",
+  "lint:watch": "npm run lint -- --watch",
+  "test": "mocha --reporter progress tools/testSetup.js \"src/**/*.test.js\"",
+  "test:watch": "npm run test -- --watch"
+},
+```
+
+
+## React components
+4 ways to create components the 2 and 4 is the most used :
+1. ES5 createClass
+2. ES6 class
+3. ES5 stateless function
+4. ES6 stateless function
+
+### ES5 Class Component
+```js
+var HelloWorld = React.createClass({
+  render: function () {
+    return (
+      <h1>Hello World</h1>
+    );
+  }
+});
+```
+
+### React in ES6
+
+#### No autobind
+Work fine with ES5 createClass
+```js
+<div onClick={this.handleClick}></div>
+```
+
+Require explicit bind with ES6 Class
+```js
+<div onClick={this.handleClick.bind(this)}></div>
+```
+For performance reason, instead, bind the function inside the constructor
+```js
+class Contacts extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+}
+```
+### propTypes
+- PropTypes declared separately below your definition.
+- Default props declared separately.
+  - If you want to declare your propType within your class, use babel-stage1 support
+- Set initial state in constructor.
+
+### ES5 Stateless Functional Component
+```js
+var HelloWorld = function(props){
+  return (
+    <h1>Hello World</h1>
+  );
+}
+```
+
+### ES6 Stateless Functional Component
+```js
+const HelloWorld = (props) => {
+  return (
+    <h1>Hello World</h1>
+  );
+}
+```
+
+### Benifits of stateless Functional components
+Use it when possible.
+* No class Needed
+  - No extend
+  - No constructor
+* Avoid `this` keyword
+  - No bind() method
+* Enforce best parctices
+  - Dum presentation component focus on the UI instead of behaviours
+  - State should be managed to the hight level component with Flux, Redux ...
+  - Do not support state or life cycle method. so no state here...
+    - You are force to put states management where it belong in the higher level container component.
+* Easy to understand
+  - It only spit up html
+* Easy to test.
+  - No mocking, special manipulation, special library
+* Enhance performance
+  - No memory allocation
+
+### When use Class component
+* Need state
+* Need references
+* Need LifeCycle methods
+* Need Child function (for performance)
+
+### When use Class component
+* Everywhere else
+
+
+## MISC
+
+### ESLint
+You can disable eslint into the console by adding
+```js
+/* eslint-disable no-console */
+```
+In the setting rules config the number meaning is :
+* `0` : off
+* `1` : Warning
+* `2` : Error
+
+### color console.log()
+We can add color to the console.log()
+```js
+import colors from 'colors';
+console.log('Starting app in dev mode...'.green);
+```
+
+
+
 ## Reference
 [Building Applications with React and Redux in ES6 with Cory House](https://www.pluralsight.com/courses/react-redux-react-router-es6)
