@@ -249,6 +249,29 @@ To tell esling to expect global variables
 },
 ```
 
+## MISC
+
+### ESLint
+You can disable eslint into the console by adding
+```js
+/* eslint-disable no-console */
+```
+In the setting rules config the number meaning is :
+* `0` : off
+* `1` : Warning
+* `2` : Error
+
+### color console.log()
+We can add color to the console.log()
+```js
+import colors from 'colors';
+console.log('Starting app in dev mode...'.green);
+```
+
+
+## Reference
+[Building Applications with React and Redux in ES6 with Cory House](https://www.pluralsight.com/courses/react-redux-react-router-es6)
+
 ### eslint script
 You ca use eslint by default lack of watch functionnality so we use `eslint-watch` (esw) instead. It also enhance command line output. So it tell watch every `webpack.config.*` any files in `src/` and `tools/` directory. the `--` at the second script run the script lint with the appended parameter `--watch`.
 ```js
@@ -371,28 +394,23 @@ Use it when possible.
 * Everywhere else
 
 
+## Container VS Presentation component
+Container :
+ 1. is concerned with behaviour
+   - Has no markup (like a backend)
+   - The primary concern is passing data down to it's child
+   - They are statefull
+   - They pass data and actions down
+   - Knows about Redux
 
+Presentation (most common) :
+ 1. Nerly all markup
+   - They are dum, no logic inside.
+   - Receive data and actions via props
+   - Doesn't know about Redux just reley on props.
+   - Tipically functional components (no state)
 
-## MISC
+"When you notice that some components don't use props they receive but merely forward them down.. it's a good time to introduce some container components." Dan Abramov.
 
-### ESLint
-You can disable eslint into the console by adding
-```js
-/* eslint-disable no-console */
-```
-In the setting rules config the number meaning is :
-* `0` : off
-* `1` : Warning
-* `2` : Error
-
-### color console.log()
-We can add color to the console.log()
-```js
-import colors from 'colors';
-console.log('Starting app in dev mode...'.green);
-```
-
-
-
-## Reference
-[Building Applications with React and Redux in ES6 with Cory House](https://www.pluralsight.com/courses/react-redux-react-router-es6)
+## Component Structure
+It's good to put all components into `src/components/` and split into folder page
