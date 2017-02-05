@@ -280,6 +280,11 @@ You can run all command and redirect the output to one command with `npm-run-all
 2. ES6 class
 3. ES5 stateless function
 4. ES6 stateless function
+5. Other way
+  1. Object.create
+  2. Mixins
+  3. Parasitic components
+  4. StampIt
 
 ### ES5 Class Component
 ```js
@@ -364,6 +369,8 @@ Use it when possible.
 
 ### When use Class component
 * Everywhere else
+
+
 
 
 ## MISC
