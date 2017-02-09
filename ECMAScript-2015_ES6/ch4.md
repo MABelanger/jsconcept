@@ -131,7 +131,7 @@ export function showProject() {
 
 
 ### Export Syntax
-
+```js
 // default exports
 export default 42;
 export default {};
@@ -171,9 +171,10 @@ export {foo as default} from "foo";
 export {foo as default, bar} from "foo";
 export {default} from "foo";
 export {default as foo} from "foo";
-
+```
 ### Import Syntax
 
+```js
 // default imports
 import foo from "foo";
 import {default as foo} from "foo";
@@ -194,6 +195,7 @@ import foo, * as bar from "foo";
 
 // just import
 import "foo";
+```
 
 ## Class Fundamentals
 It a new syntax to work with prototypes and constructor function that we where used in ES5.
