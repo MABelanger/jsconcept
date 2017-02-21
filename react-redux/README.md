@@ -480,6 +480,12 @@ Create subfolder to section like
     HomePage.js
   about/
     AboutPage.js
+  common/
+    Header.js
+  course/
+    CoursesPages.js
+  styles/
+    styles.css
   App.js
 ```
 
@@ -511,12 +517,13 @@ Typically called `App.js` but can be called template or `Layout.js`
 Example of App.js
 ```js
 import React, {PropTypes} from 'react';
+import Header from './common/Header';
 
 class App extends React.Component {
   render() {
     return (
       <div className="container-fluid">
-        <p>Header...</p>
+        <Header/>
         {this.props.children}
       </div>
     );
@@ -552,3 +559,41 @@ IndexRoute : is used when rootPath so if we ask for the `/` we will load the `ho
 We are saying that component App is always loaded and then nest the other items. pass them as children base on a `app`. So when we use `/homePage` the component `HomePage` is passed as a child.
 
 ## Update Entry Point
+
+example of index.js
+```js
+import 'babel-polyfill';
+import React from 'react';
+import { render } from 'react-dom';
+import { Router, browserHistory } from 'react-router';
+import route from './routes';
+import './styles/styles.css'; // Webpack import the css
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+render (
+  <Router history={browserHistory} routes={routes} />
+  document.getElementById('app');
+)
+```
+To render the application we need to idalise the router.
+`babel-polyfill` they are a set of feature of ES6 that babel can't transpile so you need to use polyfill. You can use specific polyfill like `object.assign` but for simplicity we import every thing. `browserHistory` is a HTML5 clean url to handle histrory with react-router with the real path like `/about` instead of hash base URL `#about` that we pass to the history prop of `react-router` and our routes.
+
+
+Example of Header.js:
+```js
+import React, { PropTypes } from 'react';
+import { Link, IndexLink } from 'react-router';
+
+const Header = () => {
+  return (
+    <nav>
+      <IndexLink to ="/" activeClassName="active">Home</IndexLink>
+      {" | "}
+      <Link to="/about" activeClassName="active">About</Link>
+    </nav>
+  );
+};
+
+export default Header;
+```
+The activeClassName is used when the link is active base on the route. Allow to style the current selected ancher of the header.
