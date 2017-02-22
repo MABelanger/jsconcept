@@ -107,7 +107,7 @@ this.props.actions.loadCourses();
 
 
 ## A chat with Redux
-Component | chat
+Component | Chat
 --- | ---
 React | Hey CourseAction, someone clicked to `save course` button.
 Action | Thanks React! I will dispatch an action so reducers that care can update state.
