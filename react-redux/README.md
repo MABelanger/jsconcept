@@ -537,6 +537,7 @@ App.propTypes = {
 export default App;
 ```
 
+exemple of `routes.js`
 ```js
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
@@ -571,8 +572,8 @@ import './styles/styles.css'; // Webpack import the css
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 render (
-  <Router history={browserHistory} routes={routes} />
-  document.getElementById('app');
+  <Router history={browserHistory} routes={routes} />,
+  document.getElementById('app')
 )
 ```
 To render the application we need to idalise the router.
