@@ -128,6 +128,12 @@ To connect a container, we use `connect()` from react-redux that we use at the e
 `ownProps` it a reference to the component own props. We can access injected props via react-router
 
 
+## 3 ways to use mapDispatchToProps
+
+We can use `mapDispatchToProps()` in 3 ways.
+
+### No mapDispatchToProps
+
 `mapDispatchToProps` determine what action we want to expose in our component. If we omited, the component automaticly get a dispatch property attach to it injected by `connect()`. So we can use `this.props.dispatch()`. So the `dispatch()` enable you to fire off your action that we defined in our actions files.
 
 
@@ -150,12 +156,59 @@ const connectStateAndProps = connect(mapStateToProps, mapDispatchToProps);
 export default connectStateAndProps(CoursesPage);
 ```
 
-We can use `mapDispatchToProps()` in 3 ways. The dispatch function call the `courseActions` in the right way.
+### mapDispatchToProps() with dispatch
+ The first way is to avoid `mapDispatchToProps()` so by default you can use `dispatch()`. The second way is to use the `mapDispatchToProps()`. The dispatch function call the `courseActions` in the right way, with `dispatch()` function because the action `courseActions` return only a object literal.
+
 ```js
 function mapDispatchToProps(dispatch) {
   return {
-    createCourse: (course) => {
+    createCourse: course =>
       dispatch(courseActions.createCourse(course));
-  }
+  };
 }
 ```
+
+### BindActionCreator without dispatch
+The third way is to use the helper function that save us to manualy wrap the action creator in a dispatch() call. The function is called bind action creator. You need to import `bindActionCreator`. This function call thispatch for us. Note that we no longer use `createCourse` as a paremeter, we use `actions` that help to clean the separation of the props. But now we use `  this.props.actions.createCourse()` All the course action is map to the dispatch.
+
+```js
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(courseActions, dispatch)
+  };
+}
+```
+
+## Structure
+The container have :
+
+<b>a constructor</b> that initialise `states` and also call the `bind function`.
+
+<b>child functions</b> that called by render.
+
+<b>render function</b>: Tipically call a child component. Container component idealy just a child that contain the markup
+
+<b>Prop Types Validation</b>: `.propTypes`
+
+<b>connect related function</b>: `mapStateToProps()` and `mapDispatchToProps()`
+
+<b>Constants</b>: We are better to put actions constant related inside the actions folder.
+
+```
+actions/
+  actionsTypes.js
+```
+
+## Summary
+
+
+
+
+## Why moc API
+
+1. Start before the API exists
+2. Independance
+3. Backup plan
+4. Ultra-fast
+5. Test slowness
+6. 
