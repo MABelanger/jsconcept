@@ -65,7 +65,6 @@ The state mutation in the app need to be describe as a pure function.
 
 It take the `previous state` and the `action` to be dispatch and return the `next state` of your application.
 
-
 If only one state has change, the other states that has not changed can keep the same reference as the previous object state.
 
 The pure function that take the `old state` and return `new state` is called the `reducer`.
@@ -84,7 +83,6 @@ const counterReducer = (state = 0, action) => {
     return state;
   }
 }
-
 ```
 
 ## The store
@@ -115,6 +113,11 @@ console.log(store.getState()); // 1
 It register a callback that the redux store will call any time an action has been dispatched so you can update the UI of the application to retrive the current state of the application.
 
 ```js
+// the render method is called each time a store is updated.
+store.subscribe(render);
+```
+
+```js
 const render = () => {
   console.log('This is a new data from the store', store.getState());
 }
@@ -123,6 +126,52 @@ render(); // Call it on the init.
 ```
 
 
+The store do not mutate the state, it need to return a copy of modified version of the state.
+
+
+Because the store notify `call subscribe method`, we can safely use the store to pass it to the props of the component `value={store.getState()}`
+
+Since the state is hold inside the redux store, we can use `dumb component` a simple functions that do not hold a buisneses logic, only a renderable output we can declare as a `const` function.
+
+## Test function
+We can use `expect` to test the function and `deep-freeze` to check if the value has been mutated. To avoid mutation of the state, we can use `Object.assign()` as a part of ES6. That function assign properties of several objects on to the target object. The first argument is the target object, the one that he is going to be mutated. Every further argument is considering as the source object so they properties will be copied to the target object. If is the source has the same properties, the last one will win.
+
+```js
+const incrementCounter = (list, index) => {
+  let listCopy = Object.assign([], list);
+  listCopy[index]++;
+  return listCopy;
+};
+
+const testIncrementCounter = () => {
+  const listBefore = [0, 10, 20];
+  const listAfter = [0, 11, 20];
+
+  deepFreeze(listBefore); // Test to avoid mutation.
+
+  expect(incrementCounter(listBefore, 1))
+    .toEqual(listAfter);
+}
+
+testIncrementCounter();
+
+console.log('All test passed!');
+```
+We can also use the spread operator `...` with `stage2-preset` to do the same thing as `Object.assign()`
+
+```js
+return {
+  ...state,
+  completed: !state.completed
+};
+```
+
+## reducer composition
+The main single top level reducer can call other reducer that delegate and abstract the way some part of the state they manage. So one reducer can be called by another reducer.
+
+## Appendix
+
+To demonstrate how react store work, This is a simple logic store that react implement.
 ```js
 const createStore = (reducer) => {
   let state;
@@ -147,3 +196,4 @@ const createStore = (reducer) => {
 
   return { getState, dispatch, subscribe };
 }
+```
