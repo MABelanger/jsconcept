@@ -166,8 +166,89 @@ return {
 };
 ```
 
-## reducer composition
+## reducer composition pattern
 The main single top level reducer can call other reducer that delegate and abstract the way some part of the state they manage. So one reducer can be called by another reducer.
+
+When we work with list, is hard to understand how the list of object is updated and how the object is updated. In this case, we use reducer composition to delegate to another reducer the task to update the single object.
+
+Any time a function do to many thing, you want to extract other functions from it. So every function only address a single concern.
+
+
+Different peoples on the team can work on different reducer handle the same action without causing merge conflict.
+Example of `reducer composition pattern` the **todoReducerList** delegate to the **todoReducerObj**
+
+It is recommended to return by default the current state.
+```js
+// This reducer handle only the object todo not the list.
+const todoReducerObj = (state, action) =>{
+  switch (action.type) {
+    case 'ADD_TODO':
+      return {
+        id: action.id,
+        text: action.text,
+        completed: false
+      };
+    default:
+      return state;
+  }
+};
+
+const todoReducerList = (state = [], action) =>{
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [
+        ...state,
+        todoReducerObj(undefined, action)
+      ];
+    default:
+      return state;
+  }
+};
+
+const mainReducer = (state = {}, action) => {
+  return {
+    todos: todoReducerList(
+      state.todos,
+      action
+    ),
+    visibilityFilter: visibilityFilterReducer(
+      state.visibilityFilter,
+      action
+    )
+  }
+}
+
+const store = createStore(mainReducer);
+
+```
+
+The reducer composition is so common in react that react did a `combineReducers`
+
+```js
+const mainReducer = combineReducers({
+  todos: todoReducerList,
+  visibilityFilter: visibilityFilterReducer
+})
+```
+
+Remplementation of combineReducers
+
+```js
+const combineReducers = (reducers) => {
+  return (state = {}, action) => {
+    return Object.keys(reducers).reduce(
+      (nextState, key) => {
+        nextState[key] = reducers[key](
+          state[key],
+          action
+        );
+        return nextState;
+      },
+      {}
+    )
+  }
+}
+```
 
 ## Appendix
 
