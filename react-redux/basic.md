@@ -250,6 +250,45 @@ const combineReducers = (reducers) => {
 }
 ```
 
+
+```js
+<input ref={node => {
+  this.input = node;
+}} />
+```
+
+We can dispatch 'TOGGLE_TODO' action with
+
+```js
+<li
+  key={todo.id}
+  onClick={(e)=>{
+    store.dispatch({
+      type: 'TOGGLE_TODO',
+      id: todo.id
+    });
+  }}
+  style={{
+    textDecoration:
+      todo.completed ?
+        'line-through' :
+        'none '
+  }}
+  >
+```
+
+To assign a value of the component html or react, use `ref=`
+
+```js
+<input ref={node => {
+  this.myRef = node;
+}} />
+<button onClick={(e) => {
+  this.myRef.value = '';
+}}
+```
+
+
 ## Appendix
 
 To demonstrate how react store work, This is a simple logic store that react implement.
