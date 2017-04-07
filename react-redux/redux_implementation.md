@@ -211,4 +211,15 @@ actions/
 3. Backup plan
 4. Ultra-fast
 5. Test slowness
-6. 
+6. Aids testing
+7. Point to the real API later
+
+
+## Async in redux
+1. redux-thunk
+  return a function instead a object.
+
+2. redux-promises
+
+3. redux-sage
+  Use ES6 generators and rich domain-specific language. 
