@@ -111,3 +111,181 @@ $ webpack js/app.js dist/bundle.js
 # Production mode
 $ NODE_ENV=production webpack -p js/app.js dist/bundle.js
 ```
+
+## Babel
+By default babel do not tanspile any thing. We need to put the instruction in witch code we want to transpile. We use configuration json file `.babelrc`
+
+```js
+{
+  "presets": [
+    "react", // <- JSX transformation to ES5
+    ["es2015", {"modules": false}]
+  ]
+}
+```
+`{"modules": false}` : tell babel do not transform ES6 import module. We want webpack2 to take care of the modules, not babel. The packager can do `tree shaking` that mean, only include code that can run and uglify can take out code.
+
+`{"loose": true}` : That remove creasy edge cases that take place in the bundle.
+
+Babel has two concept `plugin` and `preset`.
+
+A preset is a group of plugins. Do not use `es2015` in productions because it put thing that is not used like generator. Instead specify the thing that you use with plugins.
+
+```js
+{
+  "plugins" : [
+    List of plugins that we want to use...
+  ]
+}
+
+```
+
+So `babel` transform ES6 to ES5 => `webpack` bundle all import => `uglify` remove the unused code.
+`uglify` is included inside webpack, remove dead code and minify and concatanate at the same time.
+
+command line to run webpack
+```
+$ ./node_modules/.bin/webpack --module-bind='js=./node_modules/.bin/babel' src/main.js ./out.js
+```
+
+So webpack execute loader like `babel` that is executed in the middle of the bundle phase
+
+It's easy to use `webpack.config.js` files
+
+```js
+const path = require('path');
+
+movule.exports = {
+  context: __dirname,
+  entry: './js/ClientApp.js',
+  devtool: 'eval',
+  output: {
+    path: path.join(__dirname, '/public')
+    filename: 'bundle.js'
+  },
+  resolve : {
+    extensions: ['.js', '.json']
+  },
+  stats : {
+    colors: true,
+    reasons: true,
+    chunks: true
+  },
+  module: {
+    rules: [
+      include: path.resolve('js'),
+      test: /\.js$/,
+      loader: 'babel-loader'
+    ]
+  }
+};
+```
+
+`__dirname` : this is the root directory that node is running.
+
+`eval` : is the faster way then `source-map`, that enable you to get the right line of code in ES6 when error occur. Note that we do not recommand using devtool in production build.
+
+`resonve.extention []` is the progression of trying file extention when we use `import myImport './myFile'`
+
+`stats` : Stuff that we want webpack to report on.
+
+`module.rules` : If it past the test, run `babel-loader`
+
+`module.include`: Tel webpack to include only directory to run babel, that speed up build.
+
+`module.exclude` : `/node_modules/` Do not babel node_modules
+
+The npmScript replace the gulp and grunt.
+
+## Watch files with webpack
+
+```
+$ webpack --watch
+```
+Or: the first `--` mean webpack command and the second `--` is the parameters put to webpack. We can easily add flag to the command of the npm script. So it run : `webpack "--watch"`
+```
+$ npm run build -- --watch
+```
+## Watch inside script:
+```js
+"script" : {
+  "build": "webpack",
+  "watch": "npm run build -- --watch"
+}
+```
+
+## Web component vs react component
+We need to use upperCase when is `react component` and lowerCase when is `web component` when you want to put it to the dom. Example :
+
+```js
+<div>
+  <x-my-web-component>
+  <MyTitle title='bla'/>
+</div>
+```
+
+## Css in javascript
+`radium` and `affro dady`. Do css in javascript in one place.
+
+
+## Plug css-loader into webpack
+`url: false` tel webpack to do not include images into bundle.js
+```js
+{
+  test: /\.css$/,
+  use: [
+    'style-loader',
+    {
+      loader: 'css-loader',
+      options: [
+        url: false
+      ]
+    }
+  ]
+}
+```
+The style-loader inject css into the bundle javaScript.
+
+## Dead code elemination from webpack
+When we import only the thing that we use, webpack eleminate all the code not used. Example, the render method.
+
+```js
+import { render } from 'react-dom';
+```
+
+## standard with react
+make file `.eslintrc.json`
+The `standard-react` is essential.
+```js
+{
+  "extends": ["standard", "standard-react"]
+}
+```
+
+Inside `package.json` file :
+```js
+"script": {
+  "lint" : "eslint js/**/*.js"
+}
+```
+the `**` will recursively hit the .js file
+
+run `npm run lint -s`, the -s remove the node error.
+
+## Run eslint before webpack run
+That only lint files that change.
+
+`inside webpack.config.js`
+
+```js
+module: {
+  rules: [
+    {
+      enforce: 'pre',
+      test: /\.js$/
+      loader: 'eslint-loader',
+      exclude: /node_modules/
+    }
+  ]
+}
+```
