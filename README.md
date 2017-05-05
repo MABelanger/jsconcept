@@ -1,7 +1,7 @@
 # <b>Notes</b>
 Note-taking from multiples sources and examples
 
-###[JavaScript Library](micro-library)
+### [JavaScript Library](micro-library)
 * Publishing to npm
 * Releasing a version
 * Beta version
