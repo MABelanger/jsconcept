@@ -289,3 +289,55 @@ module: {
   ]
 }
 ```
+
+## React Router
+Router v4 is alpha right now but is good to change.
+
+Example of landing page
+
+```js
+import React from 'react';
+
+const Landing = React.createClass({
+  render () {
+    return (
+      <div className='landing'>
+        <h1>svideo</h1>
+        <input type='text' placeholder='Search />'
+        <a>Browse all</a>
+      </div>
+    );
+  }
+});
+
+export default Landing
+```
+
+## Example of clientApp.js
+```js
+import { render } from 'react-dom';
+import { HashRouter, Match } from 'react-router';
+import Landing from './Landing';
+import '../public/styles.css'
+
+const App = React.createClass({
+  render () {
+    return (
+      <HashRouter>
+        <div className='app'>
+          <Match exactly pattern='/' component={Landing} />
+        </div>
+    )
+  }
+});
+
+render(<App />, document.getElementById('app'));
+```
+
+## Higher order component or behiaviour oriented components
+Is a component that has no display. It's don't show to the user any thing. It's only encapsulate behiaviour. like `HashRouter` and `Match`.
+
+## Comment inside jsx
+```js
+{/* comment */}
+```
