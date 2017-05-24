@@ -179,55 +179,63 @@ Example of `reducer composition pattern` the **todoReducerList** delegate to the
 
 It is recommended to return by default the current state.
 ```js
-// This reducer handle only the object todo not the list.
-const todoReducerObj = (state, action) =>{
+const reducerAdd = (state = 0, action) => {
   switch (action.type) {
-    case 'ADD_TODO':
-      return {
-        id: action.id,
-        text: action.text,
-        completed: false
-      };
-    default:
+    case 'INCREMENT' :
+      return state + 1;
+    default :
       return state;
   }
 };
 
-const todoReducerList = (state = [], action) =>{
+const reducerSub = (state = 0, action) => {
   switch (action.type) {
-    case 'ADD_TODO':
-      return [
-        ...state,
-        todoReducerObj(undefined, action)
-      ];
-    default:
+    case 'DECREMENT' :
+      return state - 1;
+    default :
       return state;
   }
 };
 
-const mainReducer = (state = {}, action) => {
+const calcApp = (state = {}, action) => {
   return {
-    todos: todoReducerList(
-      state.todos,
-      action
-    ),
-    visibilityFilter: visibilityFilterReducer(
-      state.visibilityFilter,
-      action
-    )
+    add : reducerAdd( state.add, action ),
+    sub : reducerSub( state.sub, action )
   }
 }
-
-const store = createStore(mainReducer);
-
 ```
-
+```js
+store.dispatch({type : 'INCREMENT'})
+{
+  add:0
+  sub:0
+}
+```
 The reducer composition is so common in react that react did a `combineReducers`
 
+The todos field inside the state object will be updated by the state reducer. And the visibilityFilter Field inside the state object will be updated by calling the visibilityFilter reducer. And the result will be assamble into a single object state.
+It generate one reducer `todoApp` from other reducer `todos` and `visibilityFilter` delagate to them a part of the state three.
 ```js
-const mainReducer = combineReducers({
-  todos: todoReducerList,
-  visibilityFilter: visibilityFilterReducer
+const todoApp = combineReducers({
+  todos: todos,
+  visibilityFilter: visibilityFilter
+});
+```
+
+The convention is to call the reducer the same name of the state
+field they manage so we can benifit of the ES6 shorthand object notation
+
+```js
+const todoApp = combineReducers({
+  todos,
+  visibilityFilter
+});
+```
+
+```js
+const calcApp = combineReducers({
+  add : reducerAdd,
+  sub : reducerSub
 })
 ```
 
