@@ -18,7 +18,7 @@ The callback don't wait syncronously, It split the program, so it can print :
 console.log("Hello, ");
 
 setTimeout(function(){
-	console.log("callback!");
+  console.log("callback!");
 }, 1000);
 
 console.log("World !");
@@ -32,21 +32,21 @@ continuation passing style :
 
 ```js
 function one(cb) {
-	console.log("one");
-	setTimeout(cb, 1000);
+  console.log("one");
+  setTimeout(cb, 1000);
 }
 
 function two(cb) {
-	console.log("two");
-	setTimeout(cb, 1000);
+  console.log("two");
+  setTimeout(cb, 1000);
 }
 
 function tree() {
-	console.log("tree");
+  console.log("tree");
 }
 
 one(function(){
-	two(tree);
+  two(tree);
 });
 ```
 
@@ -68,9 +68,9 @@ Generators are coming in ES6. A generator is a new type of function that can be 
 We can now pause inside the function and resume later. A generator can pause itself and itterator can resume :
 ```js
 function* gen() {
-	console.log("hello");
-	yield null;
-	console.log("World");
+  console.log("hello");
+  yield null;
+  console.log("World");
 }
 
 var it = gen(); // do not execute function until it call next
@@ -120,7 +120,7 @@ promise.then(function(result) {
 
 3. How do you pause a generator ?
   * yeield
-	1. How do you resume it ?
+  1. How do you resume it ?
     * .next()
 
 4. What is a Promise ?

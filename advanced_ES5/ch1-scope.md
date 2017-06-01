@@ -60,7 +60,7 @@ var foo = ...
 To a function, that recursively decend into the function and compile inside the function, it look for declaration `var foo` and put into the scope of function bar.
 ```js
 function bar(){
-	var foo = "baz";
+  var foo = "baz";
 }
 ```
 ### Left Hand Side (LHS) and Right Hand Side (HRS)
@@ -84,7 +84,7 @@ yes, so it execute "baz"
 
 ```js
 function bar(){
-	var foo = "baz";
+  var foo = "baz";
 }
 ```
 
@@ -97,8 +97,8 @@ In that function exmaple :
 
 ```js
 function baz(foo){
-	var foo  = "bam";
-	bam = "yay";
+  var foo  = "bam";
+  bam = "yay";
 }
 ```
 
@@ -191,8 +191,8 @@ The `Immediately Invoked Function Expressions (IIFE)` Pattern is a technique use
 var foo = "foo";
 
 (function(){
-	var foo = "foo2";
-	console.log(foo);
+  var foo = "foo2";
+  console.log(foo);
 })();
 ```
 
@@ -208,10 +208,10 @@ Explicit block that can be used :
 
 ```js
 function foo(bar) {
-		let (baz = bar) {
-			console.log(baz); // "bar"
-		}
-	console.log(baz); // Error
+    let (baz = bar) {
+      console.log(baz); // "bar"
+    }
+  console.log(baz); // Error
 }
 ```
 
@@ -221,14 +221,14 @@ Kyle describes a few issues he has with the let keyword. Some of his issues are 
 
 ```js
 function foo(bar) {
-	if (bar) {
-		let baz = bar;
-		if (baz) {
-			let bam = baz;
-		}
-		console.log(bam); // Error
-	}
-	console.log(baz); // Error
+  if (bar) {
+    let baz = bar;
+    if (baz) {
+      let bam = baz;
+    }
+    console.log(bam); // Error
+  }
+  console.log(baz); // Error
 }
 ```
 
@@ -270,13 +270,13 @@ b; // 2
 ### The var statement
 The var statement get split into two parts :
   1. <b>The declaration part</b>:  gets hoisted to the top of the function and initializing with undefined.
-	2. <b>The initialization part</b>: turns into an ordinary assignment.
+  2. <b>The initialization part</b>: turns into an ordinary assignment.
 
 ```js
 function foo() {
-	...
-	var myVar = 0,
-	    myOtherVar;
+  ...
+  var myVar = 0,
+      myOtherVar;
 }
 ```
 
@@ -284,10 +284,10 @@ Expand into:
 
 ```js
 function foo() {
-	var myVar      = undefined,
-	    myOtherVar = undefined;
-	...
-	myVar = 0;
+  var myVar      = undefined,
+      myOtherVar = undefined;
+  ...
+  myVar = 0;
 }
 ```
 
@@ -309,7 +309,7 @@ function declaration get hoisted:
 console.log( getHello() ); // hello
 
 function getHello() {
-	return "hello";
+  return "hello";
 }
 ```
 
@@ -319,7 +319,7 @@ function expression did not get hoisted:
 console.log( getHello() ); // TypeError: getHello is not a function
 
 var getHello = function() {
-	return "hello";
+  return "hello";
 }
 ```
 
@@ -348,7 +348,7 @@ Before check on each floor if the variable is declared (scope), you have to know
 
 ```js
 function foo() {
-	console.log(this.bar);
+  console.log(this.bar);
 }
 
 var bar = "bar1";
@@ -362,7 +362,7 @@ In strict mode, we get an error :
 ```js
 'use strict';
 function foo() {
-	console.log(this.bar);
+  console.log(this.bar);
 }
 
 var bar = "bar1";
@@ -379,7 +379,7 @@ The explicit binding rule :
 
 ```js
 function foo() {
-	console.log(this.bar);
+  console.log(this.bar);
 }
 
 var obj = { bar: "bar2" };
@@ -405,8 +405,8 @@ Regardless of what you've been told, JavaScript does not have classes and the ne
 
 ```js
 function foo() {
-	this.baz = "baz";
-	console.log(this.bar + " "  + baz);
+  this.baz = "baz";
+  console.log(this.bar + " "  + baz);
 }
 
 var bar = "bar";
@@ -421,9 +421,9 @@ var baz = new foo();
 
 ```js
 function foo() {
-	this.baz = "baz";
-	console.log(this.bar + " "  + baz);
-	return this; // <- with the new keyword.
+  this.baz = "baz";
+  console.log(this.bar + " "  + baz);
+  return this; // <- with the new keyword.
 }
 ```
 

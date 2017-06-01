@@ -2,7 +2,7 @@
 
 * [Prototype](#prototype)
 * [Prototypal Inheritance](#prototypal-inheritance)
-	+ [Shadowing](#shadowing)
+  + [Shadowing](#shadowing)
 
 ## Prototype
 In JavaScript, every object is built by a constructor function. This does not mean classes are being instantiated. When an constructor function is called, a new object is created with a link to the object's prototype.
@@ -70,18 +70,18 @@ This code act like heritance of oo You think in term of object linked that use p
 
 ```js
 var Foo = {
-	init: function(who) {
-		this.me = who;
-	},
-	identify: function() {
-		return "I am " + this.me;
-	}
+  init: function(who) {
+    this.me = who;
+  },
+  identify: function() {
+    return "I am " + this.me;
+  }
 };
 
 var Bar = Object.create(Foo);
 
 Bar.speak = function() {
-	return "Hello, " + this.identify() + ".";
+  return "Hello, " + this.identify() + ".";
 };
 
 var b1 = Object.create(Bar);
@@ -93,19 +93,19 @@ b1.speak();
 
 ```js
 function Foo(who) {
-	this.me = who;
+  this.me = who;
 }
 
 Foo.prototype.identify = function() {
-	return "I am " + this.me;
+  return "I am " + this.me;
 };
 
 var a1 = new Foo("a1");
 a1.identify(); // "I am a1"
 
 a1.identify = function() { // <-- Shadowing
-	// relative polymorphism
-	return "Hello, " + Foo.prototype.identify.call(this) + ".";
+  // relative polymorphism
+  return "Hello, " + Foo.prototype.identify.call(this) + ".";
 };
 
 a1.identify(); // alerts: "Hello, I am a1."
@@ -143,12 +143,12 @@ Rather than relating prototypes to inheritance, Kyle demonstrates that prototype
   * When object call object of property on one object and can't handel it, it delegate up his Prototype chain to another object.
 
 3. Why is "behavior delegation" as a design pattern a helpful thing ?
-	1. You don't have copy of the function.
+  1. You don't have copy of the function.
     * So the parent can change during the runtime
-	2. The downside is shadowing a function is awkward.
-	  * Everything is public
-	  * Prototype is nice because you get only one copy of the method
+  2. The downside is shadowing a function is awkward.
+    * Everything is public
+    * Prototype is nice because you get only one copy of the method
     1. What are the tradeoffs ?
-		  * Every prototype function is public.
+      * Every prototype function is public.
 
 > ** Note: 95 % of the time we can use module pattern because we don't create multiple instances. 5% use delegation and choose the oloo style without using the new pattern.
