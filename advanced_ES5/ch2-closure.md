@@ -148,22 +148,22 @@ foo.bar(); // "bar"
 ## Quiz
 
 1. What is a closure and how is it created ?
-  - A Closure is when a function remember and access it's lexical scope even if that function is executed outside of his lexical scope.
+   - A Closure is when a function remember and access it's lexical scope even if that function is executed outside of his lexical scope.
 
-  - Is created when an inner function is transport it out to outside the inner function. Like when we pass a function in parameter.
+   - Is created when an inner function is transport it out to outside the inner function. Like when we pass a function in parameter.
 
 2. How long does it's scope stay around ?
-  - As long they is some function it still as a closure in the scope that scope will stay around.
-  - As soon the closure goes away, gabarge collector remove the scope.
+   - As long they is some function it still as a closure in the scope that scope will stay around.
+   - As soon the closure goes away, gabarge collector remove the scope.
 
 3. Why doesn't a function callback inside a loop behave as expected ?
-  - Because they is no variable created for each itteration because the scope of var belong to the global.
+   - Because they is no variable created for each itteration because the scope of var belong to the global.
 
-  1. How do we fix it ?
-    - We solve it by putting an iife inside the loop or use the let keyword.
+   1. How do we fix it ?
+      - We solve it by putting an iife inside the loop or use the let keyword.
 
 3. How do you use a closure to create an encapsulated module ?
-  - Has to be an outer wrapper function
-  - Return one or more interface function they were closure of this scope.
-  1. What's the benefits of that approch ?
-    - They hidden stuff.
+   - Has to be an outer wrapper function
+   - Return one or more interface function they were closure of this scope.
+   1. What's the benefits of that approch ?
+      - They hidden stuff.
