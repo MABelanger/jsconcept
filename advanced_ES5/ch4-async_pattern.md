@@ -10,9 +10,9 @@ Callbacks are integral to JavaScript, but can lead to many problems. They allow 
 
 
 The callback don't wait syncronously, It split the program, so it can print :
-  * Hello
-  * World !
-  * And come back 1000ms later print callback!
+   * Hello
+   * World !
+   * And come back 1000ms later print callback!
 
 ```js
 console.log("Hello, ");
@@ -113,23 +113,23 @@ promise.then(function(result) {
 ## Quiz
 
 1. What is "callback hell" ?
-  * Callback inside a callback.
+   * Callback inside a callback.
 
 2. Why do callbacks suffer from "inversion of control" ?
-  * It give to the utility all control.
+   * It give to the utility all control.
 
 3. How do you pause a generator ?
-  * yeield
-  1. How do you resume it ?
-    * .next()
+   * yeield
+   1. How do you resume it ?
+      * .next()
 
 4. What is a Promise ?
-  * It is a promise of a feature value.
-  1. How does it solve inversion of control issues ?
-    * Instead of passing my contunation in, i receive a promese back so it uninvert the inversion of control so you can decide what to do.
+   * It is a promise of a feature value.
+   1. How does it solve inversion of control issues ?
+      * Instead of passing my contunation in, i receive a promese back so it uninvert the inversion of control so you can decide what to do.
 
 5. How do we combine generators and promises for flow control ?
-  * You yeield out a promise and the promise when it complete automatic restart the generator with .next()
+   * You yeield out a promise and the promise when it complete automatic restart the generator with .next()
 
 ## Reference
 [advanced Javascript with Kyle Simpson](https://frontendmasters.com/courses/advanced-javascript/)

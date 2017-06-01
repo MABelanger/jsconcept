@@ -118,37 +118,37 @@ Rather than relating prototypes to inheritance, Kyle demonstrates that prototype
 ## Quiz
 
 1. What is a constructor ?
-  * Is a function called with the new keyword in front of it.
+   * Is a function called with the new keyword in front of it.
 
 2. What is a [[Prototype]]
-  * Is a linkage to one object to another object.
-  * It come from :
-    1. Get the linkage from the object create witch is linked to an arbitrary object.
-    2. Can get indirectly of the force step of the new keyword
+   * Is a linkage to one object to another object.
+   * It come from :
+      1. Get the linkage from the object create witch is linked to an arbitrary object.
+      2. Can get indirectly of the force step of the new keyword
 
 3. How does a [[Prototype]] affect an object ?
-  * Call a prototype if it does not exist it delegate to the prototype chain.
+   * Call a prototype if it does not exist it delegate to the prototype chain.
 
 4. How do we find out where an object's [[Prototype]] points to (3 ways) ?
-  1. __proto__ (dunder proto)
-  2. object.prototype
-  3. object.constructor.prototype
+   1. __proto__ (dunder proto)
+   2. object.prototype
+   3. object.constructor.prototype
 
 
 ## Quiz
 1. How is JavaScript [[Prototype]] chain not like traditional/classical inheritance ?
-  * Does not copy by passing the attribute of the parent.
+   * Does not copy by passing the attribute of the parent.
 
 2. What does "behavior delegation" mean and how does it describe object linking in JS ?
-  * When object call object of property on one object and can't handel it, it delegate up his Prototype chain to another object.
+   * When object call object of property on one object and can't handel it, it delegate up his Prototype chain to another object.
 
 3. Why is "behavior delegation" as a design pattern a helpful thing ?
-  1. You don't have copy of the function.
-    * So the parent can change during the runtime
-  2. The downside is shadowing a function is awkward.
-    * Everything is public
-    * Prototype is nice because you get only one copy of the method
-    1. What are the tradeoffs ?
-      * Every prototype function is public.
+   1. You don't have copy of the function.
+      * So the parent can change during the runtime
+   2. The downside is shadowing a function is awkward.
+      * Everything is public
+      * Prototype is nice because you get only one copy of the method
+      1. What are the tradeoffs ?
+         * Every prototype function is public.
 
 > ** Note: 95 % of the time we can use module pattern because we don't create multiple instances. 5% use delegation and choose the oloo style without using the new pattern.
