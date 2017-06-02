@@ -295,6 +295,96 @@ To assign a value of the component html or react, use `ref=`
   this.myRef.value = '';
 }}
 ```
+25-egghead
+
+## Passing the store down implicitly via context
+Instead passing the store for each component down to the props children, even if they don't need it, we can pass the store to the advance react feature `context`. We should avoid context in react because it bypass the encapsulation, is like declaring global variable and it contradict the react philosophy of explicit data flow.
+
+To use the context, we need to use provider inside the main render method. Each children can have access of the return of the `getChildContext()` of the provider.
+
+In order to enable the context in the child component, we need to specify `childContextTypes` To the component that call `getChildContext()` in this case the Provider. The `childContextTypes` is just react propTypes definition.
+
+```js
+class Provider extends Component {
+  getChildContext() {
+    return {
+      store: this.props.store
+    }
+  }
+  render() {
+    return this.props.children;
+  }
+}
+Provider.childContextTypes = {
+  store: React.PropTypes.object
+}
+
+ReactDOM.render(
+  <Provider store={createStore(todoApp)}>
+    <TodoApp />
+  </Provider>,
+  document.getElementById('root');
+)
+```
+
+For class component, in each component, we can access the context with `this.context` If the component is called `VisibleTodoList`, we need to specify this `contextTypes` to specify the context we want to receive.
+
+```js
+const { store } = this.context;
+```
+
+```js
+VisibleTodoList.contextTypes = {
+  store: React.PropTypes.object
+}
+```
+
+For functional component that don't have `this`. It is passed context as argument after props. Like the container component, you need to specify the contextTypes.
+
+```js
+let AddTodo = ( props, context ) => {
+  console.log(context); // -> Object {store: Object}
+}
+AddTodo.contextTypes = {
+  store: React.PropTypes.object
+}
+```
+
+## Provider inside react-redux
+Instead of creating manualy the Provicer, we can use this is react binding to the redux library.
+```js
+  import { Provider } from 'react-redux';
+```
+
+All container component is verry similar, they need to :
+1. Rerender when the store state change
+2. They need to unsubscribe from the store when they umount
+3. They take the current state of redux store and use it to render the `presentation component` with some props that they calculate from the state of the store.
+4. They need to specify the `contextTypes` to get the store from the context.
+
+To do this we can use `mapStateToProps` witch take the redux store and return the props that they need to pass to the presentation component that need to render the current state. It map the `store` argument to the `props` of the component.
+
+```js
+const mapStateToProps = ( state, ownProps ) => {
+  return {
+    active : ownProps.filter === state.visibilityFilter
+  };
+};
+```
+
+
+```js
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onTodoClick: (id) => {
+      dispatch({
+        type : 'TOGGLE_TODO',
+        id
+      });
+    }
+  }
+}
+```
 
 
 ## Appendix
