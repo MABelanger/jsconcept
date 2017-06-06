@@ -22,7 +22,45 @@ react-app
 |             |---- NavBar.js
 |             |---- actions.js
 |             |---- constants.js
+|             |---- styles.css
 |             |---- reducer.js
 |-----components
         |---- App.js
 ```
+
+## PostCSS + postcss-autoreset
+Doing a reset to each component. (component isolation)
+
+## Redux saga
+Is a library that aims to make side effects (i.e. asynchronous things like data fetching and impure things like accessing the browser cache) in React/Redux applications easier and better.
+
+## Performance
+two type `load time performance` and `application performance`. Webpack can do code splitting by routes. So the browser load the content only when the user click on to that route. They use `system.js`
+
+For browser performance, only render component concern with the change. Use it as possible on the parent component.
+
+```js
+shouldComponentUpdate(nextProps) {
+  return nextProps !== this.props;
+}
+```
+
+In javaScript **{"username" : "u1" } !== { "username" : "u1" }** will always be unequal, so you have to loop every property and values of the objects. So deeply comparing object is expensive.
+
+## Immutable.js
+```js
+import { fromJS } from 'immutable';
+
+const state = fromJS({
+  "username" : "u1"
+});
+```
+It calculate the hash tag and use function `.equals()`. We can now realy cheeply deeply compare.  
+
+
+## Conclusion
+1. Split your app into comtainers and components
+2. Group files by feature
+3. Isolate styling
+4. Use redux-saga
+5. Use immutable.js
