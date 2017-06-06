@@ -1,10 +1,7 @@
-Scaling React js Applications, Max Stoiber - AtTheFrontend 2016 Jun 2, 2016
-[video](https://www.youtube.com/watch?v=5W1Lqv_8Cqw)
-
-Max Stoiber The founder of : [React boilerplate](https://github.com/react-boilerplate/react-boilerplate)
+Scaling React js Applications, Max Stoiber - AtTheFrontend 2016 Jun 2, 2016 -> [video](https://www.youtube.com/watch?v=5W1Lqv_8Cqw) by Max Stoiber The founder of : [React boilerplate](https://github.com/react-boilerplate/react-boilerplate)
 
 1. What is scabality ?
-The ability of the system or an application to handle more of something. (user, developper or more application)
+  The ability of the system or an application to handle more of something. (user, developper or more application)
 
 2. State Management
 Unidirectional data flow =>
