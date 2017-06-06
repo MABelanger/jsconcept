@@ -8,7 +8,6 @@ Scaling React js Applications, Max Stoiber - AtTheFrontend 2016 Jun 2, 2016 -> [
   * `Containers` are concern with how thing work.
   * `Components` are concern with how thing look.
 
-
 By spliting the components, into containers and components, you can reuse easly the logic and the display to other projects.
 
 
