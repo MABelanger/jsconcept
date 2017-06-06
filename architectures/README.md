@@ -4,10 +4,9 @@ Scaling React js Applications, Max Stoiber - AtTheFrontend 2016 Jun 2, 2016 -> [
 
 2. `State Management` : Unidirectional data flow => The component notify the store and the store notify the container that notify the others child component.
 
-3. Architecture.
-Split your components into containers and components :
-  1. `Containers` are concern with how thing work.
-  2. `Components` are concern with how thing look.
+3. Architecture : Split your components into `containers` and `components` :
+  1. `Containers` are concern with how thing work.__
+  2. `Components` are concern with how thing look.__
 By spliting the components, into containers and components, you can reuse easly the logic and the display to other projects.
 
 
