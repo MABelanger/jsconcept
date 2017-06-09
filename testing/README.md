@@ -1,6 +1,9 @@
 ["Testing React Applications" with Max Stoiber](https://www.youtube.com/watch?v=59Ndb3YkLKA)
 
 
+[Mocha + Chai.js unit testing for ES6 with Istanbul code coverage](https://onsen.io/blog/mocha-chaijs-unit-test-coverage-es6/)
+
+
 ## Unit testing
 
 In js, the unit is the function so test
