@@ -19,11 +19,11 @@ react-app
 |---css
 |---containers
 |     |--- NavBar
-|             |----- NavBar.js
-|             |----- actions.js
-|             |----- constants.js
-|             |----- styles.css
-|             |----- reducer.js
+|             |--- NavBar.js
+|             |--- actions.js
+|             |--- constants.js
+|             |--- styles.css
+|             |--- reducer.js
 |---components
       |--- App.js
 ```
