@@ -8,7 +8,7 @@ Scaling React js Applications, Max Stoiber - AtTheFrontend 2016 Jun 2, 2016 -> [
   * `Containers` are concern with how thing work.
   * `Components` are concern with how thing look.
 
-By spliting the components, into containers and components, you can reuse easly the logic and the display to other projects.
+By spliting the components, into containers and components, you can reuse easily the logic and the display to other projects.
 
 
 4. **Structure**
@@ -16,23 +16,23 @@ Do not split by file types, group files by feature instead.
 
 ```
 react-app
-|----css
-|----containers
-|     |---- NavBar
-|             |---- NavBar.js
-|             |---- actions.js
-|             |---- constants.js
-|             |---- styles.css
-|             |---- reducer.js
-|-----components
-        |---- App.js
+|---css
+|---containers
+|     |--- NavBar
+|             |----- NavBar.js
+|             |----- actions.js
+|             |----- constants.js
+|             |----- styles.css
+|             |----- reducer.js
+|---components
+      |--- App.js
 ```
 
 ## PostCSS + postcss-autoreset
 Doing a reset to each component. (component isolation)
 
 ## Redux saga
-Is a library that aims to make side effects (i.e. asynchronous things like data fetching and impure things like accessing the browser cache) in React/Redux applications easier and better.
+Is a library that aims to make side effects (i.e. asynchronous things like data fetching and impure things like accessing the browser cache) in React/Redux applications become easier and better.
 
 ## Performance
 two type `load time performance` and `application performance`. Webpack can do code splitting by routes. So the browser load the content only when the user click on to that route. They use `system.js`
@@ -55,7 +55,7 @@ const state = fromJS({
   "username" : "u1"
 });
 ```
-It calculate the hash tag and use function `.equals()`. We can now realy cheeply deeply compare.  
+It calculate the hash tag and use function `.equals()`. We can now really cheaply deeply compare.  
 
 
 ## Conclusion
