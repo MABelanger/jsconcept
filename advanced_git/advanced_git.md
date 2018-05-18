@@ -172,7 +172,7 @@ A description of how you did that not what the code do. You can add one first li
 
 ## Track a file
 ```bash
-> git log --name-status --follow --  <file>
+> git log --name-status --follow --oneline --  <file>
 ```
 
 ## Seach For git commit match regexp
@@ -191,6 +191,7 @@ Selectively iinclude or exclude file that have been:
 ```bash
 > git log --diff-filter=R --stat
 ```
+
 
 ## git log: referencing commits
 Git allow commit referencing of multiple parent so to point to a parent you can.
@@ -245,3 +246,149 @@ what is in the branch A that is not in the branch B
 ```bash
 > git diff BRANCH_A BRANCH_B
 ```
+
+### Two dot notation
+The two .. notation is B exclude A
+Show the difference that is on branch B but not in branch A
+```bash
+> git diff A B
+> git diff A..B
+```
+
+### Diff branch
+
+```bash
+# Witch branch can be merged in master and can be cleaned up.
+> git branch --merged master
+# Witch branch aren't merged with master yet.
+> git branch --no-merged master
+```
+
+## Fix mistakes
+- checkout
+- reset
+- revert
+- clean
+
+
+### Checkout
+Can restore working area tree files or switch branches. Depend on the parameter.
+If checkout a file it not moving the pointer HEAD to the new branch
+
+#### Checkout Branch
+1. Change HEAD to point to the new branche.
+2. Copy the commit snapshot Repository to the staging area. (Index)
+3. Update the working area with the branch contents.
+
+#### Checkout a file
+1. Replace the working area copy with the version from the current staging area.
+```bash
+> git checkout -- <file_path>
+```
+** The two dash -- signify the end of the command operation and a start of positional parameter (files). If i have the file with the same of branch name. git checkout will know is a file with the --
+
+#### Checkout from a specific commit
+- Copy to both working area & staging area
+```bash
+> git checkout <commit> -- <file_path>
+```
+- Restore a deleted file
+```bash
+> git checkout <commit> -- <file_path>
+```
+
+## Git clean
+Git clean will clear your working area by deleting untracked files.
+
+```bash
+# To see what would be deleted only file
+> git clean --dry-run
+# To se what would be deleted file + dir
+> git clean -d --dry-run
+
+# Do the deletion Only files
+> git clean -f
+
+# Clean files and directories
+> git clean -fd
+```
+
+## Git reset
+Do not reset if you working on a pubic repo if you pushed your change.
+### Git reset --soft
+When git reset soft to the parent, the head is moving but the parent is detached. dangling commit after a new commit from the child.
+
+### Git reset --mixed
+It move the head than copy the new head to the staging area. (the default)
+```bash
+> git reset --soft HEAD~
+```
+
+### Git reset --hard
+It does the same thing of soft and mixed but it also copy to the working area.
+```bash
+> git reset --hard HEAD~
+```
+
+##Git reset <commit>
+1. Move HEAD and current branch
+2. Reset the staging area
+3. Reset working area
+
+--soft = (1)
+--mixed = (1) & (2)
+--hard = (1) & (2) & (3)
+
+# Git reset files
+It only reset the saging area with the default --mixed, so this operation do not work with flags.
+```bash
+> git reset <commit> -- <file>
+```
+
+In case of accidental `git reset -`, or accidental merge, git keeps the previous value of `HEAD` in variable called `ORIG_HEAD`. To go back the way things were:
+```bash
+> git reset ORIG_HEAD
+```
+
+# git revert, the safe reset.
+It will not change history, and it will create a new commit the mirror opposite of the one commit specified.
+```bash
+> git revert <commit>
+```
+
+## Git amend
+Amend is a let you make change to previous commit. It add an new commit and it the old one become dangling commit that will garbage collected.
+
+```bash
+> git commit --amend
+```
+## Git rebase
+A rebase apply our commit on the top of other commit on another branch. Rebase=Give a commit a new parent. (a new base commit).
+1. It rewind head to the top of master.
+2. It apply a copy of our commit on our branch on top of the master head.
+
+The power of rebase is replay commits *Before* they're "replayed" on the top of the new HEAD.
+- Commits can be :
+  - Edited
+  - Removed
+  - Combined
+  - Re-ordered
+  - Inserted
+
+### Interractive rebase
+```bash
+# the ^ specifies the parent commit
+> git rebase -i <commit_to_fix>^
+```
+It open an editor with a list of "todo"
+- In the format of : <command> <commit> <commit msg>
+- 
+
+Editing a commit can also split it up into multiple commits!
+1. Start an interactive rebase with rebase -i
+2. mark the commit with an edit
+3. git reset HEAD^
+4. git add
+5. git commit
+6. repeat (4) & (5) until the working area is clean!
+7. git rebase --continue

@@ -212,3 +212,48 @@ Look at a file from another commit:
 ```bash
 > git show <commit>:<file>
 ```
+
+## Diff two between
+```bash
+# working area and commit.
+> git diff
+# Staged change
+> git diff --staged
+# compare two branches
+> git diff BRANCH_A BRANCH_B
+```
+
+### Diff branch
+
+```bash
+# Witch branch can be merged in master and can be cleaned up.
+> git branch --merged master
+# Witch branch aren't merged with master yet.
+> git branch --no-merged master
+```
+
+#### Checkout from a specific commit
+- Copy to both working area & staging area
+```bash
+> git checkout <commit> -- <file_path>
+```
+- Restore a deleted file
+```bash
+> git checkout <commit> -- <file_path>
+```
+
+## Git clean
+Git clean will clear your working area by deleting untracked files.
+
+```bash
+# To see what would be deleted only file
+> git clean --dry-run
+# To se what would be deleted file + dir
+> git clean -d --dry-run
+
+# Do the deletion Only files
+> git clean -f
+
+# Clean files and directories
+> git clean -fd
+```
