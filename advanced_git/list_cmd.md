@@ -257,3 +257,57 @@ Git clean will clear your working area by deleting untracked files.
 # Clean files and directories
 > git clean -fd
 ```
+
+##Git reset <commit>
+1. Move HEAD and current branch
+2. Reset the staging area
+3. Reset working area
+
+### Git reset
+``` bash
+# --soft = (1)
+> git reset --soft HEAD~
+
+# --mixed = (1) & (2)
+> git reset --mixed HEAD~
+
+# --hard = (1) & (2) & (3)
+> git reset --hard HEAD~
+
+# It only reset the saging area with the default --mixed
+> git reset <commit> -- <file>
+
+# accidental `git reset -`
+> git reset ORIG_HEAD
+```
+
+
+### git revert, the safe reset.
+```bash
+# It will not change history
+> git revert <commit>
+```
+
+### Git amend
+```bash
+# make change to previous commit (message or files)
+> git commit --amend
+```
+### Git rebase
+
+#### Interractive
+```bash
+# the ^ specifies the parent commit
+# In the format of : <command> <commit> <commit msg>
+> git rebase -i <commit_to_fix>^
+```
+
+#### Split it up into multiple commits
+
+1. Start an interactive rebase with rebase -i
+2. mark the commit with an edit
+3. git reset HEAD^
+4. git add
+5. git commit
+6. repeat (4) & (5) until the working area is clean!
+7. git rebase --continue
