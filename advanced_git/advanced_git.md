@@ -56,6 +56,10 @@ ref: refs/heads/master
 ```
 
 ### Three area where code lives
+![alt caniuse](./pic/3-areas.png)
+![alt caniuse](./pic/data-parts.png)
+![alt caniuse](./pic/staging-area.png)
+
 1. Working area :
   - The files that are also not handled by git. (untracked files  )
 2. Staging area
@@ -64,6 +68,7 @@ ref: refs/heads/master
   - The files git know about, contains all of your commits.
 
 ### The commit
+![alt caniuse](./pic/commit-references.png)
 The commit is a snapshot what your working and staging area look like a the time of the commit.
 
 
@@ -194,6 +199,9 @@ Selectively iinclude or exclude file that have been:
 
 
 ## git log: referencing commits
+
+![alt caniuse](./pic/reference-to-commits.png)
+
 Git allow commit referencing of multiple parent so to point to a parent you can.
 - ^ or ^n
   - no args: ^ == ^1 : the first parent commit
@@ -272,6 +280,7 @@ Show the difference that is on branch B but not in branch A
 
 
 ### Checkout
+![alt caniuse](./pic/checkout-pointers.png)
 Can restore working area tree files or switch branches. Depend on the parameter.
 If checkout a file it not moving the pointer HEAD to the new branch
 
@@ -358,7 +367,7 @@ It will not change history, and it will create a new commit the mirror opposite 
 
 ## Git amend
 Amend is a let you make change to previous commit. It add an new commit and it the old one become dangling commit that will garbage collected.
-
+![alt caniuse](./pic/git-amend.png)
 ```bash
 > git commit --amend
 ```
@@ -382,7 +391,7 @@ The power of rebase is replay commits *Before* they're "replayed" on the top of 
 ```
 It open an editor with a list of "todo"
 - In the format of : <command> <commit> <commit msg>
-- 
+-
 
 Editing a commit can also split it up into multiple commits!
 1. Start an interactive rebase with rebase -i
