@@ -401,3 +401,137 @@ Editing a commit can also split it up into multiple commits!
 5. git commit
 6. repeat (4) & (5) until the working area is clean!
 7. git rebase --continue
+
+
+### Amend any commit with fixup & autosquash
+1. git add new files
+2. git commit --fixup <sha>
+  1. This create a new commit, the message starts with `fixup!`
+3. git rebase -i --autosquash <sha>^
+4. git will generate the right todos for you! juste save and quit.
+
+
+### Rebase --exec (Execute command)
+The rebase will stop if the command fails.
+```bash
+# the ^ specifies the parent commit
+> git rebase -i --exec "run-test" <commit_to_fix>
+```
+
+### aport the rebase
+```bash
+> git rebase --abort
+```
+
+### Quick tip rebase
+```bash
+# Backup the branch
+> git branch my_branch_backup
+# If rebase succeds but you missed up...
+> git reset my_branch_backup --hard
+```
+
+### Do many commit to safe the work
+- Git best practice:
+  - Commit often, perfect later, publish once
+- When working locally, when you publish to the repo do a rebase to clean history.
+- Never rewrite public history
+
+### Add file after commit
+```bash
+> echo 'hello' > hello
+> git add hello && git commit -m 'add hello'
+> echo 'bye' > bye
+> git add bye
+> git commit --amend
+```
+
+### Rebase from master
+```bash
+# On the feature branch
+> git rebase master
+```
+
+### Tracking branches
+* Track a branch to tie it to an upstream branch.
+
+```bash
+# Checkout a remote branch, with tracking
+> git checkout -t origin/feature
+# Tell git witch branch to track the first time you push
+> git push -u origin feature
+```
+
+To check witch branch we tracking
+```bash
+# To fetch the data from the network without changing the local repo.
+> git fetch
+> git branch -vv
+```
+
+Under the hood (git pull)
+```bash
+> git pull = git fetch && git merge
+```
+When you PR do an rebase.
+```bash
+# same as git pull but doing a rebase instead of merge.
+> git pull --rebase
+```
+
+To rebase from master. But it's do not work very well if you have already
+a merge commit.
+```bash
+> git pull origin/master --rebase
+```
+
+To see commits witch haven't been published upstream yet.
+```bash
+> git cherry -v
+```
+Git doesn't automatically push local tags to a remote repository.
+```bash
+> git push <tagname>
+> git push --tags
+```
+
+### Contributing to open source projects -- pull request
+- Befoe opening a PR:
+  - Keep commit history clean and neat. Rebase if needed.
+  - Run projects test on your code.
+  - Pull in Upstream change via rebase to avoid merge commits.
+
+- After opening a PR:
+  - Explain your change througly in the pull request.
+  - Link to any open issues that your pull request might fix
+  - Check back for comments for the maintainers.
+
+### Pushing/merging your changes back to a remote
+When accepting a PR, use merge instead of rebase to keep track the context.
+
+
+### Local destructive operations
+Stash before doing this operations:
+```bash
+> git stash --include-untracked
+> git checkout -- <file>
+> git reset --hard
+```
+
+### Remote destructive operations - Rewriting history
+- rebase
+- amend
+- reset
+Never run force to a public repo.
+```bash
+> git push -f
+```
+
+### TO undo a merge
+```bash
+> git reset --merge ORIG_HEAD
+```
+To check the reference of head
+```bash
+> git reflog
+```

@@ -311,3 +311,95 @@ Git clean will clear your working area by deleting untracked files.
 5. git commit
 6. repeat (4) & (5) until the working area is clean!
 7. git rebase --continue
+
+### Rebase --exec (Execute command)
+The rebase will stop if the command fails.
+```bash
+# the ^ specifies the parent commit
+> git rebase -i --exec "run-test" <commit_to_fix>
+```
+
+### aport the rebase
+```bash
+> git rebase --abort
+```
+
+### Quick tip rebase
+```bash
+# Backup the branch
+> git branch my_branch_backup
+# If rebase succeds but you missed up...
+> git reset my_branch_backup --hard
+```
+
+### Add file after commit
+```bash
+> echo 'hello' > hello
+> git add hello && git commit -m 'add hello'
+> echo 'bye' > bye
+> git add bye
+> git commit --amend
+```
+
+### Delete local branch
+```bash
+> git branch -D branch_name
+```
+
+### Rebase from master
+```bash
+# On the feature branch
+> git rebase master
+```
+
+### Clone repository
+by default the name origin is referencing the name where the repo come from or has been cloned.
+```bash
+> git remote -v
+```
+
+#### Upstream
+* The upstream repository is the base repository you created a fork from.
+* This isn't set up by default, you need to set it up manually.
+
+```bash
+> git remote add upstream https://github.com/ORIG_OWNER/REPO.git
+```
+
+### Tracking branches
+* Track a branch to tie it to an upstream branch.
+
+```bash
+# Checkout a remote branch, with tracking
+> git checkout -t origin/feature
+# Tell git witch branch to track the first time you push
+> git push -u origin feature
+```
+
+To check witch branch we tracking
+```bash
+# To fetch the data from the network without changing the local repo.
+> git fetch
+> git branch -vv
+```
+
+Under the hood (git pull)
+```bash
+> git pull = git fetch && git merge
+```
+When you PR do an rebase.
+```bash
+# same as git pull but doing a rebase instead of merge.
+> git pull --rebase
+```
+
+To rebase from master. But it's do not work very well if you have already
+a merge commit.
+```bash
+> git pull origin/master --rebase
+```
+
+To see commits witch haven't been published upstream yet.
+```bash
+> git cherry -v
+```
